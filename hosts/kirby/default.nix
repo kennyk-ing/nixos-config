@@ -1,29 +1,33 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system/core.nix
-    ../../modules/system/security.nix
-    ../../modules/system/maintenance.nix
-
-    ../../modules/hardware/firmware.nix
-    ../../modules/hardware/laptop.nix
-    ../../modules/hardware/bluetooth.nix
-    ../../modules/system/audio.nix
-    ../../modules/hardware/wifi.nix
-
-    ../../modules/desktop/plasma.nix
-    ../../modules/apps/firefox.nix
-
-    ../../users/kenny
-    ../../users/kenny/workstation.nix
   ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "kirby";
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   age.secrets.wifi.file = ../../secrets/wifi.age;
+
+
+  mySystem.apps.firefox.enable = true;
+  mySystem.desktop.displayManager.enable = true;
+  mySystem.desktop.plasma.enable = true;
+  mySystem.desktop.printing.enable = true;
+  mySystem.users.kenny.enable = true;
+  mySystem.users.kenny.workstation.enable = true;
+  mySystem.hardware.audio.enable = true;
+  mySystem.hardware.bluetooth.enable = true;
+  mySystem.hardware.firmware.enable = true;
+  mySystem.hardware.laptop.enable = true;
+  mySystem.hardware.ssd.enable = true;
+  mySystem.hardware.wifi.enable = true;
+  mySystem.system.core.enable = true;
 
   system.stateVersion = "26.05";
 }

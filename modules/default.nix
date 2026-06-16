@@ -1,0 +1,19 @@
+{ ... }:
+
+{
+  imports = [
+    ./apps/firefox.nix
+    ./desktop/display-manager.nix
+    ./desktop/plasma.nix
+    ./desktop/printing.nix
+    ./hardware/audio.nix
+    ./hardware/bluetooth.nix
+    ./hardware/firmware.nix
+    ./hardware/laptop.nix
+    ./hardware/ssd.nix
+    ./hardware/wifi.nix
+    ./system/core.nix
+    ../users/kenny
+    ../users/kenny/workstation.nix
+  ];
+}

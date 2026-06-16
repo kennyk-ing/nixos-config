@@ -1,9 +1,14 @@
-{ ... }:
+{ lib, config, ... }:
 
-{
-  # Essential for Wi-Fi and GPU drivers
-  hardware.enableRedistributableFirmware = true;
+let
+  cfg = config.mySystem.hardware.firmware;
+in {
+  options.mySystem.hardware.firmware = {
+    enable = lib.mkEnableOption "Essential hardware firmware and fwupd";
+  };
 
-  # Allows you to update BIOS/Motherboard firmware via terminal
-  services.fwupd.enable = true;
+  config = lib.mkIf cfg.enable {
+    hardware.enableRedistributableFirmware = true;
+    services.fwupd.enable = true;
+  };
 }

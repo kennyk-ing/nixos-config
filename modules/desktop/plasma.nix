@@ -1,19 +1,13 @@
-{ config, pkgs, ... }:
-
+{ lib, config, ... }:
+let
+  cfg = config.mySystem.desktop.plasma;
+in
 {
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  options.mySystem.desktop.plasma = {
+    enable = lib.mkEnableOption "Plasma 6 Desktop Environment";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  config = lib.mkIf cfg.enable {
+    services.desktopManager.plasma6.enable = true;
+  };
 }

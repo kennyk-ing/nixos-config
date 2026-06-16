@@ -34,9 +34,19 @@
           specialArgs = { inherit inputs pkgs-unstable; };
           modules = [
             { nixpkgs.hostPlatform = "x86_64-linux"; }
+
             agenix.nixosModules.default
+
             ./hosts/kirby
+            ./modules
+            ./users
+
             home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
           ];
         };
       };

@@ -1,37 +1,46 @@
-{ pkgs, ... }:
-
+{ pkgs, config, lib, ... }:
+let
+  cfg = config.mySystem.users.kenny.workstation;
+in
 {
-  home-manager.users."kenny" = {
-    home.packages = with pkgs; [
-      kdePackages.kate
-      meslo-lgs-nf
-    ];
+  options.mySystem.users.kenny.workstation = {
+    enable = lib.mkEnableOption "Kenny's Graphical Workstation Additions";
+  };
 
-    # Make sure home manager can install fonts to the system catalog
-    fonts.fontconfig.enable = true;
+  config = lib.mkIf cfg.enable {
+    home-manager.users."kenny" = {
+      home.packages = with pkgs; [
+        kdePackages.kate
+        meslo-lgs-nf
+      ];
 
-    home.file.".p10k.zsh".source = ./files/p10k.zsh;
+      # Make sure home manager can install fonts to the system catalog
+      fonts.fontconfig.enable = true;
 
-    programs = {
-      zsh = {
-        plugins = [
-          {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          }
-        ];
-        initContent = ''
+      home.file.".p10k.zsh".source = ./files/p10k.zsh;
+
+      programs = {
+        zsh = {
+          plugins = [
+            {
+              name = "powerlevel10k";
+              src = pkgs.zsh-powerlevel10k;
+              file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+            }
+          ];
+          initContent = ''
           [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-        '';
-      };
+          '';
+        };
 
-      wezterm = {
-        enable = true;
-        enableBashIntegration = true;
-        enableZshIntegration = true;
-        extraConfig = builtins.readFile ./files/wezterm.lua;
+        wezterm = {
+          enable = true;
+          enableBashIntegration = true;
+          enableZshIntegration = true;
+          extraConfig = builtins.readFile ./files/wezterm.lua;
+        };
       };
     };
   };
 }
+
