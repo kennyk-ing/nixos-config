@@ -1,5 +1,4 @@
 { lib, config, ... }:
-
 let
   cfg = config.mySystem.hardware.wifi;
 in {
@@ -8,8 +7,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.wifi.file = ../../secrets/wifi.age;
-
     networking.networkmanager.ensureProfiles = {
       environmentFiles = [ config.age.secrets.wifi.path ];
       profiles = {
