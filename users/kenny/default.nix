@@ -21,7 +21,6 @@
 
     home.packages = with pkgs; [
       btop
-      inputs.my-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     programs = {
@@ -30,5 +29,21 @@
 
     # Do not change this value after initial setup
     home.stateVersion = "26.05"; 
+  };
+
+  environment = {
+    systemPackages = [
+      inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.my-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+    variables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
+    shellAliases = {
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
+    };
   };
 }
