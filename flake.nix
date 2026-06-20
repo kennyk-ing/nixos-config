@@ -13,6 +13,9 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { 
@@ -21,6 +24,7 @@
     nixpkgs-unstable,
     home-manager,
     agenix,
+    disko,
     ... }@inputs:
     let
       system = "x86_64-linux";
@@ -36,6 +40,7 @@
             { nixpkgs.hostPlatform = "x86_64-linux"; }
 
             agenix.nixosModules.default
+            disko.nixosModules.default
 
             ./hosts/kirby
             ./modules
