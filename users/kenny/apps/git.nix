@@ -11,13 +11,11 @@
         pull.rebase = true;
       };
     };
-
     lazygit = {
       enable = true;
     };
-
-    zsh.shellAliases = {
-      lg = "lazygit";
-    };
+  };
+  home.shellAliases = {
+    lg = "lazygit";
   };
 }

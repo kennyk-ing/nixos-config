@@ -22,14 +22,11 @@ in
         ./apps/git.nix
         ./apps/ssh.nix
         ./apps/zsh.nix
+        ./apps/cli.nix
       ];
 
       home.username = "kenny";
       home.homeDirectory = "/home/kenny";
-
-      home.packages = with pkgs; [
-        btop
-      ];
 
       programs = {
         home-manager.enable = true;
