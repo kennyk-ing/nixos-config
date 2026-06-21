@@ -39,6 +39,10 @@ in
           enableZshIntegration = true;
           extraConfig = builtins.readFile ./files/wezterm.lua;
         };
+
+        obsidian = {
+          enable = true;
+        };
       };
     };
   };
