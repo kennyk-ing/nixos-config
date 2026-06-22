@@ -4,4 +4,5 @@ let
 in
 {
   "wifi.age".publicKeys = [ kenny kirby ];
+  "email_personal.age".publicKeys = [ kenny kirby ];
 }

@@ -9,6 +9,10 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users."kenny" = {
+      imports = [
+        ./apps/thunderbird.nix
+      ];
+
       home.packages = with pkgs; [
         kdePackages.kate
         meslo-lgs-nf

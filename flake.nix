@@ -11,6 +11,11 @@
     my-nixvim.url = "github:kennyk-ing/nixvim-flake";
     my-nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
+    privateData = {
+      url = "git+ssh://git@github.com/kennyk-ing/nixos-private.git";
+      flake = false;
+    };
+
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -18,7 +23,7 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { 
+  outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
@@ -35,7 +40,9 @@
     {
       nixosConfigurations = {
         kirby = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs pkgs-unstable; };
+          specialArgs = {
+            inherit inputs pkgs-unstable;
+          };
           modules = [
             { nixpkgs.hostPlatform = "x86_64-linux"; }
 

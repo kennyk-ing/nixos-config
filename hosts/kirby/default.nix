@@ -15,6 +15,10 @@
 
   age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   age.secrets.wifi.file = ../../secrets/wifi.age;
+  age.secrets.email_personal = {
+    file = ../../secrets/email_personal.age;
+    owner = "kenny";
+  };
 
   mySystem.apps.firefox.enable = true;
   mySystem.apps.gaming.enable = true;
