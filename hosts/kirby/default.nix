@@ -34,6 +34,7 @@
   mySystem.hardware.laptop.enable = true;
   mySystem.hardware.ssd.enable = true;
   mySystem.hardware.wifi.enable = true;
+  mySystem.services.syncthing.enable = true;
   mySystem.system.core.enable = true;
 
   system.stateVersion = "26.05";

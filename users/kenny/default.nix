@@ -15,6 +15,7 @@ in
       initialHashedPassword = "$6$WQgmk1aoS.v2d7NO$n1R./0iPPER4.PCPZPs09JiS3oSTxKYjtn3eeKF1egFNY/NND2w1/cpQcDhTrGip/eOdySSK0ZEIA.E2PDZIq/"; #changeme
       uid = 1000;
       shell = pkgs.zsh;
+      linger = true; # run systemd user services at boot
     };
 
     home-manager.users."kenny" = {

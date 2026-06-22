@@ -15,6 +15,7 @@
     ./hardware/laptop.nix
     ./hardware/ssd.nix
     ./hardware/wifi.nix
+    ./services/syncthing.nix
     ./system/core.nix
     ../users/kenny
     ../users/kenny/workstation.nix
