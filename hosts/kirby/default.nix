@@ -20,6 +20,7 @@
     owner = "kenny";
   };
 
+  mySystem.apps.emacs.enable = true;
   mySystem.apps.firefox.enable = true;
   mySystem.apps.gaming.enable = true;
   mySystem.desktop.displayManager.enable = true;

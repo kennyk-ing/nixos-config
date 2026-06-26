@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./apps/emacs.nix
     ./apps/firefox.nix
     ./apps/gaming.nix
     ./desktop/display-manager.nix
