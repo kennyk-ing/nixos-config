@@ -15,7 +15,8 @@ in
 
       home.packages = with pkgs; [
         kdePackages.kate
-        meslo-lgs-nf
+        fira
+        nerd-fonts.sauce-code-pro
       ];
 
       # Make sure home manager can install fonts to the system catalog

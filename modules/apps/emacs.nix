@@ -15,11 +15,24 @@ in {
       git
       pandoc
       shellcheck
+
+      # Creates a global 'doom' command that points to the current user's local installation
+      (writeShellScriptBin "doom" ''
+        exec ~/.config/emacs/bin/doom "$@"
+      '')
     ];
 
     fonts.packages = with pkgs; [
       nerd-fonts.symbols-only
       nerd-fonts.sauce-code-pro
     ];
+
+    home-manager.users.kenny = {
+      services.emacs = {
+        enable = true;
+        client.enable = true;
+        defaultEditor = true;
+      };
+    };
   };
 }

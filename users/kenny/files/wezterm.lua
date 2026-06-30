@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 
 disable_default_super_key_bindings = {
+	{ key = "Enter", mods = "ALT", action = wezterm.action.DisableDefaultAssignment },
 	{ key = "-", mods = "SUPER", action = wezterm.action.DisableDefaultAssignment },
 	{ key = "0", mods = "SUPER", action = wezterm.action.DisableDefaultAssignment },
 	{ key = "1", mods = "SUPER", action = wezterm.action.DisableDefaultAssignment },
@@ -35,9 +36,7 @@ local flexoki_custom = wezterm.color.get_builtin_schemes()["flexoki-dark"]
 flexoki_custom.background = "black"
 
 return {
-	font = wezterm.font("MesloLGS NF", {
-		weight = "Regular",
-	}),
+	font = wezterm.font("SauceCodePro Nerd Font"),
 	adjust_window_size_when_changing_font_size = false,
 	hide_tab_bar_if_only_one_tab = true,
 	scrollback_lines = 10000,
@@ -49,7 +48,7 @@ return {
 		top = "5px",
 		bottom = "5px",
 	},
-	keys = disable_default_super_key_bindings.keys,
+	keys = disable_default_super_key_bindings,
 	color_schemes = {
 		["flexoki-custom"] = flexoki_custom,
 	},
