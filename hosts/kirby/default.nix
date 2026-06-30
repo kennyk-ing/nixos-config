@@ -23,6 +23,7 @@
   mySystem.apps.emacs.enable = true;
   mySystem.apps.firefox.enable = true;
   mySystem.apps.gaming.enable = true;
+  mySystem.apps.wezterm.enable = true;
   mySystem.desktop.displayManager.enable = true;
   mySystem.desktop.plasma.enable = true;
   mySystem.desktop.printing.enable = true;

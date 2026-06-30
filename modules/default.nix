@@ -5,6 +5,7 @@
     ./apps/emacs.nix
     ./apps/firefox.nix
     ./apps/gaming.nix
+    ./apps/wezterm.nix
     ./desktop/display-manager.nix
     ./desktop/plasma.nix
     ./desktop/printing.nix
