@@ -9,7 +9,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      emacs
+      emacs-pgtk
       ripgrep
       fd
       git
