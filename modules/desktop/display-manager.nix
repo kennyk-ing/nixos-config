@@ -12,5 +12,8 @@ in {
     services.xserver.enable = true;
 
     services.displayManager.gdm.enable = true;
+
+    # helps GDM remember each users last session type.
+    services.accounts-daemon.enable = true;
   };
 }

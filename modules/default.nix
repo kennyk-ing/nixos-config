@@ -7,6 +7,7 @@
     ./apps/gaming.nix
     ./apps/wezterm.nix
     ./desktop/display-manager.nix
+    ./desktop/niri.nix
     ./desktop/plasma.nix
     ./desktop/printing.nix
     ./hardware/audio.nix

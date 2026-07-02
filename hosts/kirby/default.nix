@@ -25,6 +25,7 @@
   mySystem.apps.gaming.enable = true;
   mySystem.apps.wezterm.enable = true;
   mySystem.desktop.displayManager.enable = true;
+  mySystem.desktop.niri.enable = true;
   mySystem.desktop.plasma.enable = true;
   mySystem.desktop.printing.enable = true;
   mySystem.users.kenny.enable = true;
@@ -38,6 +39,10 @@
   mySystem.hardware.wifi.enable = true;
   mySystem.services.syncthing.enable = true;
   mySystem.system.core.enable = true;
+
+  environment.sessionVariables = {
+    LIBVA_MESSAGING_LEVEL = "1";
+  };
 
   system.stateVersion = "26.05";
 }
