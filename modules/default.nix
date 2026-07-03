@@ -20,6 +20,7 @@
     ./hardware/wifi.nix
     ./services/syncthing.nix
     ./system/core.nix
+    ./system/zram.nix
     ../users/kenny
     ../users/kenny/workstation.nix
   ];

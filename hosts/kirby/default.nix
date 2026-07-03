@@ -6,39 +6,65 @@
     ./disko.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.systemd.enable = true;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.systemd.enable = true;
+  };
 
   networking.hostName = "kirby";
 
-  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  age.secrets.wifi.file = ../../secrets/wifi.age;
-  age.secrets.email_personal = {
-    file = ../../secrets/email_personal.age;
-    owner = "kenny";
+  age = {
+    identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    secrets = {
+      wifi.file = ../../secrets/wifi.age;
+      email_personal = {
+        file = ../../secrets/email_personal.age;
+        owner = "kenny";
+      };
+    };
   };
 
-  mySystem.apps.emacs.enable = true;
-  mySystem.apps.firefox.enable = true;
-  mySystem.apps.gaming.enable = true;
-  mySystem.apps.wezterm.enable = true;
-  mySystem.desktop.displayManager.enable = true;
-  mySystem.desktop.niri.enable = true;
-  mySystem.desktop.plasma.enable = true;
-  mySystem.desktop.printing.enable = true;
-  mySystem.users.kenny.enable = true;
-  mySystem.users.kenny.workstation.enable = true;
-  mySystem.hardware.audio.enable = true;
-  mySystem.hardware.bluetooth.enable = true;
-  mySystem.hardware.firmware.enable = true;
-  mySystem.hardware.intel-graphics.enable = true;
-  mySystem.hardware.laptop.enable = true;
-  mySystem.hardware.ssd.enable = true;
-  mySystem.hardware.wifi.enable = true;
-  mySystem.services.syncthing.enable = true;
-  mySystem.system.core.enable = true;
+  mySystem = {
+    apps = {
+      emacs.enable = true;
+      firefox.enable = true;
+      gaming.enable = true;
+      wezterm.enable = true;
+    };
+    desktop = {
+      displayManager.enable = true;
+      niri.enable = true;
+      plasma.enable = true;
+      printing.enable = true;
+    };
+    users = {
+      kenny = {
+        enable = true;
+        workstation.enable = true;
+      };
+      karen.enable = true;
+    };
+    hardware = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      firmware.enable = true;
+      intel-graphics.enable = true;
+      laptop.enable = true;
+      ssd.enable = true;
+      wifi.enable = true;
+    };
+    system = {
+      core.enable = true;
+      zram = {
+        enable = true;
+        memoryPercent = 10;
+      };
+    };
+    services.syncthing.enable = true;
+  };
+
 
   environment.sessionVariables = {
     LIBVA_MESSAGING_LEVEL = "1";
