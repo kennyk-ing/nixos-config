@@ -33,34 +33,35 @@
     ... }@inputs:
     let
       system = "x86_64-linux";
+
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
+        config.allowUnfree = true;
+      };
+
+      sharedModules = [
+        { nixpkgs.hostPlatform = "x86_64-linux"; }
+        agenix.nixosModules.default
+        disko.nixosModules.default
+        ./modules
+        ./users
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+        }
+      ];
+
+      mkHost = hostName: nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs pkgs-unstable; };
+        modules = sharedModules ++ [ ./hosts/${hostName} ];
       };
     in
     {
       nixosConfigurations = {
-        kirby = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs pkgs-unstable;
-          };
-          modules = [
-            { nixpkgs.hostPlatform = "x86_64-linux"; }
-
-            agenix.nixosModules.default
-            disko.nixosModules.default
-
-            ./hosts/kirby
-            ./modules
-            ./users
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            }
-          ];
-        };
+        kirby = mkHost "kirby";
+        woo = mkHost "woo";
       };
     };
 }
