@@ -15,5 +15,8 @@ in {
 
     # helps GDM remember each users last session type.
     services.accounts-daemon.enable = true;
+
+    # GDM would not remember users default session without this.
+    services.displayManager.defaultSession = lib.mkForce null;
   };
 }
