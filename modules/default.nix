@@ -3,7 +3,7 @@
 {
   imports = [
     ./apps/emacs.nix
-    ./apps/firefox.nix
+    ./apps/browsers.nix
     ./apps/gaming.nix
     ./apps/wezterm.nix
     ./desktop/gdm.nix

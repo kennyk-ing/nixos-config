@@ -30,7 +30,7 @@
   mySystem = {
     apps = {
       emacs.enable = true;
-      firefox.enable = true;
+      browsers.enable = true;
       gaming.enable = true;
       wezterm.enable = true;
     };
