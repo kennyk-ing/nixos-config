@@ -7,7 +7,7 @@
     ./apps/gaming.nix
     ./apps/wezterm.nix
     ./desktop/gdm.nix
-    ./desktop/niri.nix
+    ./desktop/niri
     ./desktop/plasma.nix
     ./hardware/intel-graphics.nix
     ./hardware/laptop.nix

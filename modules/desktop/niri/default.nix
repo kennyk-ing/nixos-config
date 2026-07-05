@@ -39,5 +39,12 @@
         TimeoutStopSec = 10;
       };
     };
+
+    home-manager.users.kenny = {
+      xdg.configFile."niri" = {
+        source = ./configs;
+        recursive = true;
+      };
+    };
   };
 }

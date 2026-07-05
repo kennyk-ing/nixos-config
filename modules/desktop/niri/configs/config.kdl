@@ -1,0 +1,8 @@
+include "input.kdl"
+include "output.kdl"
+include "layout.kdl"
+include "startup.kdl"
+include "misc.kdl"
+include "animations.kdl"
+include "windows.kdl"
+include "binds.kdl"

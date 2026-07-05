@@ -1,0 +1,24 @@
+input {
+    keyboard {
+        numlock
+        xkb {
+          layout "us"
+
+          // caps lock = ctrl
+          // shift+shift = caps lock
+          // shift = break caps lock
+          options "ctrl:nocaps,shift:both_capslock,shift:breaks_caps"
+        }
+    }
+
+    touchpad {
+        tap
+        dwt
+        drag true
+        drag-lock
+        accel-speed 0.2
+        scroll-method "two-finger"
+        disabled-on-external-mouse
+    }
+}
+
