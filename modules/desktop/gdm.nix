@@ -1,9 +1,9 @@
 { lib, config, ... }:
 let
-  cfg = config.mySystem.desktop.displayManager;
+  cfg = config.mySystem.desktop.gdm;
 in {
-  options.mySystem.desktop.displayManager = {
-    enable = lib.mkEnableOption "My Current Default Display Manager";
+  options.mySystem.desktop.gdm = {
+    enable = lib.mkEnableOption "GDM Display Manager";
   };
 
   config = lib.mkIf cfg.enable {

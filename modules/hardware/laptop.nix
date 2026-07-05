@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     services = {
       # Disable the DE-specific power manager
-      power-profiles-daemon.enable = false;
+      power-profiles-daemon.enable = lib.mkForce false;
 
       # Enable TLP (Universal power management)
       tlp = {
@@ -34,7 +34,6 @@ in
       # prevent system from going to sleep on logout
       logind = {
         settings.Login = {
-          HandleLidSwitch = "ignore";
           HandleLidSwitchExternalPower = "ignore";
           HandleLidSwitchDocked = "ignore";
         };

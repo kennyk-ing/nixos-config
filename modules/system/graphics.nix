@@ -1,16 +1,15 @@
 { lib, config, ... }:
 
 let
-  cfg = config.mySystem.hardware.graphics;
+  cfg = config.mySystem.system.graphics;
 in {
-  options.mySystem.hardware.graphics = {
+  options.mySystem.system.graphics = {
     enable = lib.mkEnableOption "Base Graphics and 32-bit Support";
   };
 
   config = lib.mkIf cfg.enable {
     hardware.graphics = {
       enable = true;
-      # Essential for gaming (Steam, Wine, Lutris)
       enable32Bit = true;
     };
   };

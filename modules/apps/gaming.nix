@@ -25,7 +25,5 @@ in {
       heroic                  # Open source Epic/GOG/Amazon launcher
       protonup-qt             # GUI to easily install custom Proton-GE versions
     ];
-
-    mySystem.hardware.graphics.enable = true;
   };
 }

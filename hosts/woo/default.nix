@@ -14,6 +14,7 @@
   };
 
   networking.hostName = "woo";
+  time.timeZone = "America/Los_Angeles";
 
   age = {
     identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -33,10 +34,9 @@
       wezterm.enable = true;
     };
     desktop = {
-      displayManager.enable = true;
+      gdm.enable = true;
       niri.enable = true;
       plasma.enable = true;
-      printing.enable = true;
     };
     users = {
       kenny = {
@@ -45,19 +45,16 @@
       };
     };
     hardware = {
-      audio.enable = true;
-      bluetooth.enable = true;
-      firmware.enable = true;
       intel-graphics.enable = true;
       laptop.enable = true;
-      ssd.enable = true;
       wifi.enable = true;
     };
     system = {
       core.enable = true;
+      workstation.enable = true;
       zram = {
         enable = true;
-        memoryPercent = 15;
+        memoryPercent = 50;
       };
     };
     services.syncthing.enable = true;

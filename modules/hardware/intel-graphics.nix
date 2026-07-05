@@ -8,7 +8,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    mySystem.hardware.graphics.enable = true;
+    mySystem.system.graphics.enable = true;
 
     hardware.graphics = {
       extraPackages = with pkgs; [

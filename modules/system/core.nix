@@ -2,7 +2,6 @@
 
 let
   cfg = config.mySystem.system.core;
-  timeZone = "America/Los_Angeles";
   locale = "en_US.UTF-8";
 in {
   options.mySystem.system.core = {
@@ -10,16 +9,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    networking.networkmanager.enable = true;
-
+    # --- Base System Tools ---
     environment.systemPackages = with pkgs; [
       vim
       wget
       git
     ];
 
-    time.timeZone = timeZone;
-
+    # --- Localization ---
     i18n.defaultLocale = locale;
     i18n.extraLocaleSettings = {
       LC_ADDRESS = locale;
@@ -33,10 +30,8 @@ in {
       LC_TIME = locale;
     };
 
+    # --- Nix & Flakes ---
     nixpkgs.config.allowUnfree = true;
-
-    programs.zsh.enable = true;
-
     nix = {
       settings.experimental-features = [ "nix-command" "flakes" ];
       settings.auto-optimise-store = true;
@@ -47,7 +42,33 @@ in {
       };
     };
 
+    # --- Shell ---
+    programs.zsh.enable = true;
+    users.defaultUserShell = pkgs.zsh;
+
+    # --- Security & Firewall ---
     networking.firewall.enable = true;
     security.sudo.execWheelOnly = true;
+
+    # --- Remote Access ---
+    services.openssh = {
+      enable = true;
+      settings = {
+        PasswordAuthentication = false;
+        PermitRootLogin = "no";
+      };
+    };
+
+    # --- Networking & Discovery ---
+    networking.networkmanager.enable = true;
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
+
+    # --- Hardware Maintenance (Servers & Workstations) ---
+    services.fstrim.enable = true;
+    services.fwupd.enable = true;
+    hardware.enableRedistributableFirmware = true;
   };
 }
