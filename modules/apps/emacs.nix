@@ -30,6 +30,7 @@ in {
     home-manager.users.kenny = {
       services.emacs = {
         enable = true;
+        package = pkgs.emacs-pgtk;
         client.enable = true;
         defaultEditor = true;
       };
