@@ -10,11 +10,20 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       emacs-pgtk
+      sqlite
       ripgrep
       fd
       git
       pandoc
       shellcheck
+      cmake
+      gnumake
+      gcc
+      libtool
+      pkg-config
+      poppler
+      autoconf
+      automake
 
       # Creates a global 'doom' command that points to the current user's local installation
       (writeShellScriptBin "doom" ''
