@@ -50,6 +50,8 @@ in
         v = "nvim";
         vi = "nvim";
         vim = "nvim";
+        test-emacs = "emacs --init-directory ~/.config/test-emacs";
+        nixsw = "nixos-rebuild switch --flake ~/configs/nixos --sudo";
       };
     };
   };

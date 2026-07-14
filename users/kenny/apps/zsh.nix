@@ -5,7 +5,6 @@
     enable = true;
     shellAliases = {
       ll = "ls -l";
-      nixsw = "sudo nixos-rebuild switch --flake ~/configs/nixos";
     };
     dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;
