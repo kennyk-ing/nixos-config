@@ -9,7 +9,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     my-nixvim.url = "github:kennyk-ing/nixvim-flake";
-    my-nixvim.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     privateData = {
       url = "git+ssh://git@github.com/kennyk-ing/nixos-private.git";
