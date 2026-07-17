@@ -12,6 +12,7 @@
     ./desktop/plasma.nix
     ./hardware/intel-graphics.nix
     ./hardware/laptop.nix
+    ./hardware/tplink-ethernet2usb.nix
     ./hardware/wifi.nix
     ./services/syncthing.nix
     ./system/core.nix

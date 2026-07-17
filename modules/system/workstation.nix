@@ -9,6 +9,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mySystem.hardware.tplink-ethernet2usb.enable = true;
     # --- Audio (PipeWire) ---
     security.rtkit.enable = true; # Required for PipeWire to get realtime scheduling
     services.pipewire = {
