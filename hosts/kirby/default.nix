@@ -32,6 +32,7 @@
       emacs.enable = true;
       browsers.enable = true;
       gaming.enable = true;
+      office.enable = true;
       wezterm.enable = true;
     };
     desktop = {

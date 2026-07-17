@@ -24,6 +24,7 @@
       cliphist
       playerctl # For keyboard controls of media players
       wev # get key name of keyboard keys
+      xwayland-satellite
     ];
 
     systemd.user.services.polkit-kde-authentication-agent-1 = {

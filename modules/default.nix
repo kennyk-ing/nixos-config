@@ -5,6 +5,7 @@
     ./apps/emacs.nix
     ./apps/browsers.nix
     ./apps/gaming.nix
+    ./apps/office.nix
     ./apps/wezterm.nix
     ./desktop/gdm.nix
     ./desktop/niri

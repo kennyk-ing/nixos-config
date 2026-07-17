@@ -31,6 +31,7 @@
     apps = {
       emacs.enable = true;
       browsers.enable = true;
+      office.enable = true;
       wezterm.enable = true;
     };
     desktop = {
