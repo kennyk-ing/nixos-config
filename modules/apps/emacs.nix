@@ -26,6 +26,7 @@ in {
       automake
       texlive.combined.scheme-full
       (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      xournalpp
 
       # Creates a global 'doom' command that points to the current user's local installation
       (writeShellScriptBin "doom" ''
