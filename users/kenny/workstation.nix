@@ -41,6 +41,10 @@ in
         obsidian = {
           enable = true;
         };
+
+        calibre = {
+          enable = true;
+        };
       };
 
       xdg = {
