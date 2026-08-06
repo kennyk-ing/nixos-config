@@ -15,6 +15,7 @@
     ./hardware/tplink-ethernet2usb.nix
     ./hardware/wifi.nix
     ./services/syncthing.nix
+    ./services/tailscale.nix
     ./system/core.nix
     ./system/workstation.nix
     ./system/graphics.nix

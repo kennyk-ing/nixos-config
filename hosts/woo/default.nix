@@ -58,7 +58,10 @@
         memoryPercent = 50;
       };
     };
-    services.syncthing.enable = true;
+    services = {
+      syncthing.enable = true;
+      tailscale.enable = true;
+    };
   };
 
 
