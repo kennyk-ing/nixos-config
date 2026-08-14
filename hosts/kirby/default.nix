@@ -60,7 +60,10 @@
         memoryPercent = 10;
       };
     };
-    services.syncthing.enable = true;
+    services = {
+      syncthing.enable = true;
+      plex.enable = true;
+    };
   };
 
 

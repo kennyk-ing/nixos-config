@@ -16,6 +16,7 @@
     ./hardware/wifi.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
+    ./services/plex.nix
     ./system/core.nix
     ./system/workstation.nix
     ./system/graphics.nix
