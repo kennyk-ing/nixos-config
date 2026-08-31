@@ -1,8 +1,13 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.mySystem.users.kenny.workstation;
 in
-  {
+{
   options.mySystem.users.kenny.workstation = {
     enable = lib.mkEnableOption "Kenny's Graphical Workstation Additions";
   };
@@ -34,7 +39,7 @@ in
             }
           ];
           initContent = ''
-          [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+            [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
           '';
         };
 
@@ -45,6 +50,12 @@ in
         calibre = {
           enable = true;
         };
+
+        direnv = {
+          enable = true;
+          enableZshIntegration = true;
+          nix-direnv.enable = true;
+        };
       };
 
       xdg = {
@@ -52,15 +63,18 @@ in
           enable = true;
           defaultApplications = {
             # Word docs
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = "onlyoffice-desktopeditors.desktop"; # .docx
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
+              "onlyoffice-desktopeditors.desktop"; # .docx
             "application/msword" = "onlyoffice-desktopeditors.desktop"; # .doc
 
             # Excel docs
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "onlyoffice-desktopeditors.desktop"; # .xlsx
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
+              "onlyoffice-desktopeditors.desktop"; # .xlsx
             "application/vnd.ms-excel" = "onlyoffice-desktopeditors.desktop"; # .xls
 
             # PowerPoint docs
-            "application/vnd.openxmlformats-officedocument.presentationml.presentation" = "onlyoffice-desktopeditors.desktop"; # .pptx
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
+              "onlyoffice-desktopeditors.desktop"; # .pptx
             "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop"; # .ppt
 
             # OpenDocument (LibreOffice) Formats
@@ -75,10 +89,14 @@ in
           terminal = false;
           icon = "onlyoffice-desktopeditors";
           type = "Application";
-          categories = [ "Office" "WordProcessor" "Spreadsheet" "Presentation" ];
+          categories = [
+            "Office"
+            "WordProcessor"
+            "Spreadsheet"
+            "Presentation"
+          ];
         };
       };
     };
   };
 }
-

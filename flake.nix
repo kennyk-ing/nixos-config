@@ -8,7 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    my-nixvim.url = "github:kennyk-ing/nixvim-flake";
+    nixvim.url = "github:nix-community/nixvim/nixos-26.05";
 
     privateData = {
       url = "git+ssh://git@github.com/kennyk-ing/nixos-private.git";
@@ -24,16 +24,20 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    agenix,
-    disko,
-    ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      home-manager,
+      agenix,
+      disko,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
+
+      pkgs = nixpkgs.legacyPackages.${system};
 
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
@@ -54,15 +58,24 @@
         }
       ];
 
-      mkHost = hostName: nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs pkgs-unstable; };
-        modules = sharedModules ++ [ ./hosts/${hostName} ];
-      };
+      mkHost =
+        hostName:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs pkgs-unstable; };
+          modules = sharedModules ++ [ ./hosts/${hostName} ];
+        };
     in
     {
       nixosConfigurations = {
         kirby = mkHost "kirby";
         woo = mkHost "woo";
+      };
+
+      devShells.x86_64-linux.default = pkgs.mkShellNoCC {
+        packages = with pkgs; [
+          nixd
+          nixfmt
+        ];
       };
     };
 }

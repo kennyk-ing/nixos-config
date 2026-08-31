@@ -40,7 +40,6 @@ in
     environment = {
       systemPackages = [
         inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.my-nixvim.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
       variables = {
         EDITOR = "nvim";

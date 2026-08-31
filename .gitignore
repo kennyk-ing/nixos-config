@@ -1,0 +1,11 @@
+# direnv / nix-direnv
+.direnv/
+
+# Nix build outputs
+result
+result-*
+
+# Local environment/secrets, if ever used
+.env
+.env.*
+!.env.example
