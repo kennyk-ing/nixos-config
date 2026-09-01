@@ -14,6 +14,7 @@ in
 {
   colorschemes.nightfox = {
     enable = true;
+    settings.options.transparent = true;
   };
   colorscheme = "carbonfox";
 

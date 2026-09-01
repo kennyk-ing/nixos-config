@@ -92,5 +92,18 @@
         end
       '';
     }
+
+    {
+      event = "FileType";
+      pattern = "markdown";
+      desc = "Disable line numbers in Markdown";
+
+      callback = lib.nixvim.mkRaw ''
+        function()
+          vim.wo.number = false
+          vim.wo.relativenumber = false
+        end
+      '';
+    }
   ];
 }
