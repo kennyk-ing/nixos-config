@@ -56,6 +56,16 @@ in
           enableZshIntegration = true;
           nix-direnv.enable = true;
         };
+
+        ghostty = {
+          enable = true;
+          enableZshIntegration = true;
+          settings = {
+            theme = "Carbonfox";
+            background = "#000000";
+            background-opacity = 0.95;
+          };
+        };
       };
 
       xdg = {
