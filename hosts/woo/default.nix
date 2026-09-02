@@ -51,6 +51,9 @@
       laptop.enable = true;
       wifi.enable = true;
     };
+    profiles = {
+      development.enable = true;
+    };
     system = {
       core.enable = true;
       workstation.enable = true;
@@ -60,7 +63,6 @@
       };
     };
     services = {
-      podman.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
     };
