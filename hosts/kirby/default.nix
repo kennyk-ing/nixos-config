@@ -62,11 +62,11 @@
       };
     };
     services = {
-      syncthing.enable = true;
+      podman.enable = true;
       plex.enable = true;
+      syncthing.enable = true;
     };
   };
-
 
   environment.sessionVariables = {
     LIBVA_MESSAGING_LEVEL = "1";

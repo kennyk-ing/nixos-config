@@ -60,11 +60,11 @@
       };
     };
     services = {
+      podman.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
     };
   };
-
 
   environment.sessionVariables = {
     LIBVA_MESSAGING_LEVEL = "1";

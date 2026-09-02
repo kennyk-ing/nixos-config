@@ -15,6 +15,7 @@
     ./hardware/laptop.nix
     ./hardware/tplink-ethernet2usb.nix
     ./hardware/wifi.nix
+    ./services/podman.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
     ./services/plex.nix
