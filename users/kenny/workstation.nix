@@ -63,7 +63,7 @@ in
           settings = {
             theme = "Carbonfox";
             background = "#000000";
-            background-opacity = 0.95;
+            background-opacity = 0.90;
           };
         };
       };
