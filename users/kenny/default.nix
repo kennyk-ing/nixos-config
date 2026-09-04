@@ -1,4 +1,10 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 let
   cfg = config.mySystem.users.kenny;
 in
@@ -11,8 +17,11 @@ in
     users.users."kenny" = {
       isNormalUser = true;
       description = "Kenny King";
-      extraGroups = [ "networkmanager" "wheel" ];
-      initialHashedPassword = "$6$WQgmk1aoS.v2d7NO$n1R./0iPPER4.PCPZPs09JiS3oSTxKYjtn3eeKF1egFNY/NND2w1/cpQcDhTrGip/eOdySSK0ZEIA.E2PDZIq/"; #changeme
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      initialHashedPassword = "$6$WQgmk1aoS.v2d7NO$n1R./0iPPER4.PCPZPs09JiS3oSTxKYjtn3eeKF1egFNY/NND2w1/cpQcDhTrGip/eOdySSK0ZEIA.E2PDZIq/"; # changeme
       uid = 1000;
       shell = pkgs.zsh;
       linger = true; # run systemd user services at boot
@@ -24,6 +33,7 @@ in
         ./apps/ssh.nix
         ./apps/zsh.nix
         ./apps/cli.nix
+        ./plasma.nix
       ];
 
       home.username = "kenny";
@@ -34,7 +44,7 @@ in
       };
 
       # Do not change this value after initial setup
-      home.stateVersion = "26.05"; 
+      home.stateVersion = "26.05";
     };
 
     environment = {
@@ -49,7 +59,6 @@ in
         v = "nvim";
         vi = "nvim";
         vim = "nvim";
-        test-emacs = "emacs --init-directory ~/.config/test-emacs";
         nixsw = "nixos-rebuild switch --flake ~/configs/nixos --sudo";
       };
     };
