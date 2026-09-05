@@ -39,9 +39,6 @@
     confirm = true;
     undofile = true;
 
-    # System clipboard
-    clipboard = "unnamedplus";
-
     # Responsiveness
     updatetime = 250;
     # Time to wait for a mapped key sequence to complete
@@ -57,9 +54,6 @@
 
     # Live :substitute preview
     inccommand = "split";
-
-    # Lualine will display the current mode
-    showmode = false;
 
     # Restore the viewport as well as the cursor when navigating jumps
     jumpoptions = "clean,view";

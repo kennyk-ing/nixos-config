@@ -32,7 +32,6 @@
       emacs.enable = true;
       browsers.enable = true;
       gaming.enable = true;
-      nixvim.enable = true;
       office.enable = true;
     };
     desktop = {

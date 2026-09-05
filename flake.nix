@@ -57,10 +57,14 @@
 
       sharedModules = [
         { nixpkgs.hostPlatform = "x86_64-linux"; }
+
         agenix.nixosModules.default
         disko.nixosModules.default
+        inputs.nixvim.nixosModules.nixvim
+
         ./modules
         ./users
+
         home-manager.nixosModules.home-manager
         {
           home-manager = {

@@ -17,6 +17,7 @@ in
       imports = [
         ./apps/browsers.nix
         ./apps/emacs.nix
+        ./apps/nixvim
         ./apps/thunderbird.nix
         ./apps/wezterm.nix
         ./plasma

@@ -18,6 +18,25 @@ in
   };
   colorscheme = "carbonfox";
 
+  autoCmd = [
+    {
+      event = [
+        "RecordingEnter"
+        "RecordingLeave"
+      ];
+
+      callback = lib.nixvim.mkRaw ''
+        function()
+          vim.schedule(function()
+            require("lualine").refresh({
+              place = { "statusline" },
+            })
+          end)
+        end
+      '';
+    }
+  ];
+
   plugins = {
     lualine = {
       enable = true;
@@ -29,6 +48,26 @@ in
           # Keep MiniFiles from taking over the active statusline context.
           ignore_focus = [
             "mini-files"
+          ];
+        };
+
+        sections = {
+          lualine_x = [
+            (lib.nixvim.mkRaw ''
+              function()
+                local reg = vim.fn.reg_recording()
+
+                if reg == "" then
+                  return ""
+                end
+
+                return "Recording @" .. reg
+              end
+            '')
+
+            "encoding"
+            "fileformat"
+            "filetype"
           ];
         };
       };

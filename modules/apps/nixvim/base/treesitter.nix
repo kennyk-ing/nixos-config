@@ -27,16 +27,6 @@
       # Documentation
       markdown
       markdown_inline
-
-      # JavaScript / TypeScript
-      javascript
-      typescript
-      tsx
-      html
-      css
-
-      # Python
-      python
     ];
   };
 }

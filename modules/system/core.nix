@@ -15,12 +15,21 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mySystem.apps.nixvim.enable = true;
+
     # --- Base System Tools ---
-    environment.systemPackages = with pkgs; [
-      vim
-      wget
-      git
-    ];
+    environment = {
+      systemPackages = with pkgs; [
+        wget
+        git
+      ];
+
+      shellAliases = {
+        v = "nvim";
+        vi = "nvim";
+        vim = "nvim";
+      };
+    };
 
     # --- Localization ---
     i18n.defaultLocale = locale;

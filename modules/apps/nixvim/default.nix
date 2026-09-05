@@ -1,32 +1,21 @@
-{
-  config,
-  inputs,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 
 let
   cfg = config.mySystem.apps.nixvim;
 in
 {
   options.mySystem.apps.nixvim = {
-    enable = lib.mkEnableOption "Nixvim";
+    enable = lib.mkEnableOption "Shared Base Nixvim Configuration";
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.kenny = {
+    programs.nixvim = {
+      enable = true;
+      defaultEditor = true;
+
       imports = [
-        inputs.nixvim.homeModules.nixvim
+        ./base
       ];
-
-      programs.nixvim = {
-        enable = true;
-        defaultEditor = true;
-
-        imports = [
-          ./config
-        ];
-      };
     };
   };
 }

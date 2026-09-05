@@ -14,8 +14,5 @@ in
 
     # Development container runtime.
     mySystem.services.podman.enable = true;
-
-    # Editor.
-    mySystem.apps.nixvim.enable = true;
   };
 }
