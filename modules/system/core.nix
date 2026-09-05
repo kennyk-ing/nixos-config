@@ -1,9 +1,15 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.mySystem.system.core;
   locale = "en_US.UTF-8";
-in {
+in
+{
   options.mySystem.system.core = {
     enable = lib.mkEnableOption "Core System Configurations";
   };
@@ -33,7 +39,10 @@ in {
     # --- Nix & Flakes ---
     nixpkgs.config.allowUnfree = true;
     nix = {
-      settings.experimental-features = [ "nix-command" "flakes" ];
+      settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       settings.auto-optimise-store = true;
       gc = {
         automatic = true;
@@ -49,15 +58,6 @@ in {
     # --- Security & Firewall ---
     networking.firewall.enable = true;
     security.sudo.execWheelOnly = true;
-
-    # --- Remote Access ---
-    services.openssh = {
-      enable = true;
-      settings = {
-        PasswordAuthentication = false;
-        PermitRootLogin = "no";
-      };
-    };
 
     # --- Networking & Discovery ---
     networking.networkmanager.enable = true;

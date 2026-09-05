@@ -17,6 +17,7 @@
     ./hardware/tplink-ethernet2usb.nix
     ./hardware/wifi.nix
     ./profiles/development.nix
+    ./services/openssh.nix
     ./services/podman.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
