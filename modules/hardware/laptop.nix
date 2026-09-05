@@ -8,6 +8,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    mySystem.hardware.tplink-ethernet2usb.enable = true;
+
     services = {
       # TLP owns system power-profile policy, so do not also run
       # power-profiles-daemon.
