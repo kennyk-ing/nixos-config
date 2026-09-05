@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "carl-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752073160,
+        "narHash": "sha256-kw3NaDMK6ed0dAr6lBwhREG8j1l880zj20apYLMxgdo=",
+        "ref": "refs/heads/master",
+        "rev": "4ff605646ba20cd286c62859f3e628b8b9922311",
+        "revCount": 22,
+        "type": "git",
+        "url": "https://gitlab.com/jomada/carl.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.com/jomada/carl.git"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -276,6 +292,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "carl-theme": "carl-theme",
         "disko": "disko",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs",

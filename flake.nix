@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    carl-theme = {
+      url = "git+https://gitlab.com/jomada/carl.git";
+      flake = false;
+    };
   };
 
   outputs =
@@ -58,9 +63,16 @@
         ./users
         home-manager.nixosModules.home-manager
         {
-          home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
+          home-manager = {
+            extraSpecialArgs = { inherit inputs pkgs-unstable; };
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+            sharedModules = [
+              inputs.plasma-manager.homeModules.plasma-manager
+              ./users/common/plasma-power.nix
+            ];
+          };
         }
       ];
 

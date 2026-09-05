@@ -1,34 +1,130 @@
 {
+  config,
   inputs,
   lib,
   osConfig,
+  pkgs,
   pkgs-unstable,
   ...
 }:
 
 {
-  imports = [
-    inputs.plasma-manager.homeModules.plasma-manager
-  ];
-
   config = lib.mkIf osConfig.mySystem.desktop.plasma.enable {
-    home.packages = with pkgs-unstable; [
-      kdePackages.karousel
+    home.packages = [
+      pkgs.bibata-cursors
+      pkgs.kora-icon-theme
+      pkgs.klassy
+
+      pkgs-unstable.kdePackages.karousel
     ];
 
     programs.plasma = {
       enable = true;
 
-      # Nine fixed Plasma desktops, arranged vertically.
+      workspace = {
+        # Plasma shell appearance.
+        theme = "Carl";
+        colorScheme = "Carl";
+        widgetStyle = "Breeze";
+
+        # Icons and cursor.
+        iconTheme = "kora";
+        cursor.theme = "Bibata-Modern-Classic";
+
+        # Klassy decoration.
+        windowDecorations = {
+          library = "org.kde.klassy";
+          theme = "Klassy";
+        };
+
+        # Splash screen disabled.
+        splashScreen.theme = "None";
+
+        # Wallpaper slideshow.
+        wallpaperSlideShow = {
+          path = "${config.home.homeDirectory}/sync/wallpapers/current_favs";
+          interval = 1800;
+        };
+      };
+
+      # Five fixed Plasma desktops, arranged vertically.
       # Plasma cannot reproduce Niri's dynamic workspace model.
-      kwin.virtualDesktops = {
-        number = 9;
-        rows = 9;
+      kwin = {
+        virtualDesktops = {
+          number = 5;
+          rows = 5;
+
+        };
+
+        borderlessMaximizedWindows = true;
       };
 
       # Karousel currently has no first-class plasma-manager module,
       # so enable the KWin script through kwinrc.
-      configFile.kwinrc.Plugins.karouselEnabled = true;
+      configFile.kwinrc = {
+        Plugins.karouselEnabled = true;
+
+        "Script-karousel" = {
+          # Window gaps.
+          gapsOuterTop = 5;
+          gapsOuterBottom = 5;
+          gapsOuterLeft = 5;
+          gapsOuterRight = 5;
+
+          gapsInnerHorizontal = 5;
+          gapsInnerVertical = 5;
+
+          # Niri-like preset width cycle.
+          presetWidths = "33%, 50%, 67%";
+
+          # Width/scroll adjustment increments.
+          manualScrollStep = 200;
+          verticalResizeStep = 32;
+
+          # Closest to Niri's normal scrolling behavior:
+          # move the viewport only when necessary.
+          scrollingLazy = true;
+          scrollingCentered = false;
+          scrollingGrouped = false;
+
+          # Normal columns by default; Meta+W toggles stacked mode.
+          stackColumnsByDefault = false;
+
+          # Stacked-column visual offset.
+          stackOffsetX = 8;
+          stackOffsetY = 32;
+
+          # Dragging a tiled window makes it floating.
+          untileOnDrag = true;
+
+          # Don't warp the mouse when keyboard focus changes.
+          cursorFollowsFocus = false;
+
+          # Keep manual resizing independent rather than resizing the
+          # neighboring column in the opposite direction.
+          resizeNeighborColumn = false;
+
+          # Don't force restored maximized/fullscreen states on focus.
+          reMaximize = false;
+
+          # Keep tiled windows in Alt+Tab.
+          skipSwitcher = false;
+
+          # Don't use Karousel's touchpad scrolling yet.
+          gestureScroll = false;
+
+          # Fully visible even when partly outside the viewport.
+          offScreenOpacity = 100;
+
+          # Karousel's default layering model.
+          tiledKeepBelow = true;
+          floatingKeepAbove = false;
+          noLayering = false;
+
+          # Tile on all Plasma virtual desktops.
+          tiledDesktops = ".*";
+        };
+      };
 
       shortcuts = {
         kwin = {
@@ -103,7 +199,7 @@
           # Karousel: layout
           # ------------------------------------------------------------
 
-          "karousel-window-toggle-floating" = "Meta+V";
+          "karousel-window-toggle-floating" = "Meta+Shift+V";
 
           # Approximation of Niri's tabbed-column behavior.
           "karousel-column-toggle-stacked" = "Meta+W";
@@ -134,7 +230,8 @@
           "Switch to Desktop 7" = "Meta+7";
           "Switch to Desktop 8" = "Meta+8";
           "Switch to Desktop 9" = "Meta+9";
-
+          "Switch One Desktop Down" = "Meta+Ctrl+J";
+          "Switch One Desktop Up" = "Meta+Ctrl+K";
           "Switch to Previous Desktop" = "Meta+`";
 
           # ------------------------------------------------------------
@@ -271,12 +368,190 @@
           command = "dolphin";
         };
 
-        launch-emacs = {
-          name = "Launch Emacs";
+        launch-obsidian = {
+          name = "Launch Obsidian";
           key = "Meta+O";
-          command = "emacsclient -c -a emacs";
+          command = "obsidian";
+        };
+
+        launch-nvim = {
+          name = "Launch Neovim";
+          key = "Meta+V";
+          command = "xdg-terminal-exec nvim";
         };
       };
+
+      window-rules = [
+        {
+          description = "Default Karousel Width";
+
+          match = {
+            window-class = {
+              value = ".*";
+              type = "regex";
+            };
+
+            window-types = [ "normal" ];
+          };
+
+          apply.size = {
+            value = "952,1050";
+            apply = "initially";
+          };
+        }
+      ];
+
+      input.keyboard.options = [
+        "caps:ctrl_modifier"
+        "shift:both_capslock_cancel"
+      ];
+
+      configFile."klassy/klassyrc" = {
+        Global = {
+          LookAndFeelSet = "Carl";
+        };
+
+        Windeco = {
+          BoldTitle = false;
+          ButtonShape = "ShapeSmallCircle";
+          DrawTitleBarSeparator = false;
+          IconSize = "IconVerySmall";
+        };
+
+        "Windeco Exception 0" = {
+          BorderSize = 0;
+          Enabled = true;
+          ExceptionBorder = false;
+          ExceptionMatchTitleBarToApplicationColor = false;
+          ExceptionPreset = "";
+          ExceptionProgramNamePattern = "";
+          ExceptionWindowPropertyPattern = ".*";
+          ExceptionWindowPropertyType = 0;
+          HideTitleBar = 1;
+          OpaqueTitleBar = false;
+          PreventApplyOpacityToHeader = false;
+        };
+
+        WindowOutlineStyle = {
+          WindowOutlineAccentColorOpacityActive = 90;
+          WindowOutlineAccentColorOpacityInactive = 20;
+          WindowOutlineStyleActive = "WindowOutlineAccentColor";
+          WindowOutlineStyleInactive = "WindowOutlineAccentColor";
+          WindowOutlineThickness = 3;
+        };
+      };
+
+      configFile.katerc."KTextEditor View" = {
+        "Input Mode" = 1;
+        "Vi Input Mode Steal Keys" = true;
+        "Vi Relative Line Numbers" = true;
+      };
+
+      configFile.kdeglobals.KDE.LookAndFeelPackage = "Carl";
+
+      panels = [
+        {
+          location = "top";
+          height = 20;
+          floating = false;
+          opacity = "translucent";
+
+          widgets = [
+            {
+              kickoff = {
+                icon = "nix-snowflake";
+                compactDisplayStyle = true;
+                favoritesDisplayMode = "list";
+                showButtonsFor = "powerAndSession";
+                showActionButtonCaptions = false;
+
+                settings.General.switchCategoryOnHover = true;
+              };
+            }
+
+            "org.kde.plasma.pager"
+
+            {
+              panelSpacer.expanding = true;
+            }
+
+            {
+              applicationTitleBar = {
+                layout = {
+                  elements = [
+                    "windowIcon"
+                    "windowTitle"
+                  ];
+
+                  verticalAlignment = "bottom";
+                };
+
+                windowTitle = {
+                  maximumWidth = 800;
+                  hideEmptyTitle = true;
+
+                  font = {
+                    bold = false;
+                    size = 10;
+                  };
+                };
+              };
+            }
+
+            {
+              panelSpacer.expanding = true;
+            }
+
+            "org.kde.plasma.keyboardindicator"
+
+            {
+              systemTray.items = {
+                shown = [
+                  "org.kde.plasma.weather"
+                  "org.kde.plasma.volume"
+                  "org.kde.plasma.bluetooth"
+                  "org.kde.plasma.networkmanagement"
+                ];
+
+                hidden = [
+                  "org.kde.plasma.brightness"
+                  "org.kde.kscreen"
+                  "org.kde.plasma.clipboard"
+                ];
+
+                extra = [
+                  "org.kde.plasma.cameraindicator"
+                  "org.kde.plasma.devicenotifier"
+                  "org.kde.plasma.mediacontroller"
+                  "org.kde.plasma.notifications"
+                  "org.kde.plasma.battery"
+                  "org.kde.plasma.keyboardindicator"
+                  "org.kde.plasma.printmanager"
+                  "org.kde.plasma.volume"
+                  "org.kde.plasma.bluetooth"
+                  "org.kde.plasma.brightness"
+                  "org.kde.kscreen"
+                  "org.kde.plasma.networkmanagement"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.weather"
+                ];
+              };
+            }
+
+            {
+              digitalClock.time.format = "12h";
+            }
+          ];
+        }
+      ];
+    };
+
+    xdg.dataFile = {
+      "plasma/desktoptheme/Carl".source = "${inputs.carl-theme}/Carl";
+
+      "color-schemes/Carl.colors".source = "${inputs.carl-theme}/color-schemes/Carl.colors";
+
+      "plasma/look-and-feel/Carl".source = "${inputs.carl-theme}/look-and-feel/Carl";
     };
   };
 }

@@ -9,12 +9,17 @@ in
 
   config = lib.mkIf cfg.enable {
     services = {
-      # Disable the DE-specific power manager
+      # TLP owns system power-profile policy, so do not also run
+      # power-profiles-daemon.
       power-profiles-daemon.enable = lib.mkForce false;
 
       # Enable TLP (Universal power management)
       tlp = {
         enable = true;
+
+        # Expose TLPs profiles through the standard desktop API
+        pd.enable = true;
+
         settings = {
           CPU_SCALING_GOVERNOR_ON_AC = "performance";
           CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -30,15 +35,6 @@ in
 
       # prevent overheating
       thermald.enable = true;
-
-      # prevent system from going to sleep on logout
-      logind = {
-        settings.Login = {
-          HandleLidSwitchExternalPower = "ignore";
-          HandleLidSwitchDocked = "ignore";
-        };
-      };
     };
-
   };
 }
