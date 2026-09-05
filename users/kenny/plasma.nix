@@ -7,7 +7,30 @@
   pkgs-unstable,
   ...
 }:
+let
+  togglePlasmaPanel = pkgs.writeShellApplication {
+    name = "toggle-plasma-panel";
 
+    runtimeInputs = [
+      pkgs.kdePackages.qttools
+      pkgs.coreutils
+    ];
+
+    text = ''
+      qdbus org.kde.plasmashell \
+        /PlasmaShell \
+        org.kde.PlasmaShell.evaluateScript \
+        "const ps = panels(); for (let i = 0; i < ps.length; ++i) { if (ps[i].location === 'top') { ps[i].hiding = ps[i].hiding === 'autohide' ? 'none' : 'autohide'; break; } }"
+
+      sleep 0.15
+
+      qdbus org.kde.kglobalaccel \
+        /component/kwin \
+        invokeShortcut \
+        karousel-screen-switch
+    '';
+  };
+in
 {
   config = lib.mkIf osConfig.mySystem.desktop.plasma.enable {
     home.packages = [
@@ -31,7 +54,7 @@
         iconTheme = "kora";
         cursor.theme = "Bibata-Modern-Classic";
 
-        # Klassy decoration.
+        # Klassy decoration to enable active window borders.
         windowDecorations = {
           library = "org.kde.klassy";
           theme = "Klassy";
@@ -53,7 +76,6 @@
         virtualDesktops = {
           number = 5;
           rows = 5;
-
         };
 
         borderlessMaximizedWindows = true;
@@ -301,7 +323,7 @@
           # Bare Meta opens the application launcher.
           # Keep Alt+F1 as Plasma's normal fallback.
           "activate application launcher" = [
-            "Meta"
+            "Meta+Space"
             "Alt+F1"
           ];
 
@@ -379,6 +401,12 @@
           key = "Meta+V";
           command = "xdg-terminal-exec nvim";
         };
+
+        toggle-panel = {
+          name = "Toggle Plasma Panel";
+          key = "Meta";
+          command = "${togglePlasmaPanel}/bin/toggle-plasma-panel";
+        };
       };
 
       window-rules = [
@@ -455,6 +483,9 @@
           height = 20;
           floating = false;
           opacity = "translucent";
+
+          # Normal state after login. Meta toggles this to autohide.
+          hiding = "none";
 
           widgets = [
             {
