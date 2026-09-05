@@ -42,7 +42,7 @@ in
 
       # Creates a global 'doom' command that points to the current user's local installation
       (writeShellScriptBin "doom" ''
-        exec ~/.config/emacs/bin/doom "$@"
+        exec "$HOME/.config/emacs/bin/doom" "$@"
       '')
     ];
 
@@ -50,13 +50,5 @@ in
       nerd-fonts.symbols-only
       nerd-fonts.sauce-code-pro
     ];
-
-    home-manager.users.kenny = {
-      services.emacs = {
-        enable = true;
-        package = pkgs.emacs-pgtk;
-        client.enable = true;
-      };
-    };
   };
 }

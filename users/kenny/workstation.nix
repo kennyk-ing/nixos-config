@@ -16,6 +16,7 @@ in
     home-manager.users."kenny" = {
       imports = [
         ./apps/browsers.nix
+        ./apps/emacs.nix
         ./apps/thunderbird.nix
         ./apps/wezterm.nix
         ./plasma
