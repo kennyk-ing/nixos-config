@@ -1,9 +1,15 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   cfg = config.mySystem.apps.browsers;
 in
-  {
+{
   options.mySystem.apps.browsers = {
     enable = lib.mkEnableOption "My collection of Web Browsers";
   };
@@ -51,35 +57,24 @@ in
           DisableAppUpdate = true; # Highly recommended: lets Nix manage updates instead of the browser
           Preferences = {
             # --- UI Performance Fixes (Wayland lag fix) ---
-            "accessibility.force_disabled" = { Value = 1; Status = "locked"; };
+            "accessibility.force_disabled" = {
+              Value = 1;
+              Status = "locked";
+            };
 
             # --- Hardware Acceleration (VA-API) ---
-            "media.ffmpeg.vaapi.enabled" = { Value = true; Status = "locked"; };
-            "gfx.webrender.all" = { Value = true; Status = "locked"; };
+            "media.ffmpeg.vaapi.enabled" = {
+              Value = true;
+              Status = "locked";
+            };
+            "gfx.webrender.all" = {
+              Value = true;
+              Status = "locked";
+            };
           };
         };
       })
 
-
     ];
-
-    home-manager.users.kenny = {
-      # Set default browser
-      xdg.mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "text/html" = "zen-beta.desktop";
-          "application/xhtml+xml" = "zen-beta.desktop";
-          "application/x-extension-htm" = "zen-beta.desktop";
-          "application/x-extension-html" = "zen-beta.desktop";
-          "application/x-extension-shtml" = "zen-beta.desktop";
-          "application/x-extension-xhtml" = "zen-beta.desktop";
-          "application/x-extension-xht" = "zen-beta.desktop";
-          "x-scheme-handler/http" = "zen-beta.desktop";
-          "x-scheme-handler/https" = "zen-beta.desktop";
-          "x-scheme-handler/chrome" = "zen-beta.desktop";
-        };
-      };
-    };
   };
 }

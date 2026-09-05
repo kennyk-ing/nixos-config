@@ -1,16 +1,20 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   options.mySystem.desktop.niri.enable = lib.mkEnableOption "Niri WM w/ Noctalia Shell";
 
   config = lib.mkIf config.mySystem.desktop.niri.enable {
     programs.niri.enable = true;
-    mySystem.apps.wezterm.enable = true;
     security.polkit.enable = true;
 
     environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";       # Forces Chromium/Electron into Wayland
-      MOZ_ENABLE_WAYLAND = "1";   # Forces Firefox/Zen into Wayland
+      NIXOS_OZONE_WL = "1"; # Forces Chromium/Electron into Wayland
+      MOZ_ENABLE_WAYLAND = "1"; # Forces Firefox/Zen into Wayland
     };
 
     environment.systemPackages = with pkgs; [

@@ -34,7 +34,6 @@
       gaming.enable = true;
       nixvim.enable = true;
       office.enable = true;
-      wezterm.enable = true;
     };
     desktop = {
       sddm.enable = true;

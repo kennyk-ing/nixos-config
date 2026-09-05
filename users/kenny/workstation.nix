@@ -15,7 +15,9 @@ in
   config = lib.mkIf cfg.enable {
     home-manager.users."kenny" = {
       imports = [
+        ./apps/browsers.nix
         ./apps/thunderbird.nix
+        ./apps/wezterm.nix
         ./plasma
       ];
 
