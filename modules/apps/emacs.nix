@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.mySystem.apps.emacs;
-in {
+in
+{
   options.mySystem.apps.emacs = {
     enable = lib.mkEnableOption "Emacs and Doom dependencies";
   };
@@ -25,7 +31,13 @@ in {
       autoconf
       automake
       texlive.combined.scheme-full
-      (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+      (aspellWithDicts (
+        dicts: with dicts; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
       xournalpp
 
       # Creates a global 'doom' command that points to the current user's local installation
@@ -44,7 +56,6 @@ in {
         enable = true;
         package = pkgs.emacs-pgtk;
         client.enable = true;
-        defaultEditor = true;
       };
     };
   };

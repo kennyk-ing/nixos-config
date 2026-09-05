@@ -1,4 +1,9 @@
-{ config, inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   cfg = config.mySystem.apps.nixvim;
@@ -16,6 +21,7 @@ in
 
       programs.nixvim = {
         enable = true;
+        defaultEditor = true;
 
         imports = [
           ./config

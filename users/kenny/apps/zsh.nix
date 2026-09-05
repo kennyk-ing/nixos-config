@@ -5,6 +5,10 @@
     enable = true;
     shellAliases = {
       ll = "ls -l";
+      v = "nvim";
+      vi = "nvim";
+      vim = "nvim";
+      nixsw = "nixos-rebuild switch --flake ~/configs/nixos --sudo";
     };
     dotDir = "${config.xdg.configHome}/zsh";
     enableCompletion = true;

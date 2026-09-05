@@ -37,31 +37,23 @@ in
         ./apps/cli.nix
       ];
 
-      home.username = "kenny";
-      home.homeDirectory = "/home/kenny";
+      home = {
+        username = "kenny";
+        homeDirectory = "/home/kenny";
+
+        # Do not change this value after initial setup
+        stateVersion = "26.05";
+      };
 
       programs = {
         home-manager.enable = true;
       };
-
-      # Do not change this value after initial setup
-      home.stateVersion = "26.05";
     };
 
     environment = {
       systemPackages = [
         inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
-      variables = {
-        EDITOR = "nvim";
-        VISUAL = "nvim";
-      };
-      shellAliases = {
-        v = "nvim";
-        vi = "nvim";
-        vim = "nvim";
-        nixsw = "nixos-rebuild switch --flake ~/configs/nixos --sudo";
-      };
     };
   };
 }
