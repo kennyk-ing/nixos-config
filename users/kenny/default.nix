@@ -14,6 +14,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    age.secrets."kenny-password".file = ../../secrets/kenny-password.age;
+
     users.users."kenny" = {
       isNormalUser = true;
       description = "Kenny King";
@@ -21,7 +23,7 @@ in
         "networkmanager"
         "wheel"
       ];
-      initialHashedPassword = "$6$WQgmk1aoS.v2d7NO$n1R./0iPPER4.PCPZPs09JiS3oSTxKYjtn3eeKF1egFNY/NND2w1/cpQcDhTrGip/eOdySSK0ZEIA.E2PDZIq/"; # changeme
+      hashedPasswordFile = config.age.secrets."kenny-password".path;
       uid = 1000;
       shell = pkgs.zsh;
       linger = true; # run systemd user services at boot
