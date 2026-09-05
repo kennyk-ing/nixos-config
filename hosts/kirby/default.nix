@@ -37,8 +37,7 @@
       wezterm.enable = true;
     };
     desktop = {
-      gdm.enable = true;
-      niri.enable = true;
+      sddm.enable = true;
       plasma.enable = true;
     };
     users = {

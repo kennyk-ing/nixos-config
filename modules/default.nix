@@ -9,6 +9,7 @@
     ./apps/office.nix
     ./apps/wezterm.nix
     ./desktop/gdm.nix
+    ./desktop/sddm.nix
     ./desktop/niri
     ./desktop/plasma.nix
     ./hardware/intel-graphics.nix
