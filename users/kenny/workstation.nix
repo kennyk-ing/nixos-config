@@ -16,6 +16,7 @@ in
     home-manager.users."kenny" = {
       imports = [
         ./apps/thunderbird.nix
+        ./plasma
       ];
 
       home.packages = with pkgs; [

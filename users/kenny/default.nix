@@ -33,7 +33,6 @@ in
         ./apps/ssh.nix
         ./apps/zsh.nix
         ./apps/cli.nix
-        ./plasma.nix
       ];
 
       home.username = "kenny";
