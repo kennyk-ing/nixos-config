@@ -7,7 +7,7 @@ in
   options.mySystem.system.zram = {
     enable = lib.mkEnableOption "Enable ZRAM swap";
     memoryPercent = lib.mkOption {
-      type = lib.types.int;
+      type = lib.types.ints.between 1 100;
       default = 50;
       description = "Percentage of system memory to use for ZRAM.";
     };

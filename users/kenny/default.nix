@@ -24,7 +24,6 @@ in
       ];
       hashedPasswordFile = config.age.secrets."kenny-password".path;
       uid = 1000;
-      shell = pkgs.zsh;
       linger = true; # run systemd user services at boot
     };
 
@@ -38,15 +37,8 @@ in
       ];
 
       home = {
-        username = "kenny";
-        homeDirectory = "/home/kenny";
-
         # Do not change this value after initial setup
         stateVersion = "26.05";
-      };
-
-      programs = {
-        home-manager.enable = true;
       };
     };
   };

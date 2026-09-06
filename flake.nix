@@ -37,7 +37,6 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
@@ -56,7 +55,7 @@
       };
 
       sharedModules = [
-        { nixpkgs.hostPlatform = "x86_64-linux"; }
+        { nixpkgs.hostPlatform = system; }
 
         agenix.nixosModules.default
         disko.nixosModules.default

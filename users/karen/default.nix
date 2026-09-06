@@ -24,15 +24,11 @@ in
 
     home-manager.users."karen" = {
       home = {
-        username = "karen";
-        homeDirectory = "/home/karen";
-
         # Do not change this value after initial setup
         stateVersion = "26.05";
       };
 
       programs = {
-        home-manager.enable = true;
         thunderbird.enable = true;
       };
     };

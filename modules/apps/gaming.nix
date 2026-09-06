@@ -13,12 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.steam = {
-      enable = true;
-    };
-
-    # Essential for Xbox/PS controllers
-    hardware.steam-hardware.enable = true;
+    programs.steam.enable = true;
 
     # Gamemode automatically optimizes system performance when games run
     programs.gamemode.enable = true;
