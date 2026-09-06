@@ -1,7 +1,8 @@
 { lib, config, ... }:
 let
   cfg = config.mySystem.hardware.wifi;
-in {
+in
+{
   options.mySystem.hardware.wifi = {
     enable = lib.mkEnableOption "Wifi Networking";
   };

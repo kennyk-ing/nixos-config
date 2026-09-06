@@ -3,7 +3,7 @@
 let
   secretData = import inputs.privateData;
 in
-  {
+{
   programs.thunderbird = {
     enable = true;
     profiles.kenny.isDefault = true;
@@ -22,8 +22,8 @@ in
         tls.enable = true;
       };
       smtp = {
-        host = secretData."Personal".smtpHost; 
-        port = 465; 
+        host = secretData."Personal".smtpHost;
+        port = 465;
         tls.enable = true;
       };
       thunderbird.enable = true;

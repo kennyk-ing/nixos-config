@@ -6,4 +6,3 @@
     ../users/karen
   ];
 }
-

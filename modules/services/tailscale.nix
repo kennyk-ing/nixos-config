@@ -1,7 +1,8 @@
 { lib, config, ... }:
 let
   cfg = config.mySystem.services.tailscale;
-in {
+in
+{
   options.mySystem.services.tailscale = {
     enable = lib.mkEnableOption "Tailscale";
   };

@@ -2,7 +2,8 @@
 
 let
   cfg = config.mySystem.system.graphics;
-in {
+in
+{
   options.mySystem.system.graphics = {
     enable = lib.mkEnableOption "Base Graphics and 32-bit Support";
   };

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.mySystem.apps.office;
-in {
+in
+{
   options.mySystem.apps.office = {
     enable = lib.mkEnableOption "OnlyOffice Suite with Microsoft Fonts";
   };

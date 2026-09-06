@@ -1,4 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 
 let
   cfg = osConfig.mySystem.users.kenny;
@@ -35,15 +40,18 @@ lib.mkIf cfg.enable {
   programs.jq.enable = true;
   programs.bat.enable = true;
 
-  home.packages = with pkgs; [
-    fd
-    fastfetch
-  ] ++ lib.optionals isWorkstation [
-    # Workstation only
-    wl-clipboard
-  ];
+  home.packages =
+    with pkgs;
+    [
+      fd
+      fastfetch
+    ]
+    ++ lib.optionals isWorkstation [
+      # Workstation only
+      wl-clipboard
+    ];
 
-# Workstation only
+  # Workstation only
   programs.yazi = {
     enable = isWorkstation;
     enableBashIntegration = isWorkstation;

@@ -2,7 +2,8 @@
 
 let
   cfg = config.mySystem.hardware.tplink-ethernet2usb;
-in {
+in
+{
   options.mySystem.hardware.tplink-ethernet2usb = {
     enable = lib.mkEnableOption "tp-link ethernet to USB adapter - ASIX AX88179B USB Ethernet fixes (NO-CARRIER bug)";
   };

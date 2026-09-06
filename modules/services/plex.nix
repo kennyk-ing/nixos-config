@@ -2,7 +2,8 @@
 
 let
   cfg = config.mySystem.services.plex;
-in {
+in
+{
   options.mySystem.services.plex = {
     enable = lib.mkEnableOption "Plex Media Server";
   };
