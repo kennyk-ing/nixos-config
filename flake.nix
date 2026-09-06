@@ -93,10 +93,12 @@
         woo = mkHost "woo";
       };
 
-      devShells.x86_64-linux.default = pkgs.mkShellNoCC {
+      formatter.${system} = pkgs.nixfmt-tree;
+      devShells.${system}.default = pkgs.mkShellNoCC {
         packages = with pkgs; [
           nixd
           nixfmt
+          nixfmt-tree
         ];
       };
     };
