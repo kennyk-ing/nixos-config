@@ -1,8 +1,14 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.mySystem.hardware.intel-graphics;
-in {
+in
+{
   options.mySystem.hardware.intel-graphics = {
     enable = lib.mkEnableOption "Intel Integrated Graphics (i915 and Media Drivers)";
   };
@@ -25,7 +31,8 @@ in {
     };
 
     environment.variables = {
-      LIBVA_DRIVER_NAME = "iHD"; 
+      LIBVA_DRIVER_NAME = "iHD";
+      LIBVA_MESSAGING_LEVEL = "1";
     };
   };
 }

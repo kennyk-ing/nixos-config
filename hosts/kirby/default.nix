@@ -66,9 +66,5 @@
     };
   };
 
-  environment.sessionVariables = {
-    LIBVA_MESSAGING_LEVEL = "1";
-  };
-
   system.stateVersion = "26.05";
 }
