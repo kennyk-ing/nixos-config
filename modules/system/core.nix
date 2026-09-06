@@ -68,16 +68,11 @@ in
     networking.firewall.enable = true;
     security.sudo.execWheelOnly = true;
 
-    # --- Networking & Discovery ---
+    # --- Networking ---
     networking.networkmanager.enable = true;
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-    };
 
-    # --- Hardware Maintenance (Servers & Workstations) ---
+    # --- Hardware ---
     services.fstrim.enable = true;
-    services.fwupd.enable = true;
     hardware.enableRedistributableFirmware = true;
   };
 }

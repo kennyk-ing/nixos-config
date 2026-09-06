@@ -39,9 +39,18 @@ in
       };
     };
 
+    # --- Hardware Maintenance ---
+    services.fwupd.enable = true;
+
     # --- Core GUI Support ---
     security.polkit.enable = true;
     programs.dconf.enable = true;
+
+    # --- Network Discovery ---
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+    };
 
     # --- Printing (CUPS) ---
     services.printing.enable = true;
