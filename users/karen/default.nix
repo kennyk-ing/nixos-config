@@ -1,6 +1,4 @@
 {
-  pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -37,12 +35,6 @@ in
         home-manager.enable = true;
         thunderbird.enable = true;
       };
-    };
-
-    environment = {
-      systemPackages = [
-        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
     };
   };
 }

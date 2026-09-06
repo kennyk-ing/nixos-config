@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   config,
   lib,
   ...
@@ -49,12 +48,6 @@ in
       programs = {
         home-manager.enable = true;
       };
-    };
-
-    environment = {
-      systemPackages = [
-        inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      ];
     };
   };
 }
