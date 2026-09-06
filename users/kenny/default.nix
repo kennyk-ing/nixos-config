@@ -31,10 +31,11 @@ in
 
     home-manager.users."kenny" = {
       imports = [
+        ./apps/cli.nix
         ./apps/git.nix
         ./apps/ssh.nix
+        ./apps/syncthing.nix
         ./apps/zsh.nix
-        ./apps/cli.nix
       ];
 
       home = {

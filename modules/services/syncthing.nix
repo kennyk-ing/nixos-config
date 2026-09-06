@@ -13,11 +13,5 @@ in
       22000
       21027
     ];
-
-    home-manager.users."kenny" = {
-      services.syncthing = {
-        enable = true;
-      };
-    };
   };
 }
