@@ -74,6 +74,7 @@
 
             sharedModules = [
               inputs.plasma-manager.homeModules.plasma-manager
+              ./users/common/onlyoffice.nix
               ./users/common/plasma-power.nix
             ];
           };
