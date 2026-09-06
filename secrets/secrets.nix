@@ -1,19 +1,32 @@
 let
+  # Admin identities
   kenny_kirby = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0GBm6VaFt7sMzUy5gCiS9umQmuPxtfskzO+GkXEvnP kenny@kirby";
   kenny_woo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEPn3sIhk+pS0a5LSppmHbLY98Wktsi6QnH0V4XGf/5m kenny@woo";
+
+  adminKeys = [
+    kenny_kirby
+    kenny_woo
+  ];
+
+  # Host identities
   kirby = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgY9NgbiN6lb7YDx135NPBTwWYO7r8/oX3ALweQwQQ2 root@kirby";
   woo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKRzPZ5rAtMrEL3Vo0Jdfb58GyWktgZ93MP6gu0wwo1 root@woo";
 
-  allSystems = [
-    kenny_kirby
-    kenny_woo
+  allHosts = [
     kirby
     woo
   ];
+
+  sharedUserHosts = [
+    kirby
+  ];
+
+  allRecipients = adminKeys ++ allHosts;
+  sharedUserRecipients = adminKeys ++ sharedUserHosts;
 in
 {
-  "wifi.age".publicKeys = allSystems;
-  "email_personal.age".publicKeys = allSystems;
-  "kenny-password.age".publicKeys = allSystems;
-  "karen-password.age".publicKeys = allSystems;
+  "wifi.age".publicKeys = allRecipients;
+  "email_personal.age".publicKeys = allRecipients;
+  "kenny-password.age".publicKeys = allRecipients;
+  "karen-password.age".publicKeys = sharedUserRecipients;
 }
