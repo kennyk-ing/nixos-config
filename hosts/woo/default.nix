@@ -58,6 +58,7 @@
       };
     };
     services = {
+      openssh.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
     };
