@@ -8,16 +8,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Even if you use Wayland, NixOS still requires this base setting turned
-    # on for display managers to function correctly
-    services.xserver.enable = true;
+    services = {
+      # Even if you use Wayland, NixOS still requires this base setting turned
+      # on for display managers to function correctly
+      xserver.enable = true;
 
-    services.displayManager.gdm.enable = true;
+      displayManager.gdm.enable = true;
 
-    # helps GDM remember each users last session type.
-    services.accounts-daemon.enable = true;
+      # helps GDM remember each users last session type.
+      accounts-daemon.enable = true;
 
-    # GDM would not remember users default session without this.
-    services.displayManager.defaultSession = lib.mkForce null;
+      # GDM would not remember users default session without this.
+      displayManager.defaultSession = lib.mkForce null;
+    };
   };
 }

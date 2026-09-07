@@ -10,7 +10,7 @@ in
 
   config = {
     services.openssh = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       # Each host/profile will open it's own ports
       openFirewall = false;
 

@@ -96,11 +96,13 @@
       formatter.${system} = pkgs.nixfmt-tree;
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [
-          pkgs.age
           pkgs.nixd
           pkgs.nixfmt
           pkgs.nixfmt-tree
+          pkgs.age
           agenix.packages.${system}.default
+          pkgs.deadnix
+          pkgs.statix
         ];
       };
     };
