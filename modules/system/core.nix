@@ -36,15 +36,22 @@ in
     # --- Nix & Flakes ---
     nixpkgs.config.allowUnfree = true;
     nix = {
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-      settings.auto-optimise-store = true;
+      settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+      };
+
       gc = {
         automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
+        dates = [ "Tue 03:00" ];
+        options = "--delete-older-than 30d";
+      };
+
+      optimise = {
+        automatic = true;
+        dates = [ "Tue 04:00" ];
       };
     };
 
