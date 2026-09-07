@@ -30,7 +30,19 @@ in
 
     settings = {
       devices = remoteDevices;
-      folders = { };
+
+      folders = {
+        documents = {
+          id = "documents";
+          label = "Documents";
+          path = "~/Documents";
+
+          devices = builtins.filter (device: device != hostName) [
+            "kirby"
+            "woo"
+          ];
+        };
+      };
 
       options = {
         listenAddresses = [
