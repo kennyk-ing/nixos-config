@@ -8,10 +8,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 22000 ];
-    networking.firewall.allowedUDPPorts = [
-      22000
-      21027
+    assertions = [
+      {
+        assertion = config.mySystem.services.tailscale.enable;
+        message = "Syncthing requires Tailscale to be enabled.";
+      }
     ];
+
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22000 ];
   };
 }
