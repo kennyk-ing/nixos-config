@@ -6,11 +6,6 @@
     ./disko.nix
   ];
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-  };
-
   networking.hostName = "woo";
   time.timeZone = "America/Los_Angeles";
 
@@ -51,6 +46,7 @@
     };
     system = {
       core.enable = true;
+      systemd-boot.enable = true;
       workstation.enable = true;
       zram = {
         enable = true;

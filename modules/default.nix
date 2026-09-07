@@ -28,6 +28,7 @@
 
     ./system/core.nix
     ./system/graphics.nix
+    ./system/systemd-boot.nix
     ./system/workstation.nix
     ./system/zram.nix
   ];
