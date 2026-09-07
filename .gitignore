@@ -9,3 +9,6 @@ result-*
 .env
 .env.*
 !.env.example
+
+# git-hooks
+.pre-commit-config.yaml

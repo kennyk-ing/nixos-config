@@ -21,6 +21,11 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     plasma-manager = {
@@ -52,6 +57,11 @@
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
+      };
+
+      gitHooks = inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = import ./git-hooks.nix;
       };
 
       sharedModules = [
@@ -94,6 +104,8 @@
       };
 
       formatter.${system} = pkgs.nixfmt-tree;
+      checks.${system}.pre-commit = gitHooks;
+
       devShells.${system}.default = pkgs.mkShellNoCC {
         packages = [
           pkgs.nixd
@@ -101,9 +113,10 @@
           pkgs.nixfmt-tree
           pkgs.age
           agenix.packages.${system}.default
-          pkgs.deadnix
-          pkgs.statix
-        ];
+        ]
+        ++ gitHooks.enabledPackages;
+
+        inherit (gitHooks) shellHook;
       };
     };
 }
