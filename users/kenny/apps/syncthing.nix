@@ -41,6 +41,13 @@ in
             "kirby"
             "woo"
           ];
+
+          versioning = {
+            type = "staggered";
+            params = {
+              maxAge = "15552000"; # only keep for 180 days
+            };
+          };
         };
       };
 
