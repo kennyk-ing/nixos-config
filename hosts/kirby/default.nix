@@ -38,6 +38,7 @@
     system = {
       core.enable = true;
       systemd-boot.enable = true;
+      trusted-lan.enable = true;
       workstation.enable = true;
       zram = {
         enable = true;

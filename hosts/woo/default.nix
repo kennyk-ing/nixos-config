@@ -35,6 +35,7 @@
     };
     system = {
       core.enable = true;
+      mobile.enable = true;
       systemd-boot.enable = true;
       workstation.enable = true;
       zram = {

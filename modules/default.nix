@@ -28,7 +28,9 @@
 
     ./system/core.nix
     ./system/graphics.nix
+    ./system/mobile.nix
     ./system/systemd-boot.nix
+    ./system/trusted-lan.nix
     ./system/workstation.nix
     ./system/zram.nix
   ];
