@@ -11,6 +11,8 @@ in
   config = {
     services.openssh = {
       enable = cfg.enable;
+      # Each host/profile will open it's own ports
+      openFirewall = false;
 
       # Keep host SSH keys available for agenix even when sshd is disabled.
       generateHostKeys = true;

@@ -4,11 +4,17 @@ let
 in
 {
   options.mySystem.hardware.laptop = {
-    enable = lib.mkEnableOption "Laptop Power Management Features";
+    enable = lib.mkEnableOption "Laptop-specific system configuration";
   };
 
   config = lib.mkIf cfg.enable {
     mySystem.hardware.tplink-ethernet2usb.enable = true;
+
+    # If openssh and tailscale are both enabled:
+    # open port 22 on the tailscale interface only
+    networking.firewall.interfaces.tailscale0.allowedTCPPorts = lib.optionals (
+      config.mySystem.services.openssh.enable && config.mySystem.services.tailscale.enable
+    ) [ 22 ];
 
     services = {
       # TLP owns system power-profile policy, so do not also run
