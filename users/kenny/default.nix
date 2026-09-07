@@ -1,11 +1,11 @@
 {
-  pkgs,
   config,
   lib,
   ...
 }:
 let
   cfg = config.mySystem.users.kenny;
+  keys = import ../../keys.nix;
 in
 {
   options.mySystem.users.kenny = {
@@ -18,12 +18,15 @@ in
     users.users."kenny" = {
       isNormalUser = true;
       description = "Kenny King";
+      uid = 1000;
       extraGroups = [
         "networkmanager"
         "wheel"
       ];
+
       hashedPasswordFile = config.age.secrets."kenny-password".path;
-      uid = 1000;
+      openssh.authorizedKeys.keys = builtins.attrValues keys.users.kenny;
+
       linger = true; # run systemd user services at boot
     };
 
