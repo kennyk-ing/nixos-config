@@ -20,6 +20,7 @@
 
     ./profiles/development.nix
 
+    ./services/libvirt.nix
     ./services/openssh.nix
     ./services/plex.nix
     ./services/podman.nix

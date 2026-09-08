@@ -2,17 +2,26 @@ let
   keys = import ../keys.nix;
 
   adminKeys = builtins.attrValues keys.users.kenny;
-  allHosts = builtins.attrValues keys.hosts;
+
+  kennyHosts = builtins.attrValues keys.hosts;
+
+  wifiHosts = with keys.hosts; [
+    kirby
+    woo
+  ];
+
+  kennyWorkstationHosts = with keys.hosts; [
+    kirby
+    woo
+  ];
+
   sharedUserHosts = with keys.hosts; [
     kirby
   ];
-
-  allRecipients = adminKeys ++ allHosts;
-  sharedUserRecipients = adminKeys ++ sharedUserHosts;
 in
 {
-  "wifi.age".publicKeys = allRecipients;
-  "email_personal.age".publicKeys = allRecipients;
-  "kenny-password.age".publicKeys = allRecipients;
-  "karen-password.age".publicKeys = sharedUserRecipients;
+  "wifi.age".publicKeys = adminKeys ++ wifiHosts;
+  "email_personal.age".publicKeys = adminKeys ++ kennyWorkstationHosts;
+  "kenny-password.age".publicKeys = adminKeys ++ kennyHosts;
+  "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
 }
