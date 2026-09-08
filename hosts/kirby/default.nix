@@ -9,6 +9,8 @@
   networking.hostName = "kirby";
   time.timeZone = "America/Los_Angeles";
 
+  users.users.kenny.linger = true;
+
   mySystem = {
     apps = {
       emacs.enable = true;

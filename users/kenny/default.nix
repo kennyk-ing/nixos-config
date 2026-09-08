@@ -26,8 +26,6 @@ in
 
       hashedPasswordFile = config.age.secrets."kenny-password".path;
       openssh.authorizedKeys.keys = builtins.attrValues keys.users.kenny;
-
-      linger = true; # run systemd user services at boot
     };
 
     home-manager.users."kenny" = {
@@ -36,6 +34,7 @@ in
         ./apps/git.nix
         ./apps/ssh.nix
         ./apps/syncthing.nix
+        ./apps/tmux.nix
         ./apps/zsh.nix
       ];
 
