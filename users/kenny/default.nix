@@ -34,7 +34,7 @@ in
         ./apps/git.nix
         ./apps/ssh.nix
         ./apps/syncthing.nix
-        ./apps/tmux.nix
+        ./apps/tmux
         ./apps/zsh.nix
       ];
 
