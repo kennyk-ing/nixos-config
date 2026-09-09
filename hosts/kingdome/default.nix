@@ -1,14 +1,25 @@
 { ... }:
 
 {
+  imports = [
+    ./hardware-configuration.nix
+    ./disko.nix
+    ./vfio.nix
+  ];
+
   networking = {
     hostName = "kingdome";
-    firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
+
+    firewall.interfaces = {
+      # Onboard - bootstrap management from TRUSTED for now.
+      # This will later become the dedicated MGMT connection.
+      enp0s31f6.allowedTCPPorts = [ 22 ];
+
+      tailscale0.allowedTCPPorts = [ 22 ];
+    };
   };
 
   time.timeZone = "America/Los_Angeles";
-
-  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   users.users.kenny.extraGroups = [ "libvirtd" ];
 
@@ -17,6 +28,7 @@
 
     system = {
       core.enable = true;
+      systemd-boot.enable = true;
     };
 
     services = {

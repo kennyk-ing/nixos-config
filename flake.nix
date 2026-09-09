@@ -99,6 +99,7 @@
     in
     {
       nixosConfigurations = {
+        kingdome = mkHost "kingdome";
         kirby = mkHost "kirby";
         woo = mkHost "woo";
       };
