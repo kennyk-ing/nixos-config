@@ -18,6 +18,8 @@ in
       owner = "kenny";
     };
 
+    users.users.kenny.extraGroups = [ "networkmanager" ];
+
     home-manager.users."kenny" = {
       imports = [
         ./apps/browsers.nix

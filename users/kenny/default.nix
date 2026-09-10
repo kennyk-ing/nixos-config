@@ -20,7 +20,6 @@ in
       description = "Kenny King";
       uid = 1000;
       extraGroups = [
-        "networkmanager"
         "wheel"
       ];
 
