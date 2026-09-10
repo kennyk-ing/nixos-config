@@ -1,10 +1,10 @@
 { config, lib, ... }:
 
 let
-  cfg = config.mySystem.system.trusted-lan;
+  cfg = config.mySystem.networking.trusted-lan;
 in
 {
-  options.mySystem.system.trusted-lan = {
+  options.mySystem.networking.trusted-lan = {
     enable = lib.mkEnableOption "trusted-lan system network policy";
   };
 

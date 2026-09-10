@@ -4,21 +4,11 @@
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
+    ./networking.nix
     ./vfio.nix
   ];
 
-  networking = {
-    hostName = "kingdome";
-
-    firewall.interfaces = {
-      # Onboard - bootstrap management from TRUSTED for now.
-      # This will later become the dedicated MGMT connection.
-      enp0s31f6.allowedTCPPorts = [ 22 ];
-
-      tailscale0.allowedTCPPorts = [ 22 ];
-    };
-  };
-
+  networking.hostName = "kingdome";
   time.timeZone = "America/Los_Angeles";
 
   users.users.kenny.extraGroups = [ "libvirtd" ];
@@ -26,15 +16,17 @@
   mySystem = {
     users.kenny.enable = true;
 
-    system = {
-      core.enable = true;
-      systemd-boot.enable = true;
-    };
+    profiles.server.enable = true;
 
     services = {
       libvirt.enable = true;
       openssh.enable = true;
       tailscale.enable = true;
+    };
+
+    system = {
+      core.enable = true;
+      systemd-boot.enable = true;
     };
   };
 

@@ -6,14 +6,17 @@
 }:
 
 let
-  cfg = config.mySystem.system.workstation;
+  cfg = config.mySystem.profiles.workstation;
 in
 {
-  options.mySystem.system.workstation = {
-    enable = lib.mkEnableOption "Core workstation profile";
+  options.mySystem.profiles.workstation = {
+    enable = lib.mkEnableOption "Workstation Profile";
   };
 
   config = lib.mkIf cfg.enable {
+    # --- Networking ---
+    networking.networkmanager.enable = true;
+
     # Required for PipeWire to get realtime scheduling
     security.rtkit.enable = true;
 
@@ -29,7 +32,6 @@ in
 
       # --- Power Management ---
       upower.enable = true;
-      power-profiles-daemon.enable = true;
 
       # --- Hardware Maintenance ---
       fwupd.enable = true;

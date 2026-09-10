@@ -13,7 +13,7 @@ in
     services = {
       # TLP owns system power-profile policy, so do not also run
       # power-profiles-daemon.
-      power-profiles-daemon.enable = lib.mkForce false;
+      power-profiles-daemon.enable = false;
 
       # Enable TLP (Universal power management)
       tlp = {

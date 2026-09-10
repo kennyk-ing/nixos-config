@@ -5,7 +5,7 @@ let
 in
 {
   options.mySystem.profiles.development = {
-    enable = lib.mkEnableOption "development workstation features";
+    enable = lib.mkEnableOption "development features";
   };
 
   config = lib.mkIf cfg.enable {

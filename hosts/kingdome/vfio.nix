@@ -21,11 +21,4 @@
       "vfio_iommu_type1"
     ];
   };
-
-  # If VFIO binding fails, prevent NetworkManager from configuring either port
-  # Fail 'closed' instead of failing 'open'
-  networking.networkmanager.unmanaged = [
-    "enp1s0f0" # LAN
-    "enp1s0f1" # WAN
-  ];
 }

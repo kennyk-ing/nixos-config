@@ -18,35 +18,46 @@
       gaming.enable = true;
       office.enable = true;
     };
+
     desktop = {
       sddm.enable = true;
       plasma.enable = true;
     };
+
     users = {
       kenny = {
         enable = true;
         workstation.enable = true;
       };
+
       karen.enable = true;
     };
+
     hardware = {
       intel-graphics.enable = true;
       laptop.enable = true;
+    };
+
+    networking = {
+      trusted-lan.enable = true;
       wifi.enable = true;
     };
+
     profiles = {
       development.enable = true;
+      workstation.enable = true;
     };
+
     system = {
       core.enable = true;
       systemd-boot.enable = true;
-      trusted-lan.enable = true;
-      workstation.enable = true;
+
       zram = {
         enable = true;
         memoryPercent = 10;
       };
     };
+
     services = {
       openssh.enable = true;
       plex.enable = true;

@@ -1,10 +1,10 @@
 { lib, config, ... }:
 
 let
-  cfg = config.mySystem.system.graphics;
+  cfg = config.mySystem.hardware.graphics;
 in
 {
-  options.mySystem.system.graphics = {
+  options.mySystem.hardware.graphics = {
     enable = lib.mkEnableOption "Base Graphics and 32-bit Support";
   };
 

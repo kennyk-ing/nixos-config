@@ -63,9 +63,6 @@ in
     networking.firewall.enable = true;
     security.sudo.execWheelOnly = true;
 
-    # --- Networking ---
-    networking.networkmanager.enable = true;
-
     # --- Hardware ---
     services.fstrim.enable = true;
     hardware.enableRedistributableFirmware = true;
