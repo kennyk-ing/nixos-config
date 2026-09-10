@@ -11,9 +11,8 @@
   systemd.network.networks."10-enp0s31f6" = {
     matchConfig.Name = "enp0s31f6";
 
-    networkConfig = {
-      DHCP = "ipv4";
-      IPv6AcceptRA = true;
-    };
+    address = [ "10.0.10.2/24" ];
+    gateway = [ "10.0.10.1" ];
+    dns = [ "10.0.10.1" ];
   };
 }
