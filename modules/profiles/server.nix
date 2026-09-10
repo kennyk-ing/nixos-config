@@ -20,7 +20,10 @@ in
       }
     ];
 
-    networking.useDHCP = false;
+    networking = {
+      enableIPv6 = false;
+      useDHCP = false;
+    };
     systemd.network.enable = true;
   };
 }
