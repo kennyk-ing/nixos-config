@@ -42,6 +42,7 @@
 
   outputs =
     {
+      self,
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
@@ -100,6 +101,17 @@
     {
       nixosConfigurations = {
         kingdome = mkHost "kingdome";
+        kingdome-installer = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs self;
+          };
+
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            ./installer/kingdome
+          ];
+        };
+
         kirby = mkHost "kirby";
         woo = mkHost "woo";
       };
