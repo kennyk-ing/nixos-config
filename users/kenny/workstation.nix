@@ -34,6 +34,7 @@ in
         kdePackages.kate
         fira
         nerd-fonts.sauce-code-pro
+        virt-viewer
       ];
 
       # Make sure home manager can install fonts to the system catalog
