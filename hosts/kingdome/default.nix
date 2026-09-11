@@ -30,5 +30,8 @@
     };
   };
 
+  environment.etc."kingdome-recovery/hodor.xml".source = ./hodor.xml;
+  virtualisation.libvirtd.onShutdown = "shutdown";
+
   system.stateVersion = "26.05";
 }
