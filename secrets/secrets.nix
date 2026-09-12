@@ -12,11 +12,13 @@ let
 
   kennyWorkstationHosts = with keys.hosts; [
     kirby
+    tez
     woo
   ];
 
   sharedUserHosts = with keys.hosts; [
     kirby
+    tez
   ];
 in
 {

@@ -8,5 +8,6 @@
     kirby = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDgY9NgbiN6lb7YDx135NPBTwWYO7r8/oX3ALweQwQQ2 root@kirby";
     woo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBKRzPZ5rAtMrEL3Vo0Jdfb58GyWktgZ93MP6gu0wwo1 root@woo";
     kingdome = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGVVUIOzSfAH1OxQ+iIuXcFN1joL4Yjovgsmv2SPzNwx root@kingdome";
+    tez = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAFyeiHUZOEuwwzxwDd7d2RuGyTmM/k+N2jEbY0VYXif root@tez";
   };
 }

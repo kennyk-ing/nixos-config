@@ -113,6 +113,7 @@
         };
 
         kirby = mkHost "kirby";
+        tez = mkHost "tez";
         woo = mkHost "woo";
       };
 
