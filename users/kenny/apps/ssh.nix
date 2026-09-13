@@ -12,6 +12,15 @@
     settings = {
       "*" = {
         AddKeysToAgent = "yes";
+
+        # SSH multiplexing
+        ControlMaster = "auto";
+        ControlPersist = "10m";
+        ControlPath = "~/.ssh/control-%C";
+
+        # Detect dead connections
+        ServerAliveInterval = 30;
+        ServerAliveCountMax = 3;
       };
       "github.com" = {
         host = "github.com";
@@ -20,13 +29,12 @@
         identitiesOnly = true;
         RequestTTY = "no";
       };
-      "kirby" = {
-        ControlMaster = "auto";
-        ControlPersist = "10m";
-        ControlPath = "~/.ssh/control-%C";
 
-        ServerAliveInterval = 30;
-        ServerAliveCountMax = 3;
+      # We add this explicitly instead of using DNS so we can access
+      # kingdome even if DNS or hodor are down
+      kingdome = {
+        HostName = "10.0.10.2";
+        User = "kenny";
       };
     };
   };
