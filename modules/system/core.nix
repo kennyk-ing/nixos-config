@@ -21,6 +21,7 @@ in
       systemPackages = with pkgs; [
         wget
         git
+        ghostty.terminfo
       ];
 
       shellAliases = {

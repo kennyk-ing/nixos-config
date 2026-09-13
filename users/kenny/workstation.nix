@@ -77,6 +77,10 @@ in
             theme = "Carbonfox";
             background = "#000000";
             background-opacity = 0.90;
+            shell-integration-features = [
+              "ssh-env"
+              "ssh-terminfo"
+            ];
           };
         };
       };
