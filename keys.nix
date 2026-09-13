@@ -2,6 +2,7 @@
   users.kenny = {
     kirby = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0GBm6VaFt7sMzUy5gCiS9umQmuPxtfskzO+GkXEvnP kenny@kirby";
     woo = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEPn3sIhk+pS0a5LSppmHbLY98Wktsi6QnH0V4XGf/5m kenny@woo";
+    tez = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJsWCIHkHgBslY2xA+Rb8lHLk2iRZac0nAQOCClyNkG5 kenny@tez";
   };
 
   hosts = {
