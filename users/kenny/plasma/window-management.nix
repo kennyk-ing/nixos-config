@@ -19,6 +19,8 @@
         };
 
         borderlessMaximizedWindows = true;
+
+        effects.zoom.enable = false;
       };
 
       # Karousel currently has no first-class plasma-manager module.
