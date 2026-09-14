@@ -10,6 +10,13 @@
   networking.hostName = "tez";
   time.timeZone = "America/Los_Angeles";
 
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "no";
+    AllowHibernation = "no";
+    AllowHybridSleep = "no";
+    AllowSuspendThenHibernate = "no";
+  };
+
   mySystem = {
     apps = {
       emacs.enable = true;

@@ -22,11 +22,6 @@
         "Vi Input Mode Steal Keys" = true;
         "Vi Relative Line Numbers" = true;
       };
-
-      # Disable automatic suspend on 'tez'
-      powerdevil.AC.autoSuspend = lib.mkIf (osConfig.networking.hostName == "tez") {
-        action = "nothing";
-      };
     };
   };
 }
