@@ -44,6 +44,9 @@ in
 
       # --- Printing (CUPS) ---
       printing.enable = true;
+
+      # --- DNS ---
+      resolved.enable = true;
     };
 
     # --- Bluetooth ---
