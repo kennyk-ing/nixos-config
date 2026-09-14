@@ -8,6 +8,11 @@ let
       addresses = [ "tcp://kirby:22000" ];
     };
 
+    tez = {
+      id = "3ZNJCVZ-IEMPBV3-362K7VA-VLNYUWJ-6FZYTVG-VCTYWHK-VCMUPT5-6X6ESAF";
+      addresses = [ "tcp://tez:22000" ];
+    };
+
     woo = {
       id = "XR5CXOS-PRPUYVZ-GZD6H5Y-K46HJK5-UD3HVWE-PEH5L7V-G5SCEHH-OJR4MQE";
       addresses = [ "tcp://woo:22000" ];
@@ -39,6 +44,7 @@ in
 
           devices = builtins.filter (device: device != hostName) [
             "kirby"
+            "tez"
             "woo"
           ];
 
