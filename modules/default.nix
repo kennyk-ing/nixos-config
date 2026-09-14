@@ -29,6 +29,7 @@
     ./services/openssh.nix
     ./services/plex.nix
     ./services/podman.nix
+    ./services/smartd.nix
     ./services/syncthing.nix
     ./services/tailscale.nix
 

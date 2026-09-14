@@ -53,6 +53,7 @@
 
     services = {
       openssh.enable = true;
+      smartd.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
     };

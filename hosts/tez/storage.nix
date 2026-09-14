@@ -30,4 +30,31 @@
       ];
     };
   };
+
+  services.smartd = {
+    autodetect = false;
+
+    devices = [
+      {
+        # WD Blue 4 TB — first Sunday of the month
+        device = "/dev/disk/by-id/ata-WDC_WD40EZRZ-00GXCB0_WD-WCC7K4LEJX02";
+        options = "-a -s (S/../../7/02|L/../0[1-7]/7/02)";
+      }
+      {
+        # WD Black 4 TB — second Sunday of the month
+        device = "/dev/disk/by-id/ata-WDC_WD4005FZBX-00K5WB0_VBHLU7DF";
+        options = "-a -s (S/../../7/02|L/../(0[8-9]|1[0-4])/7/02)";
+      }
+      {
+        # Seagate BarraCuda 8 TB — third Sunday of the month
+        device = "/dev/disk/by-id/ata-ST8000DM004-2U9188_ZR162LQH";
+        options = "-a -s (S/../../7/02|L/../(1[5-9]|2[0-1])/7/02)";
+      }
+      {
+        # KLEVV CRAS C925 2 TB NVMe — fourth Sunday of the month
+        device = "/dev/disk/by-id/nvme-KLEVV_CRAS_C925_M.2_NVMe_SSD_2TB_2025062101001013_1";
+        options = "-a -s (S/../../7/02|L/../2[2-8]/7/02)";
+      }
+    ];
+  };
 }

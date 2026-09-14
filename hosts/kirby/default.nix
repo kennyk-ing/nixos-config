@@ -61,6 +61,7 @@
     services = {
       openssh.enable = true;
       plex.enable = true;
+      smartd.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
     };
