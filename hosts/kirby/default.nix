@@ -48,22 +48,24 @@
       workstation.enable = true;
     };
 
-    system = {
-      core.enable = true;
-      systemd-boot.enable = true;
-
-      zram = {
-        enable = true;
-        memoryPercent = 10;
-      };
-    };
-
     services = {
       openssh.enable = true;
       plex.enable = true;
       smartd.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
+    };
+
+    system = {
+      core.enable = true;
+      secure-boot = {
+        enable = true;
+      };
+
+      zram = {
+        enable = true;
+        memoryPercent = 10;
+      };
     };
   };
 

@@ -35,6 +35,7 @@
 
     ./system/core.nix
     ./system/mobile.nix
+    ./system/secure-boot.nix
     ./system/systemd-boot.nix
     ./system/zram.nix
   ];
