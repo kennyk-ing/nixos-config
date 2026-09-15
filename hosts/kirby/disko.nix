@@ -23,7 +23,10 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                settings.allowDiscards = true; # allow SSD TRIM support through LUKS
+                settings = {
+                  allowDiscards = true;
+                  crypttabExtraOpts = [ "tpm2-device=auto" ];
+                };
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ]; # force format
