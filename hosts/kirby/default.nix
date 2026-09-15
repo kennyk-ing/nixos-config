@@ -59,6 +59,7 @@
       core.enable = true;
       secure-boot = {
         enable = true;
+        measured-boot.enable = true;
       };
 
       zram = {
@@ -66,6 +67,22 @@
         memoryPercent = 10;
       };
     };
+  };
+
+  # Kirby's firmware measures an extra EFI application into PCR 4.
+  # systemd-pcrlock does not recognize it automatically.
+  boot.lanzaboote.measuredBoot.staticMeasurements."610-kirby-firmware-efi".json = {
+    records = [
+      {
+        pcr = 4;
+        digests = [
+          {
+            hashAlg = "sha256";
+            digest = "522944324bb55c06f770c2757d962e562d9714d6041b6ba1a93041dd4cf9a8c7";
+          }
+        ];
+      }
+    ];
   };
 
   system.stateVersion = "26.05";
