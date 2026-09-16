@@ -10,6 +10,11 @@
   networking.hostName = "tez";
   time.timeZone = "America/Los_Angeles";
 
+  networking.firewall.interfaces = {
+    enp11s0.allowedTCPPorts = [ 22 ];
+    tailscale0.allowedTCPPorts = [ 22 ];
+  };
+
   systemd.sleep.settings.Sleep = {
     AllowSuspend = "no";
     AllowHibernation = "no";
@@ -41,8 +46,6 @@
     };
 
     hardware.graphics.enable = true;
-
-    networking.trusted-lan.enable = true;
 
     profiles = {
       development.enable = true;

@@ -18,7 +18,6 @@
     ./hardware/laptop.nix
     ./hardware/tplink-ethernet2usb.nix
 
-    ./networking/trusted-lan.nix
     ./networking/wifi.nix
 
     ./profiles/development.nix

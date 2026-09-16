@@ -26,8 +26,6 @@
       laptop.enable = true;
     };
 
-    networking.trusted-lan.enable = true;
-
     profiles.server.enable = true;
 
     services = {

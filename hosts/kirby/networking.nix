@@ -1,6 +1,11 @@
 { ... }:
 
 {
+  networking.firewall.interfaces = {
+    vlan100.allowedTCPPorts = [ 22 ];
+    tailscale0.allowedTCPPorts = [ 22 ];
+  };
+
   systemd.network = {
     netdevs = {
       "20-vlan100" = {
