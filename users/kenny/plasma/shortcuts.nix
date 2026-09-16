@@ -60,6 +60,8 @@ in
 
           # Karousel: sizing/centering.
           "karousel-cycle-preset-widths" = "Meta+R";
+          "karousel-cycle-preset-widths-reverse" = "Meta+Alt+R";
+          "karousel-column-width-maximize" = "Meta+M";
           "karousel-column-width-decrease" = "Meta+-";
           "karousel-column-width-increase" = "Meta+=";
           "karousel-grid-scroll-focused" = "Meta+C";
@@ -74,7 +76,7 @@ in
           "Window Maximize" = "Meta+Ctrl+M";
 
           # Meta+W belongs to Karousel.
-          "Overview" = [ ];
+          "Overview" = "Meta+O";
 
           # Virtual desktops.
           "Switch to Desktop 1" = "Meta+1";
@@ -171,32 +173,32 @@ in
         };
 
         launch-browser = {
-          name = "Launch Browser";
-          key = "Meta+B";
+          name = "Launch Zen Browser";
+          key = "Meta+B"; # browser
           command = "zen-beta";
         };
 
         launch-mail = {
           name = "Launch Thunderbird";
-          key = "Meta+E";
+          key = "Meta+E"; # Email
           command = "thunderbird";
         };
 
         launch-files = {
           name = "Launch Dolphin";
-          key = "Meta+F";
+          key = "Meta+F"; # Files
           command = "dolphin";
         };
 
         launch-obsidian = {
           name = "Launch Obsidian";
-          key = "Meta+O";
+          key = "Meta+N"; # Notes
           command = "obsidian";
         };
 
         launch-nvim = {
           name = "Launch Neovim";
-          key = "Meta+V";
+          key = "Meta+V"; # vim
           command = "xdg-terminal-exec nvim";
         };
 

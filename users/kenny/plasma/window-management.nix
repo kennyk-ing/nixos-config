@@ -4,7 +4,9 @@
   pkgs-unstable,
   ...
 }:
-
+let
+  isTez = osConfig.networking.hostName == "tez";
+in
 {
   config = lib.mkIf osConfig.mySystem.desktop.plasma.enable {
     home.packages = [
@@ -23,21 +25,24 @@
         effects.zoom.enable = false;
       };
 
-      # Karousel currently has no first-class plasma-manager module.
       configFile.kwinrc = {
-        Plugins.karouselEnabled = true;
+        # Disable top left hot corner overview
+        "Effect-overview".BorderActivate = 9;
 
+        # Karousel currently has no first-class plasma-manager module.
+        Plugins.karouselEnabled = true;
         "Script-karousel" = {
           # Gaps.
-          gapsOuterTop = 5;
-          gapsOuterBottom = 5;
-          gapsOuterLeft = 5;
-          gapsOuterRight = 5;
-          gapsInnerHorizontal = 5;
-          gapsInnerVertical = 5;
+          gapsOuterTop = if isTez then 8 else 5;
+          gapsOuterBottom = if isTez then 8 else 5;
+          gapsOuterLeft = if isTez then 8 else 5;
+          gapsOuterRight = if isTez then 8 else 5;
+
+          gapsInnerHorizontal = if isTez then 20 else 5;
+          gapsInnerVertical = if isTez then 12 else 5;
 
           # Column sizing.
-          presetWidths = "33%, 50%, 67%";
+          presetWidths = "33%, 50%, 67%, 100%";
           manualScrollStep = 200;
           verticalResizeStep = 32;
 
@@ -88,7 +93,7 @@
           };
 
           apply.size = {
-            value = "952,1050";
+            value = if isTez then "1262,1050" else "952,1050";
             apply = "initially";
           };
         }
