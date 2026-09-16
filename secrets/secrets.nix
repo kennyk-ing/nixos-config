@@ -24,4 +24,5 @@ in
   "email_personal.age".publicKeys = adminKeys ++ kennyWorkstationHosts;
   "kenny-password.age".publicKeys = adminKeys ++ kennyHosts;
   "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
+  "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;
 }

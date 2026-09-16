@@ -37,6 +37,7 @@
       };
 
       karen.enable = true;
+      keegan.enable = true;
     };
 
     hardware.graphics.enable = true;

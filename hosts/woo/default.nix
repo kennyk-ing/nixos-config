@@ -26,6 +26,8 @@
         enable = true;
         workstation.enable = true;
       };
+      karen.enable = true;
+      keegan.enable = true;
     };
 
     hardware = {
