@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.mySystem.services.smartd;
 in
@@ -9,5 +14,9 @@ in
 
   config = lib.mkIf cfg.enable {
     services.smartd.enable = true;
+
+    environment.systemPackages = [
+      pkgs.smartmontools
+    ];
   };
 }
