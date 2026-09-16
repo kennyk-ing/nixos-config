@@ -12,6 +12,9 @@ let
   ];
 in
 {
+  # Lualine already displays the current mode.
+  opts.showmode = false;
+
   colorschemes.nightfox = {
     enable = true;
     settings.options.transparent = true;
