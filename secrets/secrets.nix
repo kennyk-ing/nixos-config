@@ -6,19 +6,17 @@ let
   kennyHosts = builtins.attrValues keys.hosts;
 
   wifiHosts = with keys.hosts; [
-    kirby
     woo
   ];
 
   kennyWorkstationHosts = with keys.hosts; [
-    kirby
     tez
     woo
   ];
 
   sharedUserHosts = with keys.hosts; [
-    kirby
     tez
+    woo
   ];
 in
 {

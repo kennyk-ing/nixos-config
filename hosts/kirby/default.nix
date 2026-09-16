@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
+    ./networking.nix
   ];
 
   networking.hostName = "kirby";
@@ -12,41 +13,21 @@
   users.users.kenny.linger = true;
 
   mySystem = {
-    apps = {
-      emacs.enable = true;
-      browsers.enable = true;
-      gaming.enable = true;
-      office.enable = true;
-    };
-
     desktop = {
       sddm.enable = true;
       plasma.enable = true;
     };
 
-    users = {
-      kenny = {
-        enable = true;
-        workstation.enable = true;
-      };
-
-      karen.enable = true;
-    };
+    users.kenny.enable = true;
 
     hardware = {
       intel-graphics.enable = true;
       laptop.enable = true;
     };
 
-    networking = {
-      trusted-lan.enable = true;
-      wifi.enable = true;
-    };
+    networking.trusted-lan.enable = true;
 
-    profiles = {
-      development.enable = true;
-      workstation.enable = true;
-    };
+    profiles.server.enable = true;
 
     services = {
       openssh.enable = true;
@@ -83,6 +64,19 @@
         ];
       }
     ];
+  };
+
+  # Behave like a server with the lid closed
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = false;
+    AllowHibernation = false;
+    AllowHybridSleep = false;
+    AllowSuspendThenHibernate = false;
   };
 
   system.stateVersion = "26.05";
