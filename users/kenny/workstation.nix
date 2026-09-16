@@ -40,22 +40,7 @@ in
       # Make sure home manager can install fonts to the system catalog
       fonts.fontconfig.enable = true;
 
-      home.file.".p10k.zsh".source = ./files/p10k.zsh;
-
       programs = {
-        zsh = {
-          plugins = [
-            {
-              name = "powerlevel10k";
-              src = pkgs.zsh-powerlevel10k;
-              file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-            }
-          ];
-          initContent = ''
-            [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-          '';
-        };
-
         obsidian = {
           enable = true;
         };
