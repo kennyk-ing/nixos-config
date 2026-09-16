@@ -25,4 +25,5 @@ in
   "kenny-password.age".publicKeys = adminKeys ++ kennyHosts;
   "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;
+  "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
 }

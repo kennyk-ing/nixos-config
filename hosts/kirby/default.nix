@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -12,6 +12,8 @@
   time.timeZone = "America/Los_Angeles";
 
   users.users.kenny.linger = true;
+
+  age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
 
   mySystem = {
     desktop = {
@@ -65,14 +67,31 @@
     ];
   };
 
-  services.tlp.settings.PLATFORM_PROFILE_ON_AC = "balanced";
+  services = {
+    tlp.settings.PLATFORM_PROFILE_ON_AC = "balanced";
 
-  # Behave like a server with the lid closed
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchExternalPower = "ignore";
-    HandleLidSwitchDocked = "ignore";
+    gotify = {
+      enable = true;
+
+      environment = {
+        GOTIFY_SERVER_LISTENADDR = "127.0.0.1";
+        GOTIFY_SERVER_PORT = 8080;
+      };
+
+      environmentFiles = [
+        config.age.secrets."gotify-env".path
+      ];
+    };
+
+    # Behave like a server with the lid closed
+    logind.settings.Login = {
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
+      HandleLidSwitchDocked = "ignore";
+    };
   };
+
+  # You are a server! Stay awake!
   systemd.sleep.settings.Sleep = {
     AllowSuspend = false;
     AllowHibernation = false;
