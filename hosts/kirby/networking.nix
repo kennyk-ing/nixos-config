@@ -38,7 +38,10 @@
         matchConfig.Name = "vlan100";
 
         networkConfig.DHCP = "ipv4";
-        linkConfig.RequiredForOnline = "no";
+        linkConfig = {
+          RequiredForOnline = "routable";
+          RequiredFamilyForOnline = "ipv4";
+        };
       };
 
       # Carried to Kirby for isolated workloads. The Kirby host itself
