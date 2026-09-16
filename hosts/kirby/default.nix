@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./disko.nix
     ./networking.nix
+    ./torrent.nix
   ];
 
   networking.hostName = "kirby";
