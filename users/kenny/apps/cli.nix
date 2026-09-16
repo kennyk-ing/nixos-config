@@ -36,6 +36,12 @@ lib.mkIf cfg.enable {
       settings.updates.auto_update = true;
     };
 
+    yazi = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
+
     ripgrep.enable = true;
     btop.enable = true;
     jq.enable = true;
@@ -53,12 +59,6 @@ lib.mkIf cfg.enable {
       wl-clipboard
     ];
 
-  # Workstation only
   programs = {
-    yazi = {
-      enable = isWorkstation;
-      enableBashIntegration = isWorkstation;
-      enableZshIntegration = isWorkstation;
-    };
   };
 }
