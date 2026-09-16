@@ -14,6 +14,7 @@
   users.users.kenny.linger = true;
 
   age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
+  age.secrets."gotify-token".file = ../../secrets/gotify-token.age;
 
   mySystem = {
     desktop = {
