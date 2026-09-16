@@ -66,6 +66,8 @@
     ];
   };
 
+  services.tlp.settings.PLATFORM_PROFILE_ON_AC = "balanced";
+
   # Behave like a server with the lid closed
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";

@@ -23,15 +23,15 @@ in
         pd.enable = true;
 
         settings = {
-          CPU_SCALING_GOVERNOR_ON_AC = "performance";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+          CPU_SCALING_GOVERNOR_ON_AC = lib.mkDefault "powersave";
+          CPU_SCALING_GOVERNOR_ON_BAT = lib.mkDefault "powersave";
 
-          CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-          CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+          CPU_ENERGY_PERF_POLICY_ON_AC = lib.mkDefault "balance_performance";
+          CPU_ENERGY_PERF_POLICY_ON_BAT = lib.mkDefault "power";
 
           # Useful if you leave your laptop plugged in all the time
-          START_CHARGE_THRESH_BAT0 = 75;
-          STOP_CHARGE_THRESH_BAT0 = 80;
+          START_CHARGE_THRESH_BAT0 = lib.mkDefault 75;
+          STOP_CHARGE_THRESH_BAT0 = lib.mkDefault 80;
         };
       };
 
