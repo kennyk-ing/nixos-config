@@ -33,9 +33,18 @@
 
     services = {
       openssh.enable = true;
-      smartd.enable = true;
       syncthing.enable = true;
       tailscale.enable = true;
+
+      smartd = {
+        enable = true;
+
+        gotify = {
+          enable = true;
+          tokenFile = config.age.secrets."gotify-token".path;
+          url = "http://127.0.0.1:8080/message";
+        };
+      };
     };
 
     system = {
