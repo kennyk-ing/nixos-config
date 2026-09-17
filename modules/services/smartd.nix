@@ -63,7 +63,10 @@ in
         x11.enable = false;
       };
 
-      defaults.monitored = lib.mkIf cfg.gotify.enable "-a -m <nomailer> -M exec ${notifyScript}";
+      defaults = lib.mkIf cfg.gotify.enable {
+        monitored = "-a -m <nomailer> -M exec ${notifyScript}";
+        autodetected = "-a";
+      };
     };
   };
 }
