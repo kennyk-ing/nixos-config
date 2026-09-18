@@ -14,5 +14,7 @@
     address = [ "10.0.10.2/24" ];
     gateway = [ "10.0.10.1" ];
     dns = [ "10.0.10.1" ];
+
+    domains = [ "home.kinghq.net" ];
   };
 }
