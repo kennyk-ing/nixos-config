@@ -11,8 +11,13 @@
   time.timeZone = "America/Los_Angeles";
 
   networking.firewall.interfaces = {
-    enp11s0.allowedTCPPorts = [ 22 ];
-    tailscale0.allowedTCPPorts = [ 22 ];
+    enp11s0.allowedTCPPorts = [
+      22 # ssh
+      32400 # plex
+    ];
+    tailscale0.allowedTCPPorts = [
+      22 # ssh
+    ];
   };
 
   systemd.sleep.settings.Sleep = {
@@ -60,10 +65,18 @@
 
     services = {
       openssh.enable = true;
+      plex.enable = true;
       syncthing.enable = true;
       smartd.enable = true;
       tailscale.enable = true;
     };
+  };
+
+  systemd.services.plex = {
+    unitConfig.RequiresMountsFor = [ "/srv/data/media/tv" ];
+
+    bindsTo = [ "srv-data.mount" ];
+    after = [ "srv-data.mount" ];
   };
 
   system.stateVersion = "26.05";
