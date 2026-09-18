@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -12,6 +12,8 @@
   time.timeZone = "America/Los_Angeles";
 
   users.users.kenny.extraGroups = [ "libvirtd" ];
+
+  age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
 
   mySystem = {
     users.kenny.enable = true;
@@ -29,6 +31,19 @@
       core.enable = true;
       systemd-boot.enable = true;
     };
+  };
+
+  services.gotify = {
+    enable = true;
+
+    environment = {
+      GOTIFY_SERVER_LISTENADDR = "127.0.0.1";
+      GOTIFY_SERVER_PORT = 8080;
+    };
+
+    environmentFiles = [
+      config.age.secrets."gotify-env".path
+    ];
   };
 
   environment.etc."kingdome-recovery/hodor.xml".source = ./hodor.xml;

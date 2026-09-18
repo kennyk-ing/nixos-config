@@ -1,7 +1,10 @@
 let
   keys = import ../keys.nix;
 
-  adminKeys = builtins.attrValues keys.users.kenny;
+  adminKeys = with keys.users.kenny; [
+    tez
+    woo
+  ];
 
   kennyHosts = builtins.attrValues keys.hosts;
 
@@ -25,6 +28,6 @@ in
   "kenny-password.age".publicKeys = adminKeys ++ kennyHosts;
   "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;
-  "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
+  "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
 }

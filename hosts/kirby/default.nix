@@ -13,7 +13,6 @@
 
   users.users.kenny.linger = true;
 
-  age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
   age.secrets."gotify-token".file = ../../secrets/gotify-token.age;
 
   mySystem = {
@@ -38,11 +37,10 @@
 
       smartd = {
         enable = true;
-
         gotify = {
           enable = true;
           tokenFile = config.age.secrets."gotify-token".path;
-          url = "http://127.0.0.1:8080/message";
+          url = "https://kingdome.tail38696f.ts.net/message";
         };
       };
     };
@@ -79,19 +77,6 @@
 
   services = {
     tlp.settings.PLATFORM_PROFILE_ON_AC = "balanced";
-
-    gotify = {
-      enable = true;
-
-      environment = {
-        GOTIFY_SERVER_LISTENADDR = "127.0.0.1";
-        GOTIFY_SERVER_PORT = 8080;
-      };
-
-      environmentFiles = [
-        config.age.secrets."gotify-env".path
-      ];
-    };
 
     # Behave like a server with the lid closed
     logind.settings.Login = {
