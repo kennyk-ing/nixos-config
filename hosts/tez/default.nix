@@ -11,7 +11,7 @@
   time.timeZone = "America/Los_Angeles";
 
   networking.firewall.interfaces = {
-    enp11s0.allowedTCPPorts = [
+    enp14s0.allowedTCPPorts = [
       22 # ssh
       32400 # plex
     ];
