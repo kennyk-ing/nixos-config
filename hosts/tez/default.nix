@@ -4,21 +4,13 @@
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
+    ./networking.nix
     ./storage.nix
+    ./torrent.nix
   ];
 
   networking.hostName = "tez";
   time.timeZone = "America/Los_Angeles";
-
-  networking.firewall.interfaces = {
-    enp14s0.allowedTCPPorts = [
-      22 # ssh
-      32400 # plex
-    ];
-    tailscale0.allowedTCPPorts = [
-      22 # ssh
-    ];
-  };
 
   systemd.sleep.settings.Sleep = {
     AllowSuspend = "no";
