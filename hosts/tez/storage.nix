@@ -1,4 +1,8 @@
+{ pkgs, ... }:
+
 {
+  system.fsPackages = [ pkgs.mergerfs ];
+
   fileSystems = {
     "/srv/storage/hdd1" = {
       # WD40EZRZ-00GXCB0 — 4 TB
@@ -27,6 +31,27 @@
       options = [
         "nofail"
         "noatime"
+      ];
+    };
+
+    "/srv/data" = {
+      device = "/srv/storage/hdd1/pool:/srv/storage/hdd2/pool=NC:/srv/storage/hdd3/pool";
+      fsType = "fuse.mergerfs";
+
+      depends = [
+        "/srv/storage/hdd1"
+        "/srv/storage/hdd2"
+        "/srv/storage/hdd3"
+      ];
+
+      options = [
+        "nofail"
+        "cache.files=off"
+        "category.create=mfs"
+        "minfreespace=20G"
+        "branches-mount-timeout=10"
+        "branches-mount-timeout-fail=true"
+        "x-systemd.mount-timeout=30s"
       ];
     };
   };
