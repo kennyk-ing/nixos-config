@@ -12,5 +12,11 @@ in
     services.plex = {
       enable = true;
     };
+
+    users.groups.media.gid = lib.mkDefault 2000;
+
+    systemd.services.plex.serviceConfig.SupplementaryGroups = [
+      "media"
+    ];
   };
 }

@@ -3,6 +3,8 @@
 {
   system.fsPackages = [ pkgs.mergerfs ];
 
+  users.users.kenny.extraGroups = [ "media" ];
+
   fileSystems = {
     "/srv/storage/hdd1" = {
       # WD40EZRZ-00GXCB0 — 4 TB
