@@ -1,10 +1,13 @@
-{ config, ... }:
-
+{ config, inputs, ... }:
+let
+  privateData = import inputs.privateData;
+in
 {
   imports = [
     ./hardware-configuration.nix
     ./disko.nix
     ./networking.nix
+    ./reverse-proxy.nix
     ./vfio.nix
   ];
 
@@ -14,6 +17,7 @@
   users.users.kenny.extraGroups = [ "libvirtd" ];
 
   age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
+  age.secrets."cloudflare-acme".file = ../../secrets/cloudflare-acme.age;
 
   mySystem = {
     users.kenny.enable = true;
@@ -56,6 +60,21 @@
 
   environment.etc."kingdome-recovery/hodor.xml".source = ./hodor.xml;
   virtualisation.libvirtd.onShutdown = "shutdown";
+
+  security.acme = {
+    acceptTerms = true;
+
+    defaults.email = privateData."Personal".address;
+
+    certs."home.kinghq.net" = {
+      extraDomainNames = [ "*.home.kinghq.net" ];
+
+      dnsProvider = "cloudflare";
+      dnsResolver = "1.1.1.1:53";
+
+      environmentFile = config.age.secrets."cloudflare-acme".path;
+    };
+  };
 
   system.stateVersion = "26.05";
 }

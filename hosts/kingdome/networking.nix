@@ -3,8 +3,13 @@
 {
   networking = {
     firewall.interfaces = {
-      enp0s31f6.allowedTCPPorts = [ 22 ];
-      tailscale0.allowedTCPPorts = [ 22 ];
+      enp0s31f6.allowedTCPPorts = [
+        22 # SSH
+        443 # Caddy HTTPS
+      ];
+      tailscale0.allowedTCPPorts = [
+        22 # SSH
+      ];
     };
   };
 

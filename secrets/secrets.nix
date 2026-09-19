@@ -30,4 +30,5 @@ in
   "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
+  "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
 }
