@@ -7,6 +7,7 @@
     ./networking.nix
     ./storage.nix
     ./torrent.nix
+    ./servarr.nix
   ];
 
   networking.hostName = "tez";

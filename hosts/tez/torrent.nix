@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  users.groups.media.gid = 2000;
-
   systemd.services."container@torrent" = {
     bindsTo = [ "srv-data.mount" ];
     after = [ "srv-data.mount" ];
@@ -26,7 +24,16 @@
         useDHCP = false;
         useHostResolvConf = false;
 
-        firewall.allowedTCPPorts = [ 8080 ];
+        firewall = {
+          allowedTCPPorts = [
+            8080 # qBittorrent Web UI
+            58008 # BitTorrent incoming TCP
+          ];
+
+          allowedUDPPorts = [
+            58008 # BitTorrent incoming UDP
+          ];
+        };
 
         interfaces.mv-vlan110.ipv4.addresses = [
           {

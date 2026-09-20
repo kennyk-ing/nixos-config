@@ -3,7 +3,10 @@
 {
   system.fsPackages = [ pkgs.mergerfs ];
 
-  users.users.kenny.extraGroups = [ "media" ];
+  users = {
+    users.kenny.extraGroups = [ "media" ];
+    groups.media.gid = 2000;
+  };
 
   fileSystems = {
     "/srv/storage/hdd1" = {

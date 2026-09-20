@@ -6,6 +6,9 @@
       enp14s0.allowedTCPPorts = [
         22 # SSH
         32400 # Plex
+        8989 # Sonarr
+        7878 # Radarr
+        9696 # Prowlarr
       ];
 
       tailscale0.allowedTCPPorts = [
