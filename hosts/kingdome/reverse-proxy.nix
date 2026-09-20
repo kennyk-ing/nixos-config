@@ -34,6 +34,33 @@
           reverse_proxy 127.0.0.1:8181
         '';
       };
+
+      "sonarr.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy 10.0.10.20:8989
+        '';
+      };
+
+      "radarr.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy 10.0.10.20:7878
+        '';
+      };
+
+      "prowlarr.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy 10.0.10.20:9696
+        '';
+      };
     };
   };
 
