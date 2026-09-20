@@ -31,4 +31,5 @@ in
   "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
   "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
+  "wireguard-woo.age".publicKeys = adminKeys ++ [ keys.hosts.woo ];
 }
