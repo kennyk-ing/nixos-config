@@ -9,6 +9,7 @@ in
     ./networking.nix
     ./reverse-proxy.nix
     ./vfio.nix
+    ./homepage.nix
   ];
 
   networking.hostName = "kingdome";
