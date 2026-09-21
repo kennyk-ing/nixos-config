@@ -24,6 +24,11 @@
       group = "media";
       openFirewall = false;
     };
+
+    seerr = {
+      enable = true;
+      openFirewall = false;
+    };
   };
 
   systemd.services = {

@@ -10,6 +10,7 @@
         7878 # Radarr
         9696 # Prowlarr
         6767 # Bazarr
+        5055 # Seerr
       ];
 
       tailscale0.allowedTCPPorts = [

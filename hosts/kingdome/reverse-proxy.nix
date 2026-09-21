@@ -70,6 +70,15 @@
           reverse_proxy 10.0.10.20:6767
         '';
       };
+
+      "seerr.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy 10.0.10.20:5055
+        '';
+      };
     };
   };
 
