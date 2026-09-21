@@ -18,6 +18,12 @@
       enable = true;
       openFirewall = false;
     };
+
+    bazarr = {
+      enable = true;
+      group = "media";
+      openFirewall = false;
+    };
   };
 
   systemd.services = {
@@ -35,6 +41,14 @@
       after = [ "srv-data.mount" ];
 
       serviceConfig.UMask = lib.mkForce "0002";
+    };
+
+    bazarr = {
+      unitConfig.RequiresMountsFor = [ "/srv/data" ];
+      bindsTo = [ "srv-data.mount" ];
+      after = [ "srv-data.mount" ];
+
+      serviceConfig.UMask = "0002";
     };
   };
 }
