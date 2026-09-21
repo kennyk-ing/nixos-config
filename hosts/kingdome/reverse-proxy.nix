@@ -79,6 +79,16 @@
           reverse_proxy 10.0.10.20:5055
         '';
       };
+
+      "plex.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          redir / /web 302
+          reverse_proxy tez.home.kinghq.net:32400
+        '';
+      };
     };
   };
 
