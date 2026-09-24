@@ -2,12 +2,13 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./ai.nix
     ./disko.nix
+    ./hardware-configuration.nix
     ./networking.nix
+    ./servarr.nix
     ./storage.nix
     ./torrent.nix
-    ./servarr.nix
   ];
 
   networking.hostName = "tez";

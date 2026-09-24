@@ -30,6 +30,18 @@
           }
         ];
       }
+
+      {
+        AI = [
+          {
+            "Open WebUI" = {
+              icon = "open-webui.png";
+              href = "https://ai.home.kinghq.net";
+              description = "Local AI";
+            };
+          }
+        ];
+      }
     ];
   };
 }

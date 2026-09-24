@@ -11,6 +11,7 @@
         9696 # Prowlarr
         6767 # Bazarr
         5055 # Seerr
+        8080 # Open WebUI (AI)
       ];
 
       tailscale0.allowedTCPPorts = [
