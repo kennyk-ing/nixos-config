@@ -43,6 +43,11 @@
       url = "git+https://gitlab.com/jomada/carl.git";
       flake = false;
     };
+
+    doom-emacs = {
+      url = "git+https://github.com/doomemacs/core.git?submodules=1";
+      flake = false;
+    };
   };
 
   outputs =
