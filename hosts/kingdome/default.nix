@@ -29,7 +29,6 @@ in
       libvirt.enable = true;
       openssh.enable = true;
       smartd.enable = true;
-      tailscale.enable = true;
     };
 
     system = {

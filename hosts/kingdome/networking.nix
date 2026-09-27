@@ -7,9 +7,6 @@
         22 # SSH
         443 # Caddy HTTPS
       ];
-      tailscale0.allowedTCPPorts = [
-        22 # SSH
-      ];
     };
   };
 

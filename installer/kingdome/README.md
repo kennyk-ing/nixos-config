@@ -499,5 +499,5 @@ DNS resolution works
 hodor autostart is enabled
 ```
 
-Add VLANs, VPN routing, ad blocking, IDS/IPS, Tailscale, DMZ, and the
+Add VLANs, VPN routing, ad blocking, IDS/IPS, DMZ, and the
 restricted-services network only after this baseline is working.

@@ -30,10 +30,8 @@
     ./services/podman.nix
     ./services/smartd.nix
     ./services/syncthing.nix
-    ./services/tailscale.nix
 
     ./system/core.nix
-    ./system/mobile.nix
     ./system/secure-boot.nix
     ./system/systemd-boot.nix
     ./system/zram.nix

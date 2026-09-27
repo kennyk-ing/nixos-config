@@ -5,6 +5,7 @@
     firewall.interfaces = {
       enp14s0.allowedTCPPorts = [
         22 # SSH
+        22000 # Syncthing
         32400 # Plex
         8989 # Sonarr
         7878 # Radarr
@@ -12,10 +13,6 @@
         6767 # Bazarr
         5055 # Seerr
         8080 # Open WebUI (AI)
-      ];
-
-      tailscale0.allowedTCPPorts = [
-        22 # SSH
       ];
     };
 

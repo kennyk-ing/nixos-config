@@ -61,7 +61,6 @@
       plex.enable = true;
       syncthing.enable = true;
       smartd.enable = true;
-      tailscale.enable = true;
     };
   };
 

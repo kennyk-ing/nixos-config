@@ -5,17 +5,17 @@ let
   devices = {
     kirby = {
       id = "BVID26R-K3BOS46-DVPTYR2-HMYMVMZ-TPQSGN6-OYC75VV-6BYFOOW-CIPMCAE";
-      addresses = [ "tcp://kirby:22000" ];
+      addresses = [ "tcp://kirby.home.kinghq.net:22000" ];
     };
 
     tez = {
       id = "3ZNJCVZ-IEMPBV3-362K7VA-VLNYUWJ-6FZYTVG-VCTYWHK-VCMUPT5-6X6ESAF";
-      addresses = [ "tcp://tez:22000" ];
+      addresses = [ "tcp://tez.home.kinghq.net:22000" ];
     };
 
     woo = {
       id = "XR5CXOS-PRPUYVZ-GZD6H5Y-K46HJK5-UD3HVWE-PEH5L7V-G5SCEHH-OJR4MQE";
-      addresses = [ "tcp://woo:22000" ];
+      addresses = [ "tcp://woo.home.kinghq.net:22000" ];
     };
 
     galaxyA52 = {

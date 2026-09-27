@@ -2,8 +2,10 @@
 
 {
   networking.firewall.interfaces = {
-    vlan100.allowedTCPPorts = [ 22 ];
-    tailscale0.allowedTCPPorts = [ 22 ];
+    vlan100.allowedTCPPorts = [
+      22 # SSH
+      22000 # Syncthing
+    ];
   };
 
   systemd.network = {

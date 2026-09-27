@@ -14,40 +14,44 @@
     mode = "0400";
   };
 
-  networking.networkmanager.ensureProfiles = {
-    environmentFiles = [ config.age.secrets.wireguard-woo.path ];
+  networking = {
+    firewall.interfaces."wg-home".allowedTCPPorts = [ 22 ];
 
-    profiles.home-vpn = {
-      connection = {
-        id = "Home VPN";
-        type = "wireguard";
-        interface-name = "wg-home";
-        autoconnect = false;
-        permissions = "user:kenny:;";
+    networkmanager.ensureProfiles = {
+      environmentFiles = [ config.age.secrets.wireguard-woo.path ];
+
+      profiles.home-vpn = {
+        connection = {
+          id = "Home VPN";
+          type = "wireguard";
+          interface-name = "wg-home";
+          autoconnect = true;
+        };
+
+        wireguard = {
+          private-key = "$WG_HOME_PRIVATE_KEY";
+          private-key-flags = 0;
+          peer-routes = true;
+        };
+
+        "wireguard-peer.wSJ+pp7eHP74vH+0Ab6DrZK47V05+zyU+UAmtGj4rEU=" = {
+          endpoint = "vpn.kinghq.net:51820";
+          # WireGuard tunnel plus explicitly permitted remote hosts.
+          allowed-ips = "10.253.0.0/24;10.0.10.2/32;10.0.10.20/32;10.0.100.10/32;";
+          persistent-keepalive = 25;
+        };
+
+        ipv4 = {
+          method = "manual";
+          address1 = "10.253.0.2/32";
+          never-default = true;
+          dns = "10.253.0.1;";
+          dns-search = "~home.kinghq.net;";
+          dns-priority = 50;
+        };
+
+        ipv6.method = "disabled";
       };
-
-      wireguard = {
-        private-key = "$WG_HOME_PRIVATE_KEY";
-        private-key-flags = 0;
-        peer-routes = true;
-      };
-
-      "wireguard-peer.wSJ+pp7eHP74vH+0Ab6DrZK47V05+zyU+UAmtGj4rEU=" = {
-        endpoint = "vpn.kinghq.net:51820";
-        allowed-ips = "10.253.0.0/24;10.0.10.2/32;";
-        persistent-keepalive = 25;
-      };
-
-      ipv4 = {
-        method = "manual";
-        address1 = "10.253.0.2/32";
-        never-default = true;
-        dns = "10.253.0.1;";
-        dns-search = "~home.kinghq.net;";
-        dns-priority = 50;
-      };
-
-      ipv6.method = "disabled";
     };
   };
 
@@ -85,7 +89,6 @@
 
     system = {
       core.enable = true;
-      mobile.enable = true;
       systemd-boot.enable = true;
 
       zram = {
@@ -98,7 +101,6 @@
       openssh.enable = true;
       smartd.enable = true;
       syncthing.enable = true;
-      tailscale.enable = true;
     };
   };
 

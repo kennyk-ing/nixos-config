@@ -32,14 +32,13 @@
     services = {
       openssh.enable = true;
       syncthing.enable = true;
-      tailscale.enable = true;
 
       smartd = {
         enable = true;
         gotify = {
           enable = true;
           tokenFile = config.age.secrets."gotify-token".path;
-          url = "https://kingdome.tail38696f.ts.net/message";
+          url = "https://gotify.home.kinghq.net/message";
         };
       };
     };
