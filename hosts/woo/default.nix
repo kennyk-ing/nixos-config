@@ -53,7 +53,6 @@
 
   mySystem = {
     apps = {
-      emacs.enable = true;
       browsers.enable = true;
       office.enable = true;
     };

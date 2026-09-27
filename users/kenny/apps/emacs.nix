@@ -11,10 +11,15 @@ lib.mkIf osConfig.mySystem.apps.emacs.enable {
     package = pkgs.emacs-pgtk;
   };
 
-  services.emacs = {
-    enable = true;
-    client.enable = true;
+  home = {
+    sessionPath = [
+      "$HOME/.config/emacs/bin"
+    ];
 
-    defaultEditor = false;
+    file.".aspell.conf".text = ''
+      master en_US
+      extra-dicts en-computers.rws
+      add-extra-dicts en_US-science.rws
+    '';
   };
 }

@@ -15,22 +15,18 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      emacs-pgtk
-      sqlite
+      git
       ripgrep
       fd
-      git
+
+      # Doom
       pandoc
       shellcheck
-      cmake
-      gnumake
-      gcc
-      libtool
-      pkg-config
-      poppler
-      autoconf
-      automake
-      texlive.combined.scheme-full
+
+      # Org-roam
+      sqlite
+
+      # Spell checking
       (aspellWithDicts (
         dicts: with dicts; [
           en
@@ -38,17 +34,12 @@ in
           en-science
         ]
       ))
-      xournalpp
-
-      # Creates a global 'doom' command that points to the current user's local installation
-      (writeShellScriptBin "doom" ''
-        exec "$HOME/.config/emacs/bin/doom" "$@"
-      '')
     ];
 
     fonts.packages = with pkgs; [
       nerd-fonts.symbols-only
       nerd-fonts.sauce-code-pro
+      symbola
     ];
   };
 }

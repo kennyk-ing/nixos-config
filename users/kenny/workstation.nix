@@ -20,6 +20,8 @@ in
 
     users.users.kenny.extraGroups = [ "networkmanager" ];
 
+    mySystem.apps.emacs.enable = true;
+
     home-manager.users."kenny" = {
       imports = [
         ./apps/browsers.nix

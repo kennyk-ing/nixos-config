@@ -23,7 +23,6 @@
 
   mySystem = {
     apps = {
-      emacs.enable = true;
       browsers.enable = true;
       gaming.enable = true;
       office.enable = true;
