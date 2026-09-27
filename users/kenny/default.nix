@@ -29,6 +29,7 @@ in
 
     home-manager.users."kenny" = {
       imports = [
+        ./scripts
         ./apps/cli.nix
         ./apps/git.nix
         ./apps/ssh.nix
