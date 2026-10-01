@@ -70,5 +70,12 @@ in
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
     ];
+
+    # --- Workstation Applications ---
+    environment.systemPackages = with pkgs; [
+      bitwarden-desktop
+      discord
+    ];
+
   };
 }
