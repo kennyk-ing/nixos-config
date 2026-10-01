@@ -44,9 +44,8 @@
         ipv4 = {
           method = "manual";
           address1 = "10.253.0.2/32";
-          never-default = true;
           dns = "10.253.0.1;";
-          dns-search = "~home.kinghq.net;";
+          dns-search = "home.kinghq.net;";
           dns-priority = 50;
         };
 
