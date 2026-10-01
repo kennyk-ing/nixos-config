@@ -38,14 +38,14 @@ in
         kwin = {
           # Karousel: focus.
           "karousel-focus-left" = "Meta+H";
-          "karousel-focus-down" = "Meta+J";
-          "karousel-focus-up" = "Meta+K";
+          "karousel-focus-down" = "Meta+Ctrl+J";
+          "karousel-focus-up" = "Meta+Ctrl+K";
           "karousel-focus-right" = "Meta+L";
 
           # Karousel: move columns/windows.
           "karousel-column-move-left" = "Meta+Shift+H";
-          "karousel-window-move-down" = "Meta+Shift+J";
-          "karousel-window-move-up" = "Meta+Shift+K";
+          "karousel-window-move-down" = "Meta+Ctrl+Shift+J";
+          "karousel-window-move-up" = "Meta+Ctrl+Shift+K";
           "karousel-column-move-right" = "Meta+Shift+L";
 
           # Karousel: first/last.
@@ -90,8 +90,12 @@ in
           "Switch to Desktop 8" = [ ];
           "Switch to Desktop 9" = [ ];
 
-          "Switch One Desktop Down" = "Meta+Ctrl+J";
-          "Switch One Desktop Up" = "Meta+Ctrl+K";
+          "Switch One Desktop Down" = "Meta+J";
+          "Switch One Desktop Up" = "Meta+K";
+
+          "Window One Desktop Down" = "Meta+Shift+J";
+          "Window One Desktop Up" = "Meta+Shift+K";
+
           "Switch to Previous Desktop" = "Meta+`";
 
           # Reserve Meta+1..9 for Plasma virtual desktops.
@@ -190,10 +194,10 @@ in
           command = "dolphin";
         };
 
-        launch-obsidian = {
-          name = "Launch Obsidian";
+        launch-notes = {
+          name = "Launch Emacs";
           key = "Meta+N"; # Notes
-          command = "obsidian";
+          command = "emacs";
         };
 
         launch-nvim = {
