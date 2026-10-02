@@ -25,6 +25,11 @@ let
   };
 
   remoteDevices = removeAttrs devices [ hostName ];
+
+  defaultVersioning = {
+    type = "staggered";
+    params.maxAge = "15552000"; # 180 days
+  };
 in
 {
   services.syncthing = {
@@ -38,22 +43,33 @@ in
 
       folders = {
         documents = {
-          id = "documents";
           label = "Documents";
           path = "~/Documents";
-
           devices = builtins.filter (device: device != hostName) [
-            "kirby"
             "tez"
             "woo"
           ];
+          versioning = defaultVersioning;
+        };
 
-          versioning = {
-            type = "staggered";
-            params = {
-              maxAge = "15552000"; # only keep for 180 days
-            };
-          };
+        org = {
+          label = "Org (Emacs)";
+          path = "~/org";
+          devices = builtins.filter (device: device != hostName) [
+            "tez"
+            "woo"
+          ];
+          versioning = defaultVersioning;
+        };
+
+        doom = {
+          label = "Doom (Emacs)";
+          path = "~/.config/doom";
+          devices = builtins.filter (device: device != hostName) [
+            "tez"
+            "woo"
+          ];
+          versioning = defaultVersioning;
         };
       };
 
@@ -66,6 +82,9 @@ in
         localAnnounceEnabled = false;
         natEnabled = false;
         relaysEnabled = false;
+
+        # Disable usage reporting
+        urAccepted = -1;
       };
     };
   };
