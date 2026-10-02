@@ -33,6 +33,7 @@ in
       ];
 
       home.packages = with pkgs; [
+        anki
         kdePackages.kate
         fira
         nerd-fonts.sauce-code-pro
