@@ -26,6 +26,7 @@ lib.mkIf osConfig.mySystem.apps.emacs.enable {
       master en_US
       extra-dicts en-computers.rws
       add-extra-dicts en_US-science.rws
+      add-extra-dicts en-medical.rws
     '';
   };
 }
