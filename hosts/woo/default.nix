@@ -63,15 +63,12 @@
     desktop = {
       sddm.enable = true;
       plasma.enable = true;
+      niri.enable = true;
     };
 
-    users = {
-      kenny = {
-        enable = true;
-        workstation.enable = true;
-      };
-      karen.enable = true;
-      keegan.enable = true;
+    users.kenny = {
+      enable = true;
+      workstation.enable = true;
     };
 
     hardware = {
