@@ -45,6 +45,29 @@
       };
     };
 
+    # Use KWallet as the credential backend in Niri.
+    services.gnome.gnome-keyring.enable = false;
+
+    security.pam.services.login.kwallet.enable = true;
+
+    xdg.portal.config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
+
+    # Finish KWallet PAM initialization after Niri starts.
+    systemd.user.services.niri-kwallet-init = {
+      description = "Initialize KWallet for Niri";
+
+      wantedBy = [ "niri.service" ];
+      after = [ "niri.service" ];
+      before = [ "xdg-desktop-autostart.target" ];
+      partOf = [ "niri.service" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
+        Environment = "QT_QPA_PLATFORM=wayland";
+      };
+    };
+
     home-manager.users.kenny = {
       xdg.configFile."niri" = {
         source = ./configs;
