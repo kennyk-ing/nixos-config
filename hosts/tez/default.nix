@@ -31,6 +31,7 @@
     desktop = {
       sddm.enable = true;
       plasma.enable = true;
+      niri.enable = true;
     };
 
     users = {
