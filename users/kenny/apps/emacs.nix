@@ -11,6 +11,7 @@ lib.mkIf osConfig.mySystem.apps.emacs.enable {
   programs.emacs = {
     enable = true;
     package = pkgs.emacs-pgtk;
+    extraPackages = epkgs: [ epkgs.vterm ];
   };
 
   xdg.configFile."emacs".source = inputs.doom-emacs;
