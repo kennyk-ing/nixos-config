@@ -58,6 +58,7 @@
     };
 
     services = {
+      codex.enable = true;
       openssh.enable = true;
       plex.enable = true;
       syncthing.enable = true;

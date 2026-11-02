@@ -8,6 +8,10 @@ let
   cfg = config.mySystem.users.kenny.workstation;
 in
 {
+  imports = [
+    ./codex.nix
+  ];
+
   options.mySystem.users.kenny.workstation = {
     enable = lib.mkEnableOption "Kenny's Graphical Workstation Additions";
   };

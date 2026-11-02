@@ -24,6 +24,7 @@
     ./profiles/server.nix
     ./profiles/workstation.nix
 
+    ./services/codex.nix
     ./services/libvirt.nix
     ./services/openssh.nix
     ./services/plex.nix
