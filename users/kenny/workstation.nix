@@ -43,6 +43,15 @@ in
         virt-viewer
       ];
 
+      # Shared by tez and woo; only installed when Niri is enabled.
+      xdg.configFile = lib.mkIf config.mySystem.desktop.niri.enable {
+        "niri" = {
+          source = ../../modules/desktop/niri/configs;
+          recursive = true;
+        };
+        "noctalia/config.toml".source = ./files/noctalia.toml;
+      };
+
       # Make sure home manager can install fonts to the system catalog
       fonts.fontconfig.enable = true;
 

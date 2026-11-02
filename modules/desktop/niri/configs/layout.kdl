@@ -1,9 +1,9 @@
 layer-rule {
-  match namespace="^noctalia-(overview|wallpaper).*"
+  match namespace="^noctalia-wallpaper"
   place-within-backdrop true
 }
 layer-rule {
-    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    match namespace="^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$"
     background-effect {
         blur true
         xray false

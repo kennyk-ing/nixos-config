@@ -4,14 +4,14 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return repeat=false { spawn "xdg-terminal-exec"; }
-    Mod+Space repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Space repeat=false { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+B repeat=false { spawn "zen-beta"; }
     Mod+E repeat=false { spawn "thunderbird"; }
     Mod+F repeat=false { spawn "dolphin"; }
     Mod+N repeat=false { spawn "emacs"; }
-    // Noctalia 4.x IPC, using the existing system login PAM service.
-    Mod+Escape repeat=false allow-inhibiting=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
-    Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    // Noctalia v5 authenticates against the existing system login PAM service.
+    Mod+Escape repeat=false allow-inhibiting=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "msg" "session" "lock"; }
+    Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia" "msg" "session" "lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.

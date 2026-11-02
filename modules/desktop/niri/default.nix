@@ -18,7 +18,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-      noctalia-shell # Includes cliphist in its runtime PATH.
+      noctalia # Native v5 shell with integrated clipboard history.
       brightnessctl # Used directly by niri's brightness shortcuts.
       kdePackages.dolphin
       kdePackages.qtsvg # Fixes blank icons in Dolphin outside of KDE
@@ -80,11 +80,5 @@
       };
     };
 
-    home-manager.users.kenny = {
-      xdg.configFile."niri" = {
-        source = ./configs;
-        recursive = true;
-      };
-    };
   };
 }

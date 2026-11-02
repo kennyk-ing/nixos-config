@@ -1,0 +1,30 @@
+# Shared v5 baseline. Settings UI overrides live in
+# ~/.local/state/noctalia/settings.toml; see modules/desktop/niri/MIGRATION.md.
+[shell]
+polkit_agent = false # Keep the KDE polkit agent.
+
+[wallpaper]
+enabled = true
+
+[backdrop]
+enabled = false # Stationary wallpaper in Niri's backdrop.
+
+[notification]
+enable_daemon = true
+
+[lockscreen]
+enabled = true
+lock_before_suspend = true
+fingerprint = false
+allow_empty_password = false
+
+# Native idle handling; no automatic suspend (tez prohibits sleep).
+[idle.behavior.lock]
+timeout = 600
+action = "lock"
+enabled = true
+
+[idle.behavior.screen-off]
+timeout = 660
+action = "screen_off"
+enabled = true
