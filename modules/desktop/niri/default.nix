@@ -18,14 +18,12 @@
     };
 
     environment.systemPackages = with pkgs; [
-      noctalia-shell
+      noctalia-shell # Includes cliphist in its runtime PATH.
+      brightnessctl # Used directly by niri's brightness shortcuts.
       kdePackages.dolphin
       kdePackages.qtsvg # Fixes blank icons in Dolphin outside of KDE
       kdePackages.polkit-kde-agent-1
-      hyprlock
-      hypridle
       wl-clipboard
-      cliphist
       playerctl # For keyboard controls of media players
       wev # get key name of keyboard keys
       xwayland-satellite

@@ -11,11 +11,6 @@ window-rule {
     open-floating true
 }
 
-// Open the firefox bitwarden extension as floating
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {

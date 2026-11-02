@@ -1,7 +1,17 @@
+// Display configuration: output names, modes, scaling, rotation, and placement.
+// Shared by tez and woo. With no active overrides, niri chooses preferred modes,
+// automatic scales, and non-overlapping positions.
+//
+// The old output blocks below are kept as configuration examples, not active settings.
+// KDL's /- comments out the entire following node, including its children.
+// Before enabling a block, check `niri msg outputs` and adjust its mode and position:
+// the historical 1080p modes and positions are not appropriate defaults for both hosts.
+// Hot corners are disabled globally in misc.kdl; per-output overrides are unnecessary.
+
 // You can configure outputs by their name, which you can find
 // by running `niri msg outputs` while inside a niri instance.
 // The built-in laptop monitor is usually called "eDP-1".
-output "HDMI-A-1" {
+/-output "HDMI-A-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -29,7 +39,7 @@ output "HDMI-A-1" {
       off
     }
 }
-output "eDP-1" {
+/-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 

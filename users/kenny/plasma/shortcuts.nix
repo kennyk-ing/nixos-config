@@ -38,14 +38,14 @@ in
         kwin = {
           # Karousel: focus.
           "karousel-focus-left" = "Meta+H";
-          "karousel-focus-down" = "Meta+Ctrl+J";
-          "karousel-focus-up" = "Meta+Ctrl+K";
+          "karousel-focus-down" = "Meta+J";
+          "karousel-focus-up" = "Meta+K";
           "karousel-focus-right" = "Meta+L";
 
-          # Karousel: move columns/windows.
+          # Karousel: vertical moves stay within the column (no desktop boundary move).
           "karousel-column-move-left" = "Meta+Shift+H";
-          "karousel-window-move-down" = "Meta+Ctrl+Shift+J";
-          "karousel-window-move-up" = "Meta+Ctrl+Shift+K";
+          "karousel-window-move-down" = "Meta+Shift+J";
+          "karousel-window-move-up" = "Meta+Shift+K";
           "karousel-column-move-right" = "Meta+Shift+L";
 
           # Karousel: first/last.
@@ -53,6 +53,9 @@ in
           "karousel-focus-end" = "Meta+End";
           "karousel-column-move-start" = "Meta+Shift+Home";
           "karousel-column-move-end" = "Meta+Shift+End";
+          # Disable Karousel defaults that otherwise collide with column movement.
+          "karousel-window-move-start" = [ ];
+          "karousel-window-move-end" = [ ];
 
           # Karousel: consume/expel.
           "karousel-window-move-left" = "Meta+[";
@@ -61,19 +64,26 @@ in
           # Karousel: sizing/centering.
           "karousel-cycle-preset-widths" = "Meta+R";
           "karousel-cycle-preset-widths-reverse" = "Meta+Alt+R";
+          # Maximizes to the largest preset; unlike niri, this does not toggle back.
           "karousel-column-width-maximize" = "Meta+M";
           "karousel-column-width-decrease" = "Meta+-";
           "karousel-column-width-increase" = "Meta+=";
           "karousel-grid-scroll-focused" = "Meta+C";
 
           # Karousel: layout.
-          "karousel-window-toggle-floating" = "Meta+Shift+V";
+          "karousel-window-toggle-floating" = "Meta+V";
           "karousel-column-toggle-stacked" = "Meta+W";
 
           # Native KWin operations.
           "Window Close" = "Meta+Q";
-          "Window Fullscreen" = "Meta+Ctrl+F";
+          "Window Fullscreen" = "Meta+Shift+M";
           "Window Maximize" = "Meta+Ctrl+M";
+
+          # Native directional monitor focus, matching niri.
+          "Switch to Screen to the Left" = "Meta+Ctrl+H";
+          "Switch to Screen Below" = "Meta+Ctrl+J";
+          "Switch to Screen Above" = "Meta+Ctrl+K";
+          "Switch to Screen to the Right" = "Meta+Ctrl+L";
 
           # Meta+W belongs to Karousel.
           "Overview" = "Meta+O";
@@ -90,11 +100,14 @@ in
           "Switch to Desktop 8" = [ ];
           "Switch to Desktop 9" = [ ];
 
-          "Switch One Desktop Down" = "Meta+J";
-          "Switch One Desktop Up" = "Meta+K";
+          "Switch One Desktop Down" = "Meta+U";
+          "Switch One Desktop Up" = "Meta+I";
 
-          "Window One Desktop Down" = "Meta+Shift+J";
-          "Window One Desktop Up" = "Meta+Shift+K";
+          # Karousel 0.17 moves whole columns without following them or wrapping.
+          "karousel-column-move-to-next-desktop" = "Meta+Shift+U";
+          "karousel-column-move-to-previous-desktop" = "Meta+Shift+I";
+          "Window One Desktop Down" = [ ];
+          "Window One Desktop Up" = [ ];
 
           "Switch to Previous Desktop" = "Meta+`";
 
@@ -159,8 +172,10 @@ in
           "activate task manager entry 9" = [ ];
         };
 
-        # Meta+V launches Neovim.
+        # Meta+V belongs to Karousel floating toggle.
         klipper."show-on-mouse-pos" = [ ];
+        # Clear the old registration; plasma-manager preserves unspecified entries.
+        "plasma-manager-commands.desktop".launch-nvim = [ ];
 
         # Meta+B launches the browser.
         org_kde_powerdevil.powerProfile = [ ];
@@ -198,12 +213,6 @@ in
           name = "Launch Emacs";
           key = "Meta+N"; # Notes
           command = "emacs";
-        };
-
-        launch-nvim = {
-          name = "Launch Neovim";
-          key = "Meta+V"; # vim
-          command = "xdg-terminal-exec nvim";
         };
 
         toggle-panel = {

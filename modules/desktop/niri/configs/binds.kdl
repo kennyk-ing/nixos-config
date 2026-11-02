@@ -3,13 +3,15 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "xdg-terminal-exec"; }
-    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+B { spawn "zen-beta"; }
-    Mod+E { spawn "thunderbird"; }
-    Mod+F { spawn "dolphin"; }
-    Mod+O { spawn "emacsclient" "-c" "-a" "emacs"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Return repeat=false { spawn "xdg-terminal-exec"; }
+    Mod+Space repeat=false { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+B repeat=false { spawn "zen-beta"; }
+    Mod+E repeat=false { spawn "thunderbird"; }
+    Mod+F repeat=false { spawn "dolphin"; }
+    Mod+N repeat=false { spawn "emacs"; }
+    // Noctalia 4.x IPC, using the existing system login PAM service.
+    Mod+Escape repeat=false allow-inhibiting=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Super+Alt+L repeat=false hotkey-overlay-title="Lock the Screen" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
@@ -38,15 +40,15 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
-    // You can also move the mouse into the top-left hot corner,
-    // or do a four-finger swipe up on a touchpad.
-    // Mod+O repeat=false { toggle-overview; }
+    // You can also use a four-finger swipe up on a touchpad.
+    // Mouse hot corners are disabled globally in misc.kdl.
+    Mod+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
 
     Mod+H     { focus-column-left; }
-    Mod+J     { focus-window-or-workspace-down; }
-    Mod+K     { focus-window-or-workspace-up; }
+    Mod+J     { focus-window-down; }
+    Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
     Mod+Shift+H     { move-column-left; }
@@ -73,8 +75,13 @@ binds {
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
     // ...
 
-    Mod+Shift+D { move-workspace-down; }
-    Mod+Shift+U   { move-workspace-up; }
+    // U goes down, I goes up; Shift moves columns, Alt+Shift reorders workspaces.
+    Mod+U { focus-workspace-down; }
+    Mod+I { focus-workspace-up; }
+    Mod+Shift+U { move-column-to-workspace-down; }
+    Mod+Shift+I { move-column-to-workspace-up; }
+    Mod+Alt+Shift+U { move-workspace-down; }
+    Mod+Alt+Shift+I { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.
@@ -152,12 +159,13 @@ binds {
 
     // Cycle through widths set in preset-column-widths.
     Mod+R { switch-preset-column-width; }
+    Mod+Alt+R { switch-preset-column-width-back; }
 
     Mod+Ctrl+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
 
-    // Mod+F { maximize-column; }
-    Mod+Ctrl+F { fullscreen-window; }
+    Mod+M { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
 
     // While maximize-column leaves gaps and borders around the window,
     // maximize-window-to-edges doesn't: the window expands to the edges of the screen.
@@ -191,7 +199,7 @@ binds {
 
     // Move the focused window between the floating and the tiling layout.
     Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -218,7 +226,7 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Ctrl+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+Q { quit; }

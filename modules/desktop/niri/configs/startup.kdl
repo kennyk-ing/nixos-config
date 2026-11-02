@@ -1,11 +1,14 @@
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
-// See the binds section below for more spawn examples.
+// See binds.kdl for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
+// Start Noctalia Shell (bar, launcher, idle handling, and lock screen).
 spawn-at-startup "noctalia-shell"
 
-spawn-at-startup "xwayland-satellite"
+// Niri now starts xwayland-satellite on demand and sets DISPLAY automatically.
+// Keep the old manual startup disabled so it does not conflict with native integration.
+// spawn-at-startup "xwayland-satellite"
+
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
