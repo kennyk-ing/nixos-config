@@ -2,6 +2,15 @@
 // Find more information on the wiki:
 // https://niri-wm.github.io/niri/Configuration:-Window-Rules
 
+// Steam game windows request VRR on outputs configured for on-demand VRR.
+window-rule {
+    match app-id=r#"^steam_app_\d+$"#
+    variable-refresh-rate true
+}
+
+// Bitwarden sets its title too late for open-floating; the niri-bitwarden-float
+// user service handles it through the IPC event stream (see default.nix).
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:

@@ -29,20 +29,6 @@
       xwayland-satellite
     ];
 
-    systemd.user.services.polkit-kde-authentication-agent-1 = {
-      description = "polkit-kde-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-
     # Use KWallet as the credential backend in Niri.
     services.gnome.gnome-keyring.enable = false;
 
@@ -50,19 +36,47 @@
 
     xdg.portal.config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
 
-    # Finish KWallet PAM initialization after Niri starts.
-    systemd.user.services.niri-kwallet-init = {
-      description = "Initialize KWallet for Niri";
+    systemd.user.services = {
+      polkit-kde-authentication-agent-1 = {
+        description = "polkit-kde-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
 
-      wantedBy = [ "niri.service" ];
-      after = [ "niri.service" ];
-      before = [ "xdg-desktop-autostart.target" ];
-      partOf = [ "niri.service" ];
+      # Finish KWallet PAM initialization after Niri starts.
+      niri-kwallet-init = {
+        description = "Initialize KWallet for Niri";
 
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
-        Environment = "QT_QPA_PLATFORM=wayland";
+        wantedBy = [ "niri.service" ];
+        after = [ "niri.service" ];
+        before = [ "xdg-desktop-autostart.target" ];
+        partOf = [ "niri.service" ];
+
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
+          Environment = "QT_QPA_PLATFORM=wayland";
+        };
+      };
+
+      niri-bitwarden-float = {
+        description = "Float Bitwarden extension windows after their title is set";
+        wantedBy = [ "niri.service" ];
+        after = [ "niri.service" ];
+        partOf = [ "niri.service" ];
+        serviceConfig = {
+          ExecStart = "${pkgs.python3}/bin/python3 -u ${./open-float.py}";
+          Restart = "always";
+          RestartSec = 2;
+        };
       };
     };
 
