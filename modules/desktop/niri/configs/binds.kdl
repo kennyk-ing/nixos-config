@@ -3,7 +3,7 @@ binds {
     // shows a list of important hotkeys.
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return { spawn "wezterm"; }
+    Mod+Return { spawn "xdg-terminal-exec"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+B { spawn "zen-beta"; }
     Mod+E { spawn "thunderbird"; }

@@ -32,7 +32,6 @@ in
         ./apps/emacs.nix
         ./apps/nixvim
         ./apps/thunderbird.nix
-        ./apps/wezterm.nix
         ./plasma
       ];
 
@@ -62,17 +61,17 @@ in
           nix-direnv.enable = true;
         };
 
-        ghostty = {
+        kitty = {
           enable = true;
-          enableZshIntegration = true;
+          shellIntegration.enableZshIntegration = true;
+
+          themeFile = "Carbonfox";
+
           settings = {
-            theme = "Carbonfox";
+            font_family = "SauceCodePro Nerd Font";
+            font_size = 12.0;
             background = "#000000";
-            background-opacity = 0.90;
-            shell-integration-features = [
-              "ssh-env"
-              "ssh-terminfo"
-            ];
+            background_opacity = 0.90;
           };
         };
       };
@@ -81,7 +80,7 @@ in
         terminal-exec = {
           enable = true;
           settings.default = [
-            "com.mitchellh.ghostty.desktop"
+            "kitty.desktop"
           ];
         };
       };

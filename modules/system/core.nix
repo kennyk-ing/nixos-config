@@ -22,6 +22,7 @@ in
         wget
         git
         ghostty.terminfo
+        kitty.terminfo
       ];
 
       shellAliases = {

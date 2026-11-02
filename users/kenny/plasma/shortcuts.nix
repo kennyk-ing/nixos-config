@@ -173,7 +173,7 @@ in
         launch-terminal = {
           name = "Launch Terminal";
           key = "Meta+Return";
-          command = "ghostty";
+          command = "xdg-terminal-exec";
         };
 
         launch-browser = {
