@@ -14,6 +14,7 @@ let
     approvals_reviewer = "user";
     cli_auth_credentials_store = "file";
     check_for_update_on_startup = false;
+    tui.vim_mode_default = true;
 
     sandbox_mode = "workspace-write";
 
