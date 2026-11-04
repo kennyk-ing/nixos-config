@@ -11,6 +11,7 @@ let
 
   # Agent configuration, stored read-only in the Nix store.
   codexConfig = (pkgs.formats.toml { }).generate "codex-config.toml" {
+    approval_policy = "on-request";
     approvals_reviewer = "user";
     cli_auth_credentials_store = "file";
     check_for_update_on_startup = false;
@@ -23,9 +24,9 @@ let
       writable_roots = cfg.writableRoots;
     };
 
-    # Untrusted projects request approval for shell commands.
+    # Trust configured projects while retaining sandbox restrictions.
     projects = lib.genAttrs cfg.projectDirs (_: {
-      trust_level = "untrusted";
+      trust_level = "trusted";
     });
   };
 
@@ -106,7 +107,7 @@ in
     projectDirs = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
-      description = "Directories treated as untrusted projects.";
+      description = "Directories treated as trusted projects.";
     };
 
     readOnlyBinds = lib.mkOption {
