@@ -66,6 +66,22 @@ in
       pandoc
       shellcheck
 
+      # Org LaTeX previews: keep TeX and its converters in one environment.
+      (texlive.withPackages (
+        ps: with ps; [
+          scheme-basic
+          amsmath
+          amsfonts
+          siunitx
+          mhchem
+          dvisvgm
+          dvipng
+          ulem
+          wrapfig
+          capt-of
+        ]
+      ))
+
       # Org-roam
       sqlite
 
