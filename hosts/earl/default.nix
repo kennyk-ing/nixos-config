@@ -8,7 +8,13 @@
   ];
 
   networking.hostName = "earl";
+  # The workstation profile enables NetworkManager; its automatic wired
+  # connection uses DHCP on the switch's untagged VLAN 10.
+  # Temporary LAN administration during installation and migration.
+  networking.firewall.allowedTCPPorts = [ 22 ];
   time.timeZone = "America/Los_Angeles";
+
+  boot.initrd.systemd.enable = true;
 
   mySystem = {
     apps = {
@@ -41,10 +47,8 @@
 
     system = {
       core.enable = true;
-      secure-boot = {
-        enable = true;
-        measured-boot.enable = true;
-      };
+      # Secure Boot and TPM enrollment follow the initial manual-unlock install.
+      systemd-boot.enable = true;
 
       zram = {
         enable = true;
@@ -57,20 +61,6 @@
       smartd.enable = true;
       syncthing.enable = false;
     };
-  };
-
-  boot.lanzaboote.measuredBoot.staticMeasurements."610-earl-firmware-efi".json = {
-    records = [
-      {
-        pcr = 4;
-        digests = [
-          {
-            hashAlg = "sha256";
-            digest = "522944324bb55c06f770c2757d962e562d9714d6041b6ba1a93041dd4cf9a8c7";
-          }
-        ];
-      }
-    ];
   };
 
   system.stateVersion = "26.05";

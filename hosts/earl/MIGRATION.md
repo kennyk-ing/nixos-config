@@ -12,15 +12,31 @@ This configuration is for review, not ready for installation or activation.
   subvolumes and 4 GiB swapfile. Zram stays at 50% of detected RAM: nominally
   32 GiB initially and 8 GiB after moving to 16 GiB. This does not configure
   hibernation; the swapfile is not sized for RAM-sized hibernation images.
-- Boot: Lanzaboote and measured boot use the shared module (PCRs 0, 4, 7).
-  The extra PCR 4 digest follows the physical Kirby chassis into Earl, not the
-  server role into Kam. Revalidate the event log after any firmware changes.
-- Restore the backed-up signing bundle to `/var/lib/sbctl` on the new filesystem
+- Boot: ordinary systemd-boot and a systemd initrd are used for initial
+  installation. Disable Secure Boot enforcement in firmware without clearing
+  enrolled keys. First boot requires local manual LUKS passphrase entry;
+  initrd SSH unlocking is not configured.
+- Disko reads the initial passphrase from `/run/earl-install-luks-passphrase`.
+  Supply that runtime file with nixos-anywhere's `--disk-encryption-keys`
+  option from protected controller-side storage. Do not put the passphrase in
+  the repository, Nix store, shell arguments or the installed initrd. This is
+  an installation input, not a persistent boot key file.
+- NetworkManager's normal automatic wired DHCP connection is used on untagged
+  Ethernet. Configure the switch port for untagged VLAN 10 and verify DHCP and
+  connectivity from tez before installation. TCP port 22 is temporarily open
+  for LAN administration; SSH remains key-only with root login disabled.
+  Review this firewall allowance after migration.
+- Secure Boot, Lanzaboote, measured boot and TPM unlocking are deferred.
+  The extra PCR 4 digest belongs to the former Kirby physical chassis:
+  `522944324bb55c06f770c2757d962e562d9714d6041b6ba1a93041dd4cf9a8c7`.
+  Restore and revalidate its measurement when enabling measured boot later;
+  do not transfer it to Kam with the server role.
+- Later, restore the backed-up signing bundle to `/var/lib/sbctl` on the new filesystem
   through a separate secure provisioning process. Verify its public certificates
   match the keys already enrolled in this chassis's firmware. Do not regenerate
   signing keys or include their private material in this repository/Nix store.
-- `tpm2-device=auto` requests unlocking; it does not enroll a LUKS token. Establish
-  and verify measured-boot/pcrlock policy and enroll the new LUKS2 volume later.
+- Establish and verify measured-boot/pcrlock policy, configure
+  `tpm2-device=auto` and enroll the new LUKS2 volume later.
   Retain a tested passphrase/recovery route. Enrollment from the old installation
   does not transfer to a freshly formatted volume.
 - Provision fresh SSH host keys later. The shared configuration uses the new
