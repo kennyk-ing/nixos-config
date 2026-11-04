@@ -122,6 +122,8 @@
           ];
         };
 
+        earl = mkHost "earl";
+        kam = mkHost "kam";
         kirby = mkHost "kirby";
         tez = mkHost "tez";
         woo = mkHost "woo";
