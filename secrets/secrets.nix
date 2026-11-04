@@ -9,10 +9,12 @@ let
   kennyHosts = builtins.attrValues keys.hosts;
 
   wifiHosts = with keys.hosts; [
+    earl
     woo
   ];
 
   kennyWorkstationHosts = with keys.hosts; [
+    earl
     tez
     woo
   ];
