@@ -12,23 +12,21 @@ in
         "/var/lib/codex/workspace/nixos"
         "/var/lib/codex/workspace/reference"
         "/var/lib/codex/workspace/work"
-        "/var/lib/codex/workspace/org"
       ];
 
       writableRoots = [
         "/var/lib/codex/workspace/work"
-        "/var/lib/codex/workspace/org"
       ];
 
       readOnlyBinds = [
         "/home/kenny/configs/nixos/.git:/var/lib/codex/workspace/nixos/.git"
         "/home/kenny/AI-Shared/reference:/var/lib/codex/workspace/reference"
+        "/home/kenny/org:/var/lib/codex/workspace/org"
       ];
 
       writableBinds = [
         "/home/kenny/configs/nixos:/var/lib/codex/workspace/nixos"
         "/home/kenny/AI-Shared/work:/var/lib/codex/workspace/work"
-        "/home/kenny/org:/var/lib/codex/workspace/org"
       ];
     };
 
@@ -51,7 +49,7 @@ in
       "a+ /home/kenny/AI-Shared/work - - - - u:codex:rwx,g::---,m::rwx,d:u:codex:rwx,d:u:kenny:rwx,d:g::---,d:m::rwx"
 
       # Existing Syncthing Org directory: shared access while preserving ownership
-      "a+ /home/kenny/org - - - - u:codex:rwx,d:u:codex:rwx,d:u:kenny:rwx"
+      "a+ /home/kenny/org - - - - u:codex:r-x,d:u:codex:r-x,d:u:kenny:rwx"
     ];
   };
 }
