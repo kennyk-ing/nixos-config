@@ -8,10 +8,10 @@
   ];
 
   networking.hostName = "earl";
-  # The workstation profile enables NetworkManager; its automatic wired
-  # connection uses DHCP on the switch's untagged VLAN 10.
-  # Temporary LAN administration during installation and migration.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [
+    22 # sshd
+    22000 # syncthing
+  ];
   time.timeZone = "America/Los_Angeles";
 
   boot.initrd.systemd.enable = true;
@@ -62,7 +62,7 @@
     services = {
       openssh.enable = true;
       smartd.enable = true;
-      syncthing.enable = false;
+      syncthing.enable = true;
     };
   };
 

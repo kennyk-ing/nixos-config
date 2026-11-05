@@ -3,6 +3,11 @@ let
   hostName = osConfig.networking.hostName;
 
   devices = {
+    earl = {
+      id = "GH5R2ET-MYQGDOM-BXXW3PD-4N26JCD-QK6T7QA-JGNYT5J-I53W6BX-MHEETAM";
+      addresses = [ "tcp://earl.home.kinghq.net:22000" ];
+    };
+
     kirby = {
       id = "BVID26R-K3BOS46-DVPTYR2-HMYMVMZ-TPQSGN6-OYC75VV-6BYFOOW-CIPMCAE";
       addresses = [ "tcp://kirby.home.kinghq.net:22000" ];
@@ -46,6 +51,7 @@ in
           label = "Documents";
           path = "~/Documents";
           devices = builtins.filter (device: device != hostName) [
+            "earl"
             "tez"
             "woo"
           ];
@@ -56,6 +62,7 @@ in
           label = "Org (Emacs)";
           path = "~/org";
           devices = builtins.filter (device: device != hostName) [
+            "earl"
             "tez"
             "woo"
           ];
@@ -66,6 +73,7 @@ in
           label = "Doom (Emacs)";
           path = "~/.config/doom";
           devices = builtins.filter (device: device != hostName) [
+            "earl"
             "tez"
             "woo"
           ];
