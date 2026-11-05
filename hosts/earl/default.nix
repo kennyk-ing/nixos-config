@@ -47,8 +47,11 @@
 
     system = {
       core.enable = true;
-      # Secure Boot and TPM enrollment follow the initial manual-unlock install.
-      systemd-boot.enable = true;
+
+      secure-boot = {
+        enable = true;
+        measured-boot.enable = true;
+      };
 
       zram = {
         enable = true;
@@ -61,6 +64,21 @@
       smartd.enable = true;
       syncthing.enable = false;
     };
+  };
+
+  # Firmware measurement specific to Earl's physical Dell chassis.
+  boot.lanzaboote.measuredBoot.staticMeasurements."610-earl-firmware-efi".json = {
+    records = [
+      {
+        pcr = 4;
+        digests = [
+          {
+            hashAlg = "sha256";
+            digest = "522944324bb55c06f770c2757d962e562d9714d6041b6ba1a93041dd4cf9a8c7";
+          }
+        ];
+      }
+    ];
   };
 
   system.stateVersion = "26.05";

@@ -23,15 +23,13 @@
               content = {
                 type = "luks";
                 name = "crypted";
-                # Runtime input supplied by nixos-anywhere --disk-encryption-keys.
-                # A string path keeps the passphrase out of the Nix store.
-                passwordFile = "/run/earl-install-luks-passphrase";
                 extraFormatArgs = [
                   "--type"
                   "luks2"
                 ];
                 settings = {
                   allowDiscards = true;
+                  crypttabExtraOpts = [ "tpm2-device=auto" ];
                 };
                 content = {
                   type = "btrfs";
