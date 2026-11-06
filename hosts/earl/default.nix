@@ -8,10 +8,6 @@
   ];
 
   networking.hostName = "earl";
-  networking.firewall.allowedTCPPorts = [
-    22 # sshd
-    22000 # syncthing
-  ];
   time.timeZone = "America/Los_Angeles";
 
   boot.initrd.systemd.enable = true;

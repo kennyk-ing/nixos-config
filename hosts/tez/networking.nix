@@ -2,18 +2,25 @@
 
 {
   networking = {
-    firewall.interfaces = {
-      enp14s0.allowedTCPPorts = [
+    firewall = {
+      interfaces.enp14s0.allowedTCPPorts = [
         22 # SSH
         22000 # Syncthing
-        32400 # Plex
-        8989 # Sonarr
-        7878 # Radarr
-        9696 # Prowlarr
-        6767 # Bazarr
-        5055 # Seerr
-        8080 # Open WebUI (AI)
+        32400 # Plex clients
       ];
+
+      # Only Kingdome's reverse proxy may reach these application backends.
+      # TCP 8989: Sonarr (TV library management).
+      # TCP 7878: Radarr (movie library management).
+      # TCP 9696: Prowlarr (indexer management).
+      # TCP 6767: Bazarr (subtitle management).
+      # TCP 5055: Seerr (media requests).
+      # TCP 8080: Open WebUI (local AI interface).
+      # The NixOS firewall owns and recreates nixos-fw on reload.
+      extraCommands = ''
+        iptables -A nixos-fw -i enp14s0 -s 10.0.10.2/32 -p tcp \
+          -m multiport --dports 8989,7878,9696,6767,5055,8080 -j nixos-fw-accept
+      '';
     };
 
     networkmanager.ensureProfiles.profiles.vlan110 = {

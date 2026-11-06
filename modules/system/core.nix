@@ -43,8 +43,6 @@ in
           "nix-command"
           "flakes"
         ];
-
-        trusted-users = [ "kenny" ];
       };
 
       gc = {
