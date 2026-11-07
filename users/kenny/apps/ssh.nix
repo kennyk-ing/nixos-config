@@ -42,6 +42,12 @@
         HostName = "10.253.0.2";
         User = "kenny";
       };
+
+      # SSH to woo only over vpn, so wlan firewall can remain closed
+      earl = {
+        HostName = "10.253.0.4";
+        User = "kenny";
+      };
     };
   };
 }

@@ -35,6 +35,10 @@
     };
 
     networking.wifi.enable = true;
+    networking.home-vpn = {
+      enable = true;
+      address = "10.253.0.4/32";
+    };
 
     profiles = {
       development.enable = true;
