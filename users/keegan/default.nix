@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -26,6 +27,10 @@ in
       home = {
         # Do not change this value after initial setup
         stateVersion = "26.05";
+
+        packages = with pkgs; [
+          appimage-run
+        ];
       };
 
       programs = {
