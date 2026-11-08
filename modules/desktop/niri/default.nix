@@ -10,6 +10,8 @@
 
   config = lib.mkIf config.mySystem.desktop.niri.enable {
     programs.niri.enable = true;
+    # Preserve the login session PATH instead of NixOS's stripped service PATH.
+    systemd.user.services.niri.enableDefaultPath = false;
     security.polkit.enable = true;
 
     environment.sessionVariables = {
@@ -33,6 +35,9 @@
     services.gnome.gnome-keyring.enable = false;
 
     security.pam.services.login.kwallet.enable = true;
+
+    # Niri also needs the backend when Plasma is not installed.
+    xdg.portal.extraPortals = [ pkgs.kdePackages.kwallet ];
 
     xdg.portal.config.niri."org.freedesktop.impl.portal.Secret" = lib.mkForce "kwallet";
 

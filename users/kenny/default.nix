@@ -8,6 +8,11 @@ let
   keys = import ../../keys.nix;
 in
 {
+  imports = [
+    ./niri.nix
+    ./terminal.nix
+  ];
+
   options.mySystem.users.kenny = {
     enable = lib.mkEnableOption "Kenny's Base User Profile";
   };

@@ -14,25 +14,32 @@
 
   age.secrets."gotify-token".file = ../../secrets/gotify-token.age;
 
-  mySystem = {
-    desktop = {
-      sddm.enable = true;
-      plasma.enable = true;
+  programs.firefox.enable = true;
+  home-manager.users.kenny.home.sessionVariables.BROWSER = "firefox";
+  home-manager.users.kenny.xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/xhtml+xml" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
     };
+  };
 
+  mySystem = {
+    desktop.niri.enable = true;
+    desktop.greetd.enable = true;
+    profiles.server.enable = true;
     users.kenny.enable = true;
+    users.kenny.terminal.enable = true;
 
     hardware = {
       intel-graphics.enable = true;
       laptop.enable = true;
     };
 
-    profiles.server.enable = true;
-
     services = {
       openssh.enable = true;
-      # Fresh identity and peer/folder review are deferred.
-      syncthing.enable = false;
 
       smartd = {
         enable = true;
@@ -46,12 +53,10 @@
 
     system = {
       core.enable = true;
-      # Former woo chassis: prepare firmware trust before Lanzaboote.
       systemd-boot.enable = true;
 
       zram = {
         enable = true;
-        # Scales with installed RAM: nominally 6.4 GiB at 64 GiB RAM.
         memoryPercent = 10;
       };
     };

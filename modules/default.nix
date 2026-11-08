@@ -9,6 +9,7 @@
     ./apps/office.nix
 
     ./desktop/gdm.nix
+    ./desktop/greetd.nix
     ./desktop/sddm.nix
     ./desktop/niri
     ./desktop/plasma.nix

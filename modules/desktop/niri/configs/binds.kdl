@@ -5,7 +5,7 @@ binds {
 
     Mod+Return repeat=false { spawn "xdg-terminal-exec"; }
     Mod+Space repeat=false { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+B repeat=false { spawn "zen-beta"; }
+    Mod+B repeat=false { spawn-sh "$BROWSER"; }
     Mod+E repeat=false { spawn "thunderbird"; }
     Mod+F repeat=false { spawn "dolphin"; }
     Mod+N repeat=false { spawn "emacs"; }
