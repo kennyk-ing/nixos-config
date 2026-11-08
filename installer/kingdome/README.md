@@ -39,9 +39,9 @@ hodor WAN:
 Before shutdown:
 
 ```text
-kingdome onboard → LAN switch
-hodor LAN        → LAN switch
-kirby            → LAN switch
+kingdome onboard     → LAN switch
+hodor LAN            → LAN switch
+recovery workstation → LAN switch
 
 hodor WAN        → disconnected from ONT
 ```
@@ -240,13 +240,52 @@ Both Intel 82576 functions must be available for VFIO passthrough.
 
 ---
 
-## 8. Connect from kirby
+## 8. Connect from the recovery workstation
 
-Bring up the temporary recovery network:
+Use a workstation with Ethernet, NetworkManager, SSH, a browser, and
+`virt-viewer` available before the outage. Earl or Woo can be used after
+verifying these prerequisites. Kam's server/networkd configuration is not
+covered by the NetworkManager commands below.
+
+The workstation must have an SSH user key authorized for Kenny on kingdome.
+Use its Ethernet connection to the same untagged LAN switch as kingdome's
+onboard port. Disconnect Wi-Fi/VPN connections if they conflict with this
+recovery subnet.
+
+Identify the connected Ethernet interface and its existing DHCP profile:
 
 ```bash
-sudo nmcli connection up kingdome-recovery
+nmcli device status
+nmcli -f NAME,TYPE,DEVICE connection show
 ```
+
+Record their actual names; these placeholders must be replaced:
+
+```bash
+RECOVERY_IFACE='<Ethernet-interface>'
+DHCP_PROFILE='<existing-DHCP-profile-name>'
+```
+
+Before continuing, verify that the saved profile uses DHCP:
+
+```bash
+nmcli -f connection.id,connection.interface-name,ipv4.method connection show "$DHCP_PROFILE"
+```
+
+Create a temporary profile with an unused static address. The example assumes
+`10.0.10.3` is available; verify that before using it. If a profile named
+`kingdome-recovery` already exists, inspect it and correct its interface and
+address instead of creating a duplicate.
+
+```bash
+sudo nmcli connection add type ethernet con-name kingdome-recovery \
+  ifname "$RECOVERY_IFACE" connection.autoconnect no \
+  ipv4.method manual ipv4.addresses 10.0.10.3/24 \
+  ipv4.never-default yes ipv6.method disabled
+sudo nmcli connection up kingdome-recovery ifname "$RECOVERY_IFACE"
+```
+
+No gateway or DNS server is required to reach kingdome by IP during recovery.
 
 Test:
 
@@ -311,7 +350,7 @@ Start hodor:
 sudo virsh -c qemu:///system start hodor
 ```
 
-From kirby:
+From the recovery workstation:
 
 ```bash
 virt-viewer \
@@ -355,7 +394,7 @@ IPv6:    none
 
 Do not configure VLANs yet.
 
-From kirby:
+From the recovery workstation:
 
 ```bash
 ping -c 3 10.0.10.1
@@ -411,20 +450,21 @@ Both should succeed.
 
 ---
 
-## 13. Return kirby to DHCP
+## 13. Return the recovery workstation to DHCP
 
-On kirby:
+On the recovery workstation, use the interface and DHCP profile recorded in
+step 8. Restore those variables if you opened a new terminal.
 
 ```bash
-sudo nmcli connection up "USB LAN"
+sudo nmcli connection up "$DHCP_PROFILE" ifname "$RECOVERY_IFACE"
 ```
 
 Check:
 
 ```bash
-ip -4 addr show dev enp0s20f0u2c2
+ip -4 addr show dev "$RECOVERY_IFACE"
 ip route
-nmcli device show enp0s20f0u2c2 | grep IP4.DNS
+nmcli -f IP4.ADDRESS,IP4.GATEWAY,IP4.DNS device show "$RECOVERY_IFACE"
 ```
 
 Expected:
@@ -489,11 +529,11 @@ hodor is running
 hodor LAN = 10.0.10.1/24
 hodor WAN has Internet access
 
-kirby receives DHCP from hodor
-kirby gateway = 10.0.10.1
-kirby DNS = 10.0.10.1
+recovery workstation receives DHCP from hodor
+recovery workstation gateway = 10.0.10.1
+recovery workstation DNS = 10.0.10.1
 
-kingdome and kirby have Internet access
+kingdome and recovery workstation have Internet access
 DNS resolution works
 
 hodor autostart is enabled

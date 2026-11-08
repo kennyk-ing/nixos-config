@@ -1,3 +1,4 @@
+# Recipient rules discovered automatically by agenix.
 let
   keys = import ../keys.nix;
 
@@ -24,7 +25,7 @@ in
   "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
-  "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kirby ];
+  "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
   "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "wireguard-woo.age".publicKeys = adminKeys ++ [ keys.hosts.woo ];
   "wireguard-earl.age".publicKeys = adminKeys ++ [ keys.hosts.earl ];

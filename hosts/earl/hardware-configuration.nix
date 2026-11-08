@@ -1,4 +1,3 @@
-# Physical Dell Inspiron 3511 formerly running kirby; verify before installation.
 {
   config,
   lib,

@@ -11,8 +11,8 @@
 #   rebuild-host tez
 #       Build .#tez locally, copy it to tez, and switch tez immediately.
 #
-#   rebuild-host kirby test
-#       Build .#kirby locally, copy it to kirby, and activate it temporarily.
+#   rebuild-host earl test
+#       Build .#earl locally, copy it to earl, and activate it temporarily.
 #
 #   rebuild-host kingdome boot
 #       Build .#kingdome locally, copy it to kingdome, and make it the

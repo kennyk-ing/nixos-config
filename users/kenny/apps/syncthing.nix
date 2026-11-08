@@ -8,11 +8,6 @@ let
       addresses = [ "tcp://earl.home.kinghq.net:22000" ];
     };
 
-    kirby = {
-      id = "BVID26R-K3BOS46-DVPTYR2-HMYMVMZ-TPQSGN6-OYC75VV-6BYFOOW-CIPMCAE";
-      addresses = [ "tcp://kirby.home.kinghq.net:22000" ];
-    };
-
     tez = {
       id = "3ZNJCVZ-IEMPBV3-362K7VA-VLNYUWJ-6FZYTVG-VCTYWHK-VCMUPT5-6X6ESAF";
       addresses = [ "tcp://tez.home.kinghq.net:22000" ];
