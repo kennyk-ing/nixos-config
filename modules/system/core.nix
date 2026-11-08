@@ -43,6 +43,10 @@ in
           "nix-command"
           "flakes"
         ];
+
+        # Allow rebuild-host to import unsigned local builds over SSH.
+        # This grants kenny root-equivalent access through the Nix daemon.
+        trusted-users = [ "kenny" ];
       };
 
       gc = {
