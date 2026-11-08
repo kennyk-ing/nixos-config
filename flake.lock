@@ -382,22 +382,6 @@
         "type": "github"
       }
     },
-    "privateData": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782100688,
-        "narHash": "sha256-TAtOpSZ57+2cIdn+qj2vBuSFcEmxYdFsrZ00uvm7E98=",
-        "ref": "refs/heads/main",
-        "rev": "d2173efda466092d6bf216d18002e5e3e490dd98",
-        "revCount": 2,
-        "type": "git",
-        "url": "ssh://git@github.com/kennyk-ing/nixos-private.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/kennyk-ing/nixos-private.git"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -411,7 +395,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "plasma-manager": "plasma-manager",
-        "privateData": "privateData",
         "zen-browser": "zen-browser"
       }
     },

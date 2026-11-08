@@ -13,12 +13,6 @@ let
     woo
   ];
 
-  kennyWorkstationHosts = with keys.hosts; [
-    earl
-    tez
-    woo
-  ];
-
   sharedUserHosts = with keys.hosts; [
     tez
     woo
@@ -26,7 +20,6 @@ let
 in
 {
   "wifi.age".publicKeys = adminKeys ++ wifiHosts;
-  "email_personal.age".publicKeys = adminKeys ++ kennyWorkstationHosts;
   "kenny-password.age".publicKeys = adminKeys ++ kennyHosts;
   "karen-password.age".publicKeys = adminKeys ++ sharedUserHosts;
   "keegan-password.age".publicKeys = adminKeys ++ sharedUserHosts;

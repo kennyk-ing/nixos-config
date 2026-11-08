@@ -10,11 +10,6 @@
 
     nixvim.url = "github:nix-community/nixvim/nixos-26.05";
 
-    privateData = {
-      url = "git+ssh://git@github.com/kennyk-ing/nixos-private.git";
-      flake = false;
-    };
-
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -1,7 +1,4 @@
-{ config, inputs, ... }:
-let
-  privateData = import inputs.privateData;
-in
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -64,7 +61,7 @@ in
   security.acme = {
     acceptTerms = true;
 
-    defaults.email = privateData."Personal".address;
+    defaults.email = "kenny@kinghq.net";
 
     certs."home.kinghq.net" = {
       extraDomainNames = [ "*.home.kinghq.net" ];

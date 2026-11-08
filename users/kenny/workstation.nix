@@ -17,11 +17,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    age.secrets.email_personal = {
-      file = ../../secrets/email_personal.age;
-      owner = "kenny";
-    };
-
     users.users.kenny.extraGroups = [ "networkmanager" ];
 
     mySystem.apps.emacs.enable = true;
