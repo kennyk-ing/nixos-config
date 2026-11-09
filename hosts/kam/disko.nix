@@ -23,6 +23,7 @@
               content = {
                 type = "luks";
                 name = "crypted";
+                passwordFile = "/tmp/kam-luks-passphrase";
                 extraFormatArgs = [
                   "--type"
                   "luks2"
