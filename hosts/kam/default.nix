@@ -53,7 +53,11 @@
 
     system = {
       core.enable = true;
-      systemd-boot.enable = true;
+
+      secure-boot = {
+        enable = true;
+        measured-boot.enable = true;
+      };
 
       zram = {
         enable = true;

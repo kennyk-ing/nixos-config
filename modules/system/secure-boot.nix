@@ -52,9 +52,10 @@ in
             # Created by sbctl. Do not delete or regenerate casually.
             pkiBundle = "/var/lib/sbctl";
 
-            # Keep this at 8. systemd-pcrlock currently cannot handle more
-            # than 8 variants when measured boot is enabled.
-            configurationLimit = 8;
+            # Keep this at 4. systemd-pcrlock currently cannot handle more
+            # than 8 variants when measured boot is enabled, and upstream only
+            # 4, so dropping to that now
+            configurationLimit = 4;
 
             # Do not allow editing kernel parameters from the boot menu.
             settings.editor = false;
