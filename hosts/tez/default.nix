@@ -3,6 +3,7 @@
 {
   imports = [
     ./ai.nix
+    ./backup.nix
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix

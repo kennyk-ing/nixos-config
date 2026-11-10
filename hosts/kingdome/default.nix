@@ -1,12 +1,13 @@
 { config, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
+    ./backup.nix
     ./disko.nix
+    ./hardware-configuration.nix
+    ./homepage.nix
     ./networking.nix
     ./reverse-proxy.nix
     ./vfio.nix
-    ./homepage.nix
   ];
 
   networking.hostName = "kingdome";
@@ -16,6 +17,15 @@
 
   age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
   age.secrets."cloudflare-acme".file = ../../secrets/cloudflare-acme.age;
+
+  fileSystems."/srv/backups" = {
+    device = "/dev/disk/by-uuid/7f0cf1eb-f891-40c0-8e24-c239613c65b7";
+    fsType = "ext4";
+    options = [
+      "nofail"
+      "noatime"
+    ];
+  };
 
   mySystem = {
     users.kenny.enable = true;

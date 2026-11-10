@@ -1,4 +1,3 @@
-# Recipient rules discovered automatically by agenix.
 let
   keys = import ../keys.nix;
 
@@ -26,4 +25,7 @@ in
   "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
   "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "wireguard-earl.age".publicKeys = adminKeys ++ [ keys.hosts.earl ];
+  "restic-server-users.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
+  "restic-tez-http.age".publicKeys = adminKeys ++ [ keys.hosts.tez ];
+  "restic-tez-repository.age".publicKeys = adminKeys ++ [ keys.hosts.tez ];
 }
