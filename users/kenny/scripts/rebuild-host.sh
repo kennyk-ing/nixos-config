@@ -18,8 +18,8 @@
 #       Build .#kingdome locally, copy it to kingdome, and make it the
 #       configuration used on the next boot without activating it now.
 #
-#   rebuild-host woo build
-#       Build .#woo locally only. Nothing is copied to or activated on woo.
+#   rebuild-host earl build
+#       Build .#earl locally only. Nothing is copied to or activated on earl.
 #
 # Supported actions:
 #   switch  - Activate now and make the configuration the boot default.

@@ -243,7 +243,7 @@ Both Intel 82576 functions must be available for VFIO passthrough.
 ## 8. Connect from the recovery workstation
 
 Use a workstation with Ethernet, NetworkManager, SSH, a browser, and
-`virt-viewer` available before the outage. Earl or Woo can be used after
+`virt-viewer` available before the outage. Earl can be used after
 verifying these prerequisites. Kam's server/networkd configuration is not
 covered by the NetworkManager commands below.
 

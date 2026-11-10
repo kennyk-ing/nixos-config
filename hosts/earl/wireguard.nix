@@ -18,8 +18,8 @@ in
   config = lib.mkIf cfg.enable {
     assertions = [
       {
-        assertion = cfg.address != null && cfg.address != "10.253.0.2/32";
-        message = "Reserve a unique home-vpn.address for Earl; 10.253.0.2/32 belongs to Woo.";
+        assertion = cfg.address != null;
+        message = "Reserve a unique home-vpn.address for Earl before enabling the VPN.";
       }
       {
         assertion = config.networking.networkmanager.enable;

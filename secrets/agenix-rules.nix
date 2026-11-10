@@ -4,19 +4,17 @@ let
 
   adminKeys = with keys.users.kenny; [
     tez
-    woo
+    earl
   ];
 
   kennyHosts = builtins.attrValues keys.hosts;
 
   wifiHosts = with keys.hosts; [
     earl
-    woo
   ];
 
   sharedUserHosts = with keys.hosts; [
     tez
-    woo
   ];
 in
 {
@@ -27,6 +25,5 @@ in
   "gotify-env.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "gotify-token.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
   "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
-  "wireguard-woo.age".publicKeys = adminKeys ++ [ keys.hosts.woo ];
   "wireguard-earl.age".publicKeys = adminKeys ++ [ keys.hosts.earl ];
 }

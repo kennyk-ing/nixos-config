@@ -120,7 +120,6 @@
         earl = mkHost "earl";
         kam = mkHost "kam";
         tez = mkHost "tez";
-        woo = mkHost "woo";
       };
 
       formatter.${system} = pkgs.nixfmt-tree;

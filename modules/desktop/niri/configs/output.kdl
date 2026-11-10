@@ -1,5 +1,5 @@
 // Display configuration: output names, modes, scaling, rotation, and placement.
-// Shared by tez and woo. Without mode overrides, niri chooses preferred modes,
+// Shared by tez, earl, and kam. Without mode overrides, niri chooses preferred modes,
 // automatic scales, and non-overlapping positions.
 //
 // The old output blocks below are kept as configuration examples, not active settings.

@@ -13,11 +13,6 @@ let
       addresses = [ "tcp://tez.home.kinghq.net:22000" ];
     };
 
-    woo = {
-      id = "XR5CXOS-PRPUYVZ-GZD6H5Y-K46HJK5-UD3HVWE-PEH5L7V-G5SCEHH-OJR4MQE";
-      addresses = [ "tcp://woo.home.kinghq.net:22000" ];
-    };
-
     galaxyA52 = {
       id = "4S427ET-DVF7KYE-7R5YSG3-NV4JL3V-J3EJL7G-IIJ3IAF-C2JOQQR-XWMNUQ7";
       addresses = [ "tcp://kenny-galaxy-a52-5g:22000" ];
@@ -48,7 +43,6 @@ in
           devices = builtins.filter (device: device != hostName) [
             "earl"
             "tez"
-            "woo"
           ];
           versioning = defaultVersioning;
         };
@@ -59,7 +53,6 @@ in
           devices = builtins.filter (device: device != hostName) [
             "earl"
             "tez"
-            "woo"
           ];
           versioning = defaultVersioning;
         };
@@ -70,7 +63,6 @@ in
           devices = builtins.filter (device: device != hostName) [
             "earl"
             "tez"
-            "woo"
           ];
           versioning = defaultVersioning;
         };
