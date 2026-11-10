@@ -74,10 +74,11 @@
         ".backup '/var/lib/restic-tez-apps/chroma.sqlite3'"
     '';
 
-    # Retention will be handled on the backup server.
     pruneOpts = [ ];
-
-    # Integrity checks will be configured separately.
     runCheck = false;
   };
+
+  systemd.services.restic-backups-tez-apps.unitConfig.OnFailure = [
+    "systemd-failure-alert@%N.service"
+  ];
 }

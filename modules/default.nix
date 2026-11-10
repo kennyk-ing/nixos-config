@@ -32,6 +32,7 @@
     ./services/podman.nix
     ./services/smartd.nix
     ./services/syncthing.nix
+    ./services/systemd-failure-alerts.nix
 
     ./system/core.nix
     ./system/secure-boot.nix

@@ -15,8 +15,11 @@
 
   users.users.kenny.extraGroups = [ "libvirtd" ];
 
-  age.secrets."gotify-env".file = ../../secrets/gotify-env.age;
-  age.secrets."cloudflare-acme".file = ../../secrets/cloudflare-acme.age;
+  age.secrets = {
+    "gotify-env".file = ../../secrets/gotify-env.age;
+    "cloudflare-acme".file = ../../secrets/cloudflare-acme.age;
+    "gotify-backups-token".file = ../../secrets/gotify-backups-token.age;
+  };
 
   fileSystems."/srv/backups" = {
     device = "/dev/disk/by-uuid/7f0cf1eb-f891-40c0-8e24-c239613c65b7";
@@ -36,6 +39,11 @@
       libvirt.enable = true;
       openssh.enable = true;
       smartd.enable = true;
+
+      systemdFailureAlerts = {
+        enable = true;
+        gotify.tokenFile = config.age.secrets."gotify-backups-token".path;
+      };
     };
 
     system = {

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -12,15 +12,9 @@
     ./torrent.nix
   ];
 
+  age.secrets."gotify-backups-token".file = ../../secrets/gotify-backups-token.age;
   networking.hostName = "tez";
   time.timeZone = "America/Los_Angeles";
-
-  systemd.sleep.settings.Sleep = {
-    AllowSuspend = "no";
-    AllowHibernation = "no";
-    AllowHybridSleep = "no";
-    AllowSuspendThenHibernate = "no";
-  };
 
   mySystem = {
     apps = {
@@ -62,16 +56,29 @@
       codex.enable = true;
       openssh.enable = true;
       plex.enable = true;
-      syncthing.enable = true;
       smartd.enable = true;
+      syncthing.enable = true;
+      systemdFailureAlerts = {
+        enable = true;
+        gotify.tokenFile = config.age.secrets."gotify-backups-token".path;
+      };
     };
   };
 
-  systemd.services.plex = {
-    unitConfig.RequiresMountsFor = [ "/srv/data/media/tv" ];
+  systemd = {
+    services.plex = {
+      unitConfig.RequiresMountsFor = [ "/srv/data/media/tv" ];
 
-    bindsTo = [ "srv-data.mount" ];
-    after = [ "srv-data.mount" ];
+      bindsTo = [ "srv-data.mount" ];
+      after = [ "srv-data.mount" ];
+    };
+
+    sleep.settings.Sleep = {
+      AllowSuspend = "no";
+      AllowHibernation = "no";
+      AllowHybridSleep = "no";
+      AllowSuspendThenHibernate = "no";
+    };
   };
 
   system.stateVersion = "26.05";

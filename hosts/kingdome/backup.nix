@@ -31,11 +31,15 @@
       restic-backups-tez-apps-check.unitConfig = {
         RequiresMountsFor = [ "/srv/backups" ];
         AssertPathIsMountPoint = "/srv/backups";
+
+        OnFailure = [ "systemd-failure-alert@%N.service" ];
       };
 
       restic-backups-tez-apps-retention.unitConfig = {
         RequiresMountsFor = [ "/srv/backups" ];
         AssertPathIsMountPoint = "/srv/backups";
+
+        OnFailure = [ "systemd-failure-alert@%N.service" ];
       };
     };
 
