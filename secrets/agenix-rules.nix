@@ -27,5 +27,8 @@ in
   "wireguard-earl.age".publicKeys = adminKeys ++ [ keys.hosts.earl ];
   "restic-server-users.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "restic-tez-http.age".publicKeys = adminKeys ++ [ keys.hosts.tez ];
-  "restic-tez-repository.age".publicKeys = adminKeys ++ [ keys.hosts.tez ];
+  "restic-tez-repository.age".publicKeys = adminKeys ++ [
+    keys.hosts.tez
+    keys.hosts.kingdome
+  ];
 }
