@@ -3,6 +3,7 @@
     vlan100.allowedTCPPorts = [
       22 # SSH
       8888 # SearXNG
+      9000 # Mealie
     ];
   };
 

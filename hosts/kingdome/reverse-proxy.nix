@@ -125,6 +125,15 @@
           reverse_proxy 10.0.100.10:8888
         '';
       };
+
+      "recipes.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy 10.0.100.10:9000
+        '';
+      };
     };
   };
 

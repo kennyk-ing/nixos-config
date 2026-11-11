@@ -2,11 +2,12 @@
 
 {
   imports = [
-    ./backup.nix
-    ./disko.nix
     ./hardware-configuration.nix
+    ./disko.nix
     ./networking.nix
+    ./backup.nix
     ./searxng.nix
+    ./mealie.nix
   ];
 
   networking.hostName = "kam";
