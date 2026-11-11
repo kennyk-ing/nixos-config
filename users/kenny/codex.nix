@@ -22,6 +22,7 @@ in
         "/home/kenny/configs/nixos/.git:/var/lib/codex/workspace/nixos/.git"
         "/home/kenny/AI-Shared/reference:/var/lib/codex/workspace/reference"
         "/home/kenny/org:/var/lib/codex/workspace/org"
+        "/home/kenny/Documents/school/reference:/var/lib/codex/workspace/school"
       ];
 
       writableBinds = [
@@ -36,6 +37,7 @@ in
       "d /var/lib/codex/workspace/reference 0755 codex codex -"
       "d /var/lib/codex/workspace/work 0755 codex codex -"
       "d /var/lib/codex/workspace/org 0755 codex codex -"
+      "d /var/lib/codex/workspace/school 0755 codex codex -"
 
       # Kenny's shared directories
       "d /home/kenny/AI-Shared 0700 kenny users -"
@@ -43,6 +45,9 @@ in
       # Reference files: read-only for Codex
       "d /home/kenny/AI-Shared/reference 0750 kenny users -"
       "a+ /home/kenny/AI-Shared/reference - - - - u:codex:r-x,g::---,m::r-x,d:u:codex:r-x,d:g::---,d:m::r-x"
+
+      # School reference files: recursive read-only access while preserving ownership
+      "A+ /home/kenny/Documents/school/reference - - - - u:codex:r-X,d:u:codex:r-X"
 
       # Working files: read/write for Kenny and Codex
       "d /home/kenny/AI-Shared/work 0770 kenny users -"
