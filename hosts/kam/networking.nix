@@ -2,6 +2,7 @@
   networking.firewall.interfaces = {
     vlan100.allowedTCPPorts = [
       22 # SSH
+      8888 # SearXNG
     ];
   };
 

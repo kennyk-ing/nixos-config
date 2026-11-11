@@ -41,4 +41,5 @@ in
     keys.hosts.kingdome
     keys.hosts.kam
   ];
+  "searxng-env.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
 }

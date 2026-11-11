@@ -6,6 +6,7 @@
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix
+    ./searxng.nix
   ];
 
   networking.hostName = "kam";
