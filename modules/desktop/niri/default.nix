@@ -74,16 +74,22 @@
 
       niri-bitwarden-float = {
         description = "Float Bitwarden extension windows after their title is set";
+
         wantedBy = [ "niri.service" ];
         after = [ "niri.service" ];
         partOf = [ "niri.service" ];
+
+        unitConfig = {
+          Requisite = "niri.service";
+          ConditionEnvironment = "NIRI_SOCKET";
+        };
+
         serviceConfig = {
           ExecStart = "${pkgs.python3}/bin/python3 -u ${./open-float.py}";
-          Restart = "always";
+          Restart = "on-failure";
           RestartSec = 2;
         };
       };
     };
-
   };
 }
