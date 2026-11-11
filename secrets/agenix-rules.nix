@@ -39,5 +39,6 @@ in
   "gotify-backups-token.age".publicKeys = adminKeys ++ [
     keys.hosts.tez
     keys.hosts.kingdome
+    keys.hosts.kam
   ];
 }
