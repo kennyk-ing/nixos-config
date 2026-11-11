@@ -26,6 +26,11 @@ in
   "cloudflare-acme.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
   "wireguard-earl.age".publicKeys = adminKeys ++ [ keys.hosts.earl ];
   "restic-server-users.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
+  "restic-kingdome-ssh.age".publicKeys = adminKeys ++ [ keys.hosts.kingdome ];
+  "restic-kingdome-repository.age".publicKeys = adminKeys ++ [
+    keys.hosts.kingdome
+    keys.hosts.kam
+  ];
   "restic-tez-http.age".publicKeys = adminKeys ++ [ keys.hosts.tez ];
   "restic-tez-repository.age".publicKeys = adminKeys ++ [
     keys.hosts.tez

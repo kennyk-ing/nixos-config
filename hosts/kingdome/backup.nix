@@ -1,12 +1,35 @@
-{ config, ... }:
-
+{ config, pkgs, ... }:
+let
+  keys = import ../../keys.nix;
+in
 {
-  age.secrets.restic-server-users = {
-    file = ../../secrets/restic-server-users.age;
-    owner = "restic";
-    group = "restic";
-    mode = "0400";
+  age.secrets = {
+    restic-server-users = {
+      file = ../../secrets/restic-server-users.age;
+      owner = "restic";
+      group = "restic";
+      mode = "0400";
+    };
+
+    "restic-tez-repository" = {
+      file = ../../secrets/restic-tez-repository.age;
+      owner = "restic";
+      group = "restic";
+      mode = "0400";
+    };
+
+    "restic-kingdome-ssh" = {
+      file = ../../secrets/restic-kingdome-ssh.age;
+      mode = "0400";
+    };
+
+    "restic-kingdome-repository" = {
+      file = ../../secrets/restic-kingdome-repository.age;
+      mode = "0400";
+    };
   };
+
+  programs.ssh.knownHosts."kam.home.kinghq.net".publicKey = keys.hosts.kam;
 
   services.restic.server = {
     enable = true;
@@ -41,19 +64,16 @@
 
         OnFailure = [ "systemd-failure-alert@%N.service" ];
       };
+
+      restic-backups-kingdome-apps.unitConfig.OnFailure = [
+        "systemd-failure-alert@%N.service"
+      ];
     };
 
     sockets.restic-rest-server.unitConfig = {
       RequiresMountsFor = [ "/srv/backups" ];
       AssertPathIsMountPoint = "/srv/backups";
     };
-  };
-
-  age.secrets."restic-tez-repository" = {
-    file = ../../secrets/restic-tez-repository.age;
-    owner = "restic";
-    group = "restic";
-    mode = "0400";
   };
 
   services.restic.backups = {
@@ -92,6 +112,49 @@
         OnCalendar = "*-*-01 04:00:00";
         Persistent = true;
       };
+    };
+
+    kingdome-apps = {
+      repository = "sftp:restic-kingdome@kam.home.kinghq.net:/kingdome/apps";
+
+      passwordFile = config.age.secrets."restic-kingdome-repository".path;
+
+      extraOptions = [
+        "sftp.args='-i /run/agenix/restic-kingdome-ssh -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes'"
+      ];
+
+      initialize = false;
+
+      paths = [
+        "/var/lib/restic-kingdome-apps"
+        "/var/lib/private/gotify-server/data"
+        "/var/lib/plexpy/backups"
+        "/var/lib/plexpy/config.ini"
+        "/var/lib/plexpy/newsletters"
+      ];
+
+      exclude = [
+        "/var/lib/private/gotify-server/data/gotify.db*"
+      ];
+
+      backupPrepareCommand = ''
+        #!${pkgs.runtimeShell}
+        set -eu
+
+        ${pkgs.coreutils}/bin/install -d -m 0700 /var/lib/restic-kingdome-apps
+
+        ${pkgs.sqlite}/bin/sqlite3 -bail -readonly \
+          /var/lib/private/gotify-server/data/gotify.db \
+          ".backup '/var/lib/restic-kingdome-apps/gotify.db'"
+      '';
+
+      timerConfig = {
+        OnCalendar = "*-*-* 06:45:00";
+        Persistent = true;
+      };
+
+      pruneOpts = [ ];
+      runCheck = false;
     };
   };
 
