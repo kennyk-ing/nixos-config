@@ -67,28 +67,54 @@
     ];
   };
 
-  users.groups.restic-kingdome = { };
+  users.groups = {
+    restic-kingdome = { };
+    hodor-backup = { };
+  };
 
-  users.users.restic-kingdome = {
-    isSystemUser = true;
-    group = "restic-kingdome";
-    home = "/";
-    createHome = false;
+  users.users = {
+    hodor-backup = {
+      isSystemUser = true;
+      group = "hodor-backup";
+      home = "/";
+      createHome = false;
 
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEyd0UuW7sYjtOqUmzQpxgIJx7ZeEEwkJ9lHz+60EYW4 restic-kingdome-to-kam"
-    ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA5GCt0CrpSWgQYg7AecZEydfKQQjVr1NYhhU2HGp2b/ hodor-to-kam-sftp"
+      ];
+    };
+
+    restic-kingdome = {
+      isSystemUser = true;
+      group = "restic-kingdome";
+      home = "/";
+      createHome = false;
+
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEyd0UuW7sYjtOqUmzQpxgIJx7ZeEEwkJ9lHz+60EYW4 restic-kingdome-to-kam"
+      ];
+    };
   };
 
   systemd.tmpfiles.rules = [
     "d /srv/backups 0755 root root - -"
     "d /srv/backups/kingdome 0700 restic-kingdome restic-kingdome - -"
+    "d /srv/backups/hodor 0700 hodor-backup hodor-backup - -"
   ];
 
   services.openssh.extraConfig = ''
     Match User restic-kingdome
       ChrootDirectory /srv/backups
       ForceCommand internal-sftp -d /kingdome
+      DisableForwarding yes
+      PermitTTY no
+
+    Match User hodor-backup
+      ChrootDirectory /srv/backups
+      ForceCommand internal-sftp -d /hodor
+      AuthenticationMethods publickey
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
       DisableForwarding yes
       PermitTTY no
 
