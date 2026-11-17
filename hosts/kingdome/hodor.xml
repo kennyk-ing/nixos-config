@@ -63,6 +63,14 @@
       <model type='qxl' heads='1' primary='yes'/>
     </video>
 
+    <!-- Virtio-serial controller used by the QEMU Guest Agent. -->
+    <controller type='virtio-serial' index='0'/>
+
+    <!-- Host-to-guest communication channel for VM management. -->
+    <channel type='unix'>
+      <target type='virtio' name='org.qemu.guest_agent.0'/>
+    </channel>
+
     <serial type='pty'>
       <target type='isa-serial' port='0'/>
     </serial>
