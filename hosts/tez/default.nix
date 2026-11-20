@@ -4,6 +4,7 @@
   imports = [
     ./ai.nix
     ./backup.nix
+    ./books.nix
     ./disko.nix
     ./hardware-configuration.nix
     ./networking.nix

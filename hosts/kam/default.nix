@@ -8,6 +8,7 @@
     ./backup.nix
     ./searxng.nix
     ./mealie.nix
+    ./books.nix
   ];
 
   networking.hostName = "kam";

@@ -134,6 +134,24 @@
           reverse_proxy 10.0.100.10:9000
         '';
       };
+
+      "audiobooks.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy kam.home.kinghq.net:8000
+        '';
+      };
+
+      "books.home.kinghq.net" = {
+        listenAddresses = [ "10.0.10.2" ];
+
+        extraConfig = ''
+          tls /var/lib/acme/home.kinghq.net/fullchain.pem /var/lib/acme/home.kinghq.net/key.pem
+          reverse_proxy kam.home.kinghq.net:5000
+        '';
+      };
     };
   };
 

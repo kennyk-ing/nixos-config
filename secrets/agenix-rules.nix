@@ -42,4 +42,5 @@ in
     keys.hosts.kam
   ];
   "searxng-env.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
+  "kavita-token.age".publicKeys = adminKeys ++ [ keys.hosts.kam ];
 }
