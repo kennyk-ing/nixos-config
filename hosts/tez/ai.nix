@@ -1,6 +1,12 @@
 { pkgs, ... }:
 
 {
+  mySystem.services.local-agent = {
+    enable = true;
+    repository = "/home/kenny/projects/nixos";
+    model = "qwen3.5-codex:9b";
+  };
+
   services.ollama = {
     enable = true;
     package = pkgs.ollama-rocm;
@@ -24,6 +30,11 @@
     environment = {
       OLLAMA_BASE_URL = "http://127.0.0.1:11434";
       WEBUI_URL = "https://ai.home.kinghq.net";
+
+      # File editing and commands use the separate codex-local launcher.
+      ENABLE_PLUGINS = "False";
+      ENABLE_CODE_EXECUTION = "False";
+      ENABLE_CODE_INTERPRETER = "False";
     };
   };
 }
