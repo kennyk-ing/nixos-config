@@ -37,4 +37,9 @@
       ENABLE_CODE_INTERPRETER = "False";
     };
   };
+
+  systemd.services.open-webui.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "10s";
+  };
 }

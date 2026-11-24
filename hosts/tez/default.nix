@@ -17,6 +17,10 @@
   networking.hostName = "tez";
   time.timeZone = "America/Los_Angeles";
 
+  # Initialize AMD graphics before Ollama starts during boot.
+  # Without early initialization, Ollama can detect CPU-only inference.
+  hardware.amdgpu.initrd.enable = true;
+
   mySystem = {
     apps = {
       browsers.enable = true;
