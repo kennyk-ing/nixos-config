@@ -33,6 +33,7 @@ let
     sandbox_workspace_write.network_access = false;
     projects.${workspace}.trust_level = "untrusted";
     web_search = "disabled";
+    mcp_servers = cfg.mcpServers;
   };
   emptyRules = pkgs.runCommand "local-agent-empty-rules" { } ''
     mkdir -p "$out"
@@ -105,6 +106,11 @@ in
     repository = lib.mkOption {
       type = lib.types.str;
       description = "Ordinary Git checkout shared with the local agent; .git must be a directory.";
+    };
+    mcpServers = lib.mkOption {
+      type = lib.types.attrsOf lib.types.anything;
+      default = { };
+      description = "MCP server configurations for the local Codex agent.";
     };
   };
 
