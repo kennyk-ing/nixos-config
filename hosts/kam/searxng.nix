@@ -25,6 +25,16 @@
         "html"
         "json"
       ];
+
+      # Brave's encrypted result URLs are currently incompatible with
+      # SearXNG. Disabled upstream on 2026-11-20 (searxng#6967).
+      # Revisit after updating SearXNG.
+      engines = [
+        {
+          name = "brave";
+          disabled = true;
+        }
+      ];
     };
   };
 }
